@@ -1,0 +1,69 @@
+
+html, body {
+  /*font-family:            'IM FELL English PRO';*/
+  font-size:              180%;
+}
+
+
+table {
+
+}
+
+td, th {
+  font-style:               normal;
+}
+
+pre, code {
+  font-style:               normal;
+  font-family:              'Flow DejaVu Sans Mono';
+  font-weight:              bold;
+  color:                    #000000;
+}
+
+pre, td, th {
+  border:                   1px solid black;
+  border-radius:            5px;
+}
+
+
+td, pre {
+background-image: linear-gradient(left top, rgb(227,248,255) 1%, rgb(173,232,255) 51%);
+background-image: -o-linear-gradient(left top, rgb(227,248,255) 1%, rgb(173,232,255) 51%);
+background-image: -moz-linear-gradient(left top, rgb(227,248,255) 1%, rgb(173,232,255) 51%);
+background-image: -webkit-linear-gradient(left top, rgb(227,248,255) 1%, rgb(173,232,255) 51%);
+background-image: -ms-linear-gradient(left top, rgb(227,248,255) 1%, rgb(173,232,255) 51%);
+
+background-image: -webkit-gradient(
+  linear,
+  left top,
+  right bottom,
+  color-stop(0.01, rgb(227,248,255)),
+  color-stop(0.51, rgb(173,232,255))
+);
+}
+
+::selection {
+  background: #e3ae00; }
+
+caption {
+  caption-side:           bottom;
+  font-size:              80%;
+  font-style:             italic;
+}
+
+[style*="text-decoration-line"] {
+  color:                  red;
+  text-decoration-style:  wavy;
+  text-decoration-color:  red;
+}
+
+li ul li {
+font-size:        100%;
+font-style:       normal;
+list-style-type:  disc;
+}
+
+ul li {
+list-style:       disc;
+line-height:      180%;
+}

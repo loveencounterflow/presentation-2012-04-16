@@ -1,0 +1,573 @@
+
+
+
+
+"Good architecture is necessary to give programs enough structure to be able to grow large without
+collapsing into a puddle of confusion."—Douglas Crockford, *Quality*, talk delivered on Yahoo!'s internal
+Frontend Engineering Summit in 2007, http://www.youtube.com/watch?v=t9YLtDJZtPY
+
+"you should use standard, easily recognizable idioms in preference to overly clever techniques that purport
+to offer better performance."—*Joshua Bloch, “Effective Java Second Edition”, pg. 242*
+
+"JavaScript is too important to be left to the experts."—*Jeremy Ashkenas, creator of CoffeeScript*
+
+"All languages are equally powerful in the sense of being Turing equivalent, but that’s not the sense of the
+word programmers care about. (No one wants to program a Turing machine.) The kind of power programmers care
+about may not be formally definable, but one way to explain it would be to say that it refers to features
+you could only get in the less powerful language by writing an interpreter for the more powerful language in
+it. If language A has an operator for removing spaces from strings and language B doesn’t, that probably
+doesn’t make A more powerful, because you can probably write a subroutine to do it in B. But if A supports,
+say, recursion, and B doesn’t, that’s not likely to be something you can fix by writing library
+functions."—Paul Graham, *Beating the Averages*
+
+
+
+Approaches to Programming
+============================================================================================================
+
+* Engineering
+* Architecture
+* Something completely different: CS
+* Linguistics
+
+* Computers don't need readable programs—humans do.
+
+Literate Programming can provide tools to make organized, beautiful source code and documentation, but no
+amount of CSS can demystify a badly chosen variable name.
+
+"Programs are not just a technical contrivance, they are a medium of intentional communication—with the
+machine, but more importantly with your development community, and ultimately with yourself."—Douglas
+Crockford, *Quality*, talk delivered on Yahoo!'s internal Frontend Engineering Summit in 2007,
+http://www.youtube.com/watch?v=t9YLtDJZtPY
+
+
+"The simplest thing we can do to enhance the value of our codebase is to make our programs more
+readable."—Douglas Crockford, *Quality*, talk delivered on Yahoo!'s internal Frontend Engineering
+Summit in 2007, http://www.youtube.com/watch?v=t9YLtDJZtPY
+
+
+
+
+How to Go Beyond the Oops of OOP
+============================================================================================================
+
+Quote:
+
+  "The last step forward was object-oriented programming [...] the next step is all overdue: we should've been
+  there by now and we haven't—we're still in the object-oriented stage. The next great leap might realize the
+  dream of building software systems like you put together stuff with Legos. Applications can be built by
+  putting together components, each produced at an independent foundry, and have interesting behavior as a
+  result of that; components can communicate and cooperate with each other. And it turns out we're doing that,
+  and it's called mashups."—Douglas Crockford, *Web Forward*, keynote to the 2008 Frontend Engineering Summit
+  at Yahoo!, http://www.youtube.com/watch?v=yh7TeoEwNyI
+
+Quote:
+
+  "Object Oriented Programming puts the Nouns first and foremost. Why would you go to such lengths to put
+  one part of speech on a pedestal? Why should one kind of concept take precedence over another? It's not as
+  if OOP has suddenly made verbs less important in the way we actually think. It's a strangely skewed
+  perspective."---Steve Yegge, *Execution in the Kingdom of Nouns*, http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html
+
+::
+
+    RidersGuild.getRiderNotificationSubscriberList().getBroadcaster().run(
+      new BroadcastMessage(StableFactory.getNullHorseInstance()));
+
+Contemporary APIs are very much burdened by these futile attempts at achieving independence of concrete
+implementation at the expense of tractability and readability; i consider the attempts futile because they
+resemble a lot what they did when building my old school back in the 70s: all the inner walls were huge
+panels hung from a square-meter grid of rails recessing into the ceiling, the idea being that rooms could be
+repartitioned quickly and easily whenever the need should arise. In the years i was there, i witnessed this
+being done only one or two times, except for one auditorium which could be split into two small ones. The
+technology was basically a huge investment with negligible returns, and overzealous OOP APIs are no
+different.
+
+  is, Library-Oriented, Semantics-Inspired, Data-Centric. In essence, this means you have static, stateless
+  libraries on the one hand (which is where all the methods are and all the intelligence lives) and dynamic,
+  stateful (but completely dumb) data containers on the other.
+
+
+    easiest, slowest: use Δ methods: ``push names, user_name``, ``
+
+    type-safest, a little faster: use public library methods: ``LIST.push names, user_name``
+
+    BTW this highlights why i believe my approach to be superior in some aspects over what you do in
+    classical OOP: When you write ``LIST.push a, b``, you get the implicit type validation and an annotation
+    in the code that ``a`` must be a list (or something akin that ``LIST`` accepts for this method). This
+    happens without any extra syntax.
+
+    less type-safe, yet a little faster: use private library methods: ``LIST._.push names, user_name``, ``
+
+    most problematic, fastest: use native JS object methods: ``names.push user_names``
+
+In JavaScript and other modern languages, things like collection manipulation etc. are built into the
+language, together with an API that manages access to these facilities. One could argue that these should
+*not* be concerns for the language proper, but a matter of libraries. In fact, i argue that even *the very
+syntax* of the language itself can be moved into a library.
+
+
+Screaming Caps Libraries
+============================================================================================================
+
+Qualifications:
+
+* Stateless libraries are just collections of methods. They may be configured, but runtime configuration
+  changes are not guaranteed to work and are generally frowned upon.
+
+* MULTIMIX compatibility—use ``$ = module.exports`` to define what is visible to the outside; always use
+  ``@`` (i.e. ``this``) to call library methods from other library methods.
+
+
+The Tower of Babylon
+------------------------------------------------------------------------------------------------------------
+
+* FlowMatic
+* CoffeeNode
+* IcedCoffeeScript
+* CoffeeScript
+* JavaScript
+* [bytecode]
+* C(++)
+* assembler
+* machine code
+
+
+
+
+
+
+
+
+
+
+
+The Oops of OOP
+============================================================================================================
+
+
+The Vocabulary
+============================================================================================================
+
+
+JavaScript
+------------------------------------------------------------------------------------------------------------
+
+!
+!=
+!==
+%
+%=
+&
+&&
+&=
+*
+*/
+*=
++
+++
++=
+,
+-
+--
+-=
+... ? ... : ...
+/
+/*
+//
+/=
+<
+<<
+<<=
+<=
+=
+==
+===
+>
+>=
+>>
+>>=
+>>>
+>>>=
+^
+^=
+Array
+ArrayBuffer
+Boolean
+break
+case
+catch
+class
+const
+continue
+Date
+debugger
+decodeURI
+decodeURIComponent
+default
+delete
+do
+do...while
+each
+else
+encodeURI
+encodeURIComponent
+enum
+Error
+eval
+EvalError
+export
+extends
+false
+finally
+Float32Array
+Float64Array
+for
+Function
+function
+get
+if
+implements
+import
+in
+Infinity
+instanceof
+Int16Array
+Int32Array
+Int8Array
+interface
+isFinite
+isNaN
+Iterator
+JSON
+label
+let
+Math
+NaN
+new
+null
+Number
+Object
+of
+package
+parseFloat
+parseInt
+private
+protected
+public
+RangeError
+ReferenceError
+RegExp
+return
+set
+static
+StopIteration
+String
+super
+switch
+SyntaxError
+this
+throw
+true
+try
+TypeError
+typeof
+Uint16Array
+Uint32Array
+Uint8Array
+Uint8ClampedArray
+unary +
+unary -
+undefined
+uneval
+URIError
+var
+void
+while
+with
+x.name
+x[ 'name' ]
+yield
+|
+|=
+||
+~
+
+CoffeeScript
+------------------------------------------------------------------------------------------------------------
+
+->
+?
+..
+...
+###
+( x for x in y when x > 0 )
+[ 0 ... 10 ]
+while
+loop
+until
+for
+of
+in
+@
+is
+isnt
+class
+::
+extends
+switch
+when
+else
+then
+"""
+'''
+///...///
+
+
+CoffeeNode
+------------------------------------------------------------------------------------------------------------
+
+Specific Λ Methods
+............................................................................................................
+
+as-list
+absolute
+add
+all-of
+any-of
+as-html
+chrs-of
+clear
+contains
+contains-only-digits
+contains-only-numbers
+copy
+delete-value
+drop-prefix
+drop-suffix
+ends-with
+equals
+extend
+facets-of
+fill
+filter
+find
+find-first
+first-idx-of
+first-value-of
+flatten
+flush
+flush-left
+flush-right
+get
+glean-lines-of
+has
+idxs-of
+insert
+interleave
+intersect
+invert
+is-empty
+is-even
+is-odd
+is-zero
+join
+join-comma
+join-commaspace
+join-fields
+join-lines
+join-space
+join-tight
+keys-of
+last-idx-of
+last-value-of
+length-of
+lines-of
+as-upper-case
+as-lower-case
+matches
+merge
+names-of
+negate
+normalize
+partition
+pluck
+pop
+pull
+push
+remove-doublets
+remove-key
+remove-slice
+remove-value
+remove-values
+repeat
+replace
+reset
+rest-of
+reverse
+rpr
+rpr-all
+shuffle
+select
+set
+shallow-copy
+slice
+smallest-idx-of
+sort
+split
+starts-with
+subtract
+trim
+union-of
+update
+values-of
+words-of
+arity-of
+
+
+Generic Λ Methods
+............................................................................................................
+
+after
+as-hash-key
+as-json
+assemble
+bye
+call
+compose
+echo
+freeze
+from-hash-key
+from-json
+get-descriptor
+infinity
+is-blank-text
+is-frozen
+is-mutable
+is-nonempty-text
+is-nonnegative-integer
+is-positive-number
+is-property-name-of
+is-shallow-frozen
+is-text-without-whitespace
+is-word
+isa
+isa-boolean
+isa-function
+isa-integer
+isa-jsarguments
+isa-jsctx
+isa-jsdate
+isa-jserror
+isa-jsglobal
+isa-jsinfinity
+isa-jsnotanumber
+isa-jsregex
+isa-jsundefined
+isa-jswindow
+isa-list
+isa-null
+isa-number
+isa-pod
+isa-text
+isnt-empty
+isnt-undefined
+looks-like-a-property-descriptor
+make-revocable
+max
+min
+once
+set-property
+shallow-freeze
+simple-equality-types
+type-of
+validate
+validate-arity
+validate-is-empty
+validate-is-frozen
+validate-is-indexed
+validate-is-integer
+validate-is-mutable
+validate-is-nonempty-list
+validate-is-nonempty-text
+validate-is-nonnegative-integer
+validate-is-nonnegative-number
+validate-is-nonzero-number
+validate-is-positive-integer
+validate-is-positive-number
+validate-is-text-without-whitespace
+validate-is-word
+validate-isa
+validate-isa-boolean
+validate-isa-function
+validate-isa-jsarguments
+validate-isa-jsarraybuffer
+validate-isa-jsctx
+validate-isa-jsdate
+validate-isa-jserror
+validate-isa-jsglobal
+validate-isa-jsinfinity
+validate-isa-jsnotanumber
+validate-isa-jsregex
+validate-isa-jsundefined
+validate-isa-jswindow
+validate-isa-list
+validate-isa-null
+validate-isa-number
+validate-isa-pod
+validate-isa-text
+validate-isa-text-or-anyregex
+validate-isa-text-or-jsregex
+validate-isa-text-or-regex
+validate-isnt-empty
+validate-isnt-undefined
+wait-for-keyboard
+xray
+
+Nouns
+............................................................................................................
+
+
+BITSNPIECES
+COFFEESCRIPT
+DIFF
+ENGINE
+FLOWMATIC
+FS
+HASH
+HTML
+JQUERY
+MACROS
+MULTIMIX
+PANDOC
+QUANTITY
+REGEX
+ROUTE
+SET
+TRM
+TYPES
+VALIDATE
+Δ
+Λ
+Σ
+
+JSARGUMENTS
+JSDATE
+JSERROR
+JSGLOBAL
+JSINFINITY
+JSNOTANUMBER
+JSREGEX
+JSUNDEFINED
+
+BOOLEAN
+FUNCTION
+LIST
+NULL
+NUMBER
+POD
+TEXT
+
+
+
+
+

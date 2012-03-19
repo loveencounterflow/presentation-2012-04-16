@@ -1,0 +1,48 @@
+
+
+
+
+############################################################################################################
+html_template_route = 'docs/presentation-2012-04-16/resources/template.html'
+html_target_route   = 'docs/presentation-2012-04-16/Slidy2/index.html'
+source_route        = 'docs/presentation-2012-04-16/presentation-2012-04-16.md'
+
+#-----------------------------------------------------------------------------------------------------------
+handler = ( document ) ->
+  log document
+
+# write_presentation = ->
+#   PANDOC.open_rst_file source_route, handler
+# write_presentation()
+
+# source = FS.read source_route
+
+# PANDOC.convert 'rst', source, 'native', ( error, target ) ->
+#   bye error if error
+#   log target
+#   # FS.write html_target_route, target
+
+# PANDOC.convert 'rst', source, 's5', ( error, target ) ->
+#   bye error if error
+#   log target
+#   # FS.write html_target_route, target
+
+log names_of PANDOC.source_formats
+log truth contains PANDOC.source_formats, 'rst'
+
+# log SET.names_of PANDOC.source_formats
+# log truth SET.contains PANDOC.source_formats, 'rst'
+
+PANDOC.convert 'markdown', source_route, 'slidy', ( error, target ) ->
+  bye error if error
+  template  = FS.read html_template_route
+  content   = template.replace '$content', target
+  FS.write html_target_route, content
+
+# PANDOC.convert 'rst', source_route, 'markdown', ( error, target ) ->
+#   bye error if error
+#   FS.write '/tmp/x', target
+
+
+
+
