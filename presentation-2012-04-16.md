@@ -982,6 +982,9 @@ value            `Object::toString.call value`
 *   Except we have no handle to manipulate the non-verbal / syntactical behaviors—all the `x + y`,
     `x[ 3 ] = 42`, `a = [ 8, 7, 6, ]`, `f()` stuff is beyond our reach.
 
+*   `x[ 'foo' ] == undefined` is the source for an important class of silent failures in JavaScript, and
+    we're still unable to fix this with CoffeeScript and `*.cnd` alone.
+
 *   Also, we cannot extend the syntax of the language to add stuff.
 
 *   I'd really like to explore what we can do if we had a flexible system where we can easily define
