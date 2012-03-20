@@ -4,9 +4,9 @@
 <title>LSD</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="duration" content="20">
-<link rel="stylesheet" href="./styles/slidy.css" type="text/css">
-<link rel="stylesheet" href="../resources/own.css" type="text/css">
-<script src="./scripts/slidy.js" charset="utf-8" type="text/javascript">
+<link rel="stylesheet" href="./Slidy2/styles/slidy.css" type="text/css">
+<link rel="stylesheet" href="./resources/own.css" type="text/css">
+<script src="./Slidy2/scripts/slidy.js" charset="utf-8" type="text/javascript">
 </script>
 </head>
 <body>
@@ -894,9 +894,10 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 <li><p>It’s almost a new language.</p></li>
 <li><p>Almost.</p></li>
 <li><p>Except we have no handle to manipulate the non-verbal / syntactical behaviors—all the <code>x + y</code>, <code>x[ 3 ] = 42</code>, <code>a = [ 8, 7, 6, ]</code>, <code>f()</code> stuff is beyond our reach.</p></li>
+<li><p><code>x[ 'foo' ] == undefined</code> is the source for an important class of silent failures in JavaScript, and we’re still unable to fix this with CoffeeScript and <code>*.cnd</code> alone.</p></li>
 <li><p>Also, we cannot extend the syntax of the language to add stuff.</p></li>
 <li><p>I’d really like to explore what we can do if we had a flexible system where we can easily define new syntax—both to produce more formulaic, terse domain-specific languages (DSLs) and more eloquent idioms that approach natural language.</p></li>
-<li><p>That has been done before—for the first time in history by Grace Hopper (1906–1992) between 1953 and 1959. A short sample program (slightly edited)::</p>
+<li><p>That has been done before—for the first time in history by Grace Hopper (1906–1992) who invented the programming language FLOW-MATIC between 1953 and 1959. A sample (slightly edited)::</p>
 <pre><code>      ....................................................................................
  (0)  input  inventory  file-a price        file-b;
       output priced-inv file-c unpriced-inv file-d;

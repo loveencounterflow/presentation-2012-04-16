@@ -4,7 +4,7 @@
 
 ############################################################################################################
 html_template_route = 'docs/presentation-2012-04-16/resources/template.html'
-html_target_route   = 'docs/presentation-2012-04-16/Slidy2/index.html'
+html_target_route   = 'docs/presentation-2012-04-16/index.html'
 source_route        = 'docs/presentation-2012-04-16/presentation-2012-04-16.md'
 
 #-----------------------------------------------------------------------------------------------------------
