@@ -4,7 +4,7 @@
 These are slides for a presentation i will give on Monday, April 16th, 2012 in the
 [Vetomat](http://wp.vetomat.net), Berlin, Germany, starting around 20:00.
 
-Never mind the styling; content is more important. I do hope to get around to make the styling more
+Never mind the styling; content is more important. I do hope to get around to make the appearance more
 appealing.
 
 Although the slides are in English, i probably will talk German. Estimated duration is not less than an
