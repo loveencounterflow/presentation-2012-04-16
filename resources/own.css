@@ -65,5 +65,11 @@ list-style-type:  disc;
 
 ul li {
 list-style:       disc;
-line-height:      180%;
+line-height:      120%;
+}
+
+blockquote a {
+  font-style:     normal;
+  font-weight:    bold;
+  font-size:      90%;
 }

@@ -43,15 +43,26 @@
 <div class="slide">
 <h1 id="prelude-what-made-me-leave-oop">Prelude: What Made me Leave OOP</h1>
 <h2 id="after-10-years-of-trying-to-love-it">after 10 Years of Trying to Love it</h2>
+<ul>
+<li>to quote:</li>
+</ul>
 <blockquote>
-<p>“The last step forward was object-oriented programming […] the next step is all overdue: we should’ve been there by now and we haven’t—we’re still in the object-oriented stage.”—Douglas Crockford, <em>Web Forward</em>, keynote to the 2008 Frontend Engineering Summit at Yahoo!, <a href="http://www.youtube.com/watch?v=yh7TeoEwNyI">http://www.youtube.com/watch?v=yh7TeoEwNyI</a></p>
+<p>“The last step forward was object-oriented programming […] the next step is all overdue: we should’ve been there by now and we haven’t—we’re still in the object-oriented stage.”—<a href="http://www.youtube.com/watch?v=yh7TeoEwNyI">Douglas Crockford, <em>Web Forward</em>, keynote to the 2008 Frontend Engineering Summit at Yahoo!</a></p>
 </blockquote>
 <blockquote>
-<p>“Object Oriented Programming puts the Nouns first and foremost. Why would you go to such lengths to put one part of speech on a pedestal? Why should one kind of concept take precedence over another? It’s not as if OOP has suddenly made verbs less important in the way we actually think. It’s a strangely skewed perspective.”—Steve Yegge, <em>Execution in the Kingdom of Nouns</em>, <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html</a></p>
+<p>“Object Oriented Programming puts the Nouns first and foremost. Why would you go to such lengths to put one part of speech on a pedestal? Why should one kind of concept take precedence over another? It’s not as if OOP has suddenly made verbs less important in the way we actually think. It’s a strangely skewed perspective.”—<a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Steve Yegge, <em>Execution in the Kingdom of Nouns</em></a></p>
 </blockquote>
+<ul>
+<li><p>This is Java, unmistakably:</p>
 <pre><code>RidersGuild.getRiderNotificationSubscriberList().getBroadcaster().run(
   new BroadcastMessage(StableFactory.getNullHorseInstance()));
-</code></pre>
+</code></pre></li>
+<li><p>OOP in itself does little to take complexity out of programming—in fact, my impression is that OOP <em>encourages</em> complexity:</p>
+<blockquote>
+<p>The problems that the [Enterprise JavaBeans] standard was attempting to address, such as object-relational mapping and transactional integrity, were complex, however many programmers found the APIs to be just as difficult, leading to a perception that EJBs introduced complexity without delivering real benefits.—<a href="http://en.wikipedia.org/wiki/Enterprise_JavaBeans">Wikipedia</a></p>
+</blockquote>
+<p>I could describe my experience with <a href="http://www.sqlalchemy.org/">SQLAlchemy</a> (a Python ORM toolkit) with the exactly same words. ORM is somewhat hard, but in the end i went back to handwritten SQL queries (with interpolated variable contents) simply because it was conceptually so much less of a burden.</p></li>
+</ul>
 <p id="section-2"></p>
 </div>
 <div class="slide">
@@ -67,13 +78,16 @@
 <div class="slide">
 <h1 id="language-is-important">Language is Important</h1>
 <ul>
-<li>Computers don’t need readable programs—humans do.</li>
-</ul>
+<li><p>Computers don’t need readable programs—humans do.</p>
 <p>Literate Programming can provide tools to make organized, beautiful source code and documentation, but no amount of CSS can demystify a badly chosen variable name.</p>
 <blockquote>
 <p>“Programs are not just a technical contrivance, they are a medium of intentional communication—with the machine, but more importantly with your development community, and ultimately with yourself.”—Douglas Crockford, <em>Quality</em>, talk delivered on Yahoo!’s internal Frontend Engineering Summit in 2007, <a href="http://www.youtube.com/watch?v=t9YLtDJZtPY">http://www.youtube.com/watch?v=t9YLtDJZtPY</a></p>
+</blockquote></li>
+<li><p>This talk is all about enabling programmers to write more readable programs:</p>
+<blockquote>
 <p>“The simplest thing we can do to enhance the value of our codebase is to make our programs more readable.”—Douglas Crockford, <em>Quality</em>, talk delivered on Yahoo!’s internal Frontend Engineering Summit in 2007, <a href="http://www.youtube.com/watch?v=t9YLtDJZtPY">http://www.youtube.com/watch?v=t9YLtDJZtPY</a></p>
-</blockquote>
+</blockquote></li>
+</ul>
 <p id="section-4"></p>
 </div>
 <div class="slide">
@@ -85,7 +99,7 @@
 <ul>
 <li><p>A classification of data</p></li>
 <li><p>based on their underlying storage needs (extension)</p></li>
-<li><p>and intended semantics &amp; use (intention)</p></li>
+<li><p>and intended semantics &amp; use (intention).</p></li>
 </ul>
 <p id="section-6"></p>
 </div>
@@ -93,11 +107,11 @@
 <h1 id="how-are-data-types-represented">How are Data Types Represented?</h1>
 <ul>
 <li><p>In JavaScript, the <code>typeof</code> operator returns a string</p></li>
-<li><p>whereas in Python, types are represented by the classes that implement them</p></li>
-<li><p>(the reality is a little more complicated).</p></li>
-<li><p>Representing / identifying types by texts is straightforward, simple, accessible and extensible</p></li>
+<li><p>whereas in Python, types are represented by the objects that implement them (the reality is a little more complicated).</p></li>
+<li><p>Representing / identifying (classes of) things by texts is straightforward, simple, accessible and extensible</p></li>
 <li><p>it works for 7 billion people and their pets</p></li>
-<li><p>so it should be good enough for a computer application.</p></li>
+<li><p>it works for the 171,476 words of English (in the OED)</p></li>
+<li><p>so it should be good enough for this purpose.</p></li>
 <li><p>Examples:</p>
 <ul>
 <li><p>built-in JavaScript types:</p>
@@ -121,94 +135,136 @@
 <h1 id="js-types--are-they-good-enough">JS Types—Are they Good Enough?</h1>
 <ul>
 <li><p>Short answer: No.</p></li>
-<li><p>Long answer:</p></li>
-</ul>
+<li><p>Long answer:</p>
+<ul>
+<li><p>these work:</p>
 <table>
-<caption>Behavior of the JS <code>typeof</code> operator</caption>
 <thead>
 <tr class="header">
-<th align="left">value</th>
-<th align="left">JS <code>typeof</code></th>
+<th align="left"><code>value =</code></th>
+<th align="left"><code>typeof value</code></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left"><code>true</code></td>
-<td align="left"><code>boolean</code></td>
+<td align="left"><code>'boolean'</code></td>
 </tr>
 <tr class="even">
 <td align="left"><code>-&gt;</code></td>
-<td align="left"><code>function</code></td>
+<td align="left"><code>'function'</code></td>
 </tr>
 <tr class="odd">
 <td align="left"><code>'text'</code></td>
-<td align="left"><code>string</code></td>
+<td align="left"><code>'string'</code></td>
 </tr>
 <tr class="even">
 <td align="left"><code>undefined</code></td>
-<td align="left"><code>undefined</code></td>
+<td align="left"><code>'undefined'</code></td>
 </tr>
 <tr class="odd">
+<td align="left"><code>new Object()</code></td>
+<td align="left"><code>'object'</code></td>
+</tr>
+<tr class="even">
 <td align="left"><code>42</code></td>
-<td align="left"><code>number</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>Infinity</code></td>
-<td align="left"><code>number</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>NaN</code></td>
-<td align="left"><code>number</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>[]</code></td>
-<td align="left"><code>object</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>{}</code></td>
-<td align="left"><code>object</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>new Date()</code></td>
-<td align="left"><code>object</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>global</code></td>
-<td align="left"><code>object</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>new RegExp()</code></td>
-<td align="left"><code>object</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>new Error()</code></td>
-<td align="left"><code>object</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>arguments</code></td>
-<td align="left"><code>object</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>null</code></td>
-<td align="left"><code>object</code></td>
+<td align="left"><code>'number'</code></td>
 </tr>
 </tbody>
-</table>
-<ul>
+</table></li>
+<li><p>this is doubtful:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><code>value =</code></th>
+<th align="left"><code>typeof value</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>Infinity</code></td>
+<td align="left"><code>'number'</code></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>this is troublesome:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><code>value =</code></th>
+<th align="left"><code>typeof value</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>NaN</code></td>
+<td align="left"><code>'number'</code></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>and the rest is silence, painful silence:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><code>value =</code></th>
+<th align="left"><code>typeof value</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>[]</code></td>
+<td align="left"><code>'object'</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>{}</code></td>
+<td align="left"><code>'object'</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>new Date()</code></td>
+<td align="left"><code>'object'</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>global</code></td>
+<td align="left"><code>'object'</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>new RegExp()</code></td>
+<td align="left"><code>'object'</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>new Error()</code></td>
+<td align="left"><code>'object'</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>arguments</code></td>
+<td align="left"><code>'object'</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>null</code></td>
+<td align="left"><code>'object'</code></td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
 <li><p>Likewise, the <code>instanceof</code> operator is deeply broken:</p>
+<ul>
+<li><p>these are OK:</p>
 <pre><code>typeof 42 == 'number'                   # true
 ( new Number 42 ) instanceof Number     # true
-typeof NaN == 'number'                  # true
-
-42 instanceof Number                    # false
 NaN instanceof Number                   # false
 </code></pre></li>
+<li><p>these are nuts:</p>
+<pre><code>typeof NaN == 'number'                  # true
+42 instanceof Number                    # false
+</code></pre></li>
+</ul></li>
+<li><p>Testing whether a result is a number or not is really important in JavaScript because <code>1 / 0</code> and <code>1 * 'foo'</code> yield <code>Infinity</code> and <code>NaN</code>, respectively.</p></li>
 <li><p>⚞OMFG⚟</p></li>
 </ul>
 <p id="section-8"></p>
 </div>
 <div class="slide">
-<h1 id="remedy-the-miller-device-12">Remedy: The Miller Device (1/2)</h1>
+<h1 id="remedy-the-miller-device">Remedy: The Miller Device</h1>
 <ul>
 <li>Fortunately, there is a <code>toString</code> method in <code>Object.protype</code> that behaves a tad more civilized:</li>
 </ul>
@@ -286,7 +342,7 @@ NaN instanceof Number                   # false
 <p id="section-9"></p>
 </div>
 <div class="slide">
-<h1 id="remedy-the-miller-device-22">Remedy: The Miller Device (2/2)</h1>
+<h1 id="remedy-the-miller-device-1">Remedy: The Miller Device</h1>
 <ul>
 <li><p>We exploit the goodness of the Miller Device to arrive at a sane type system. From <code>COFFEENODE/TYPES.coffee</code>:</p>
 <pre><code>#---------------------------------------------------------------------------------------------
@@ -338,6 +394,9 @@ coffeenode_type_by_js_type =
     return 'jsinfinity'   if x == Infinity or x == -Infinity
     return 'number'
 
+
+# **NB**: this is the preliminary version of `type_of`; the final version is shown later.
+
 #---------------------------------------------------------------------------------------------
 $.type_of = ( x ) -&gt;
   &quot;&quot;&quot;Given any kind of value ``x``, return its type.&quot;&quot;&quot;
@@ -368,7 +427,8 @@ log isa_number     1 / 0            # false
 <li><code>pod</code></li>
 <li><code>number</code></li>
 </ul></li>
-<li><p>The second group contains data types that are not nearly as universally accepted but are present in all modern JavaScript VMs. Some (like <code>jsnotanumber</code>) are introduced by CoffeeNode:</p>
+<li><p>The second group contains data types that are not nearly as universally accepted across languages, but they are present in all modern JavaScript VMs.</p>
+<p><strong>NB</strong> that while the <em>types</em> <code>jsnotanumber</code> and <code>jsinfinity</code> are introduced by CoffeeNode, the <em>values</em> are available in all JS VMs:</p>
 <ul>
 <li><code>jsundefined</code></li>
 <li><code>jsarguments</code></li>

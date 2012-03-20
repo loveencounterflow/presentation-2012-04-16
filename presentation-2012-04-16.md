@@ -44,22 +44,38 @@
 
 ## after 10 Years of Trying to Love it
 
->   "The last step forward was object-oriented programming [...] the next
->   step is all overdue: we should've been there by now and we
->   haven't—we're still in the object-oriented stage."—Douglas Crockford, *Web Forward*, keynote to the
->   2008 Frontend Engineering Summit at Yahoo!,
->   [http://www.youtube.com/watch?v=yh7TeoEwNyI](http://www.youtube.com/watch?v=yh7TeoEwNyI)
+*   to quote:
+
+>   "The last step forward was object-oriented programming [...] the next step is all overdue: we
+>   should've been there by now and we haven't—we're still in the object-oriented stage."—[Douglas
+>   Crockford, *Web Forward*, keynote to the 2008 Frontend Engineering Summit at
+>   Yahoo!](http://www.youtube.com/watch?v=yh7TeoEwNyI)
 
 >   "Object Oriented Programming puts the Nouns first and foremost. Why
 >   would you go to such lengths to put one part of speech on a pedestal?
 >   Why should one kind of concept take precedence over another? It's not
 >   as if OOP has suddenly made verbs less important in the way we
->   actually think. It's a strangely skewed perspective."---Steve Yegge,
->   *Execution in the Kingdom of Nouns*,
->   [http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html](http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html)
+>   actually think. It's a strangely skewed perspective."---[Steve Yegge,
+>   *Execution in the Kingdom of Nouns*](http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html)
 
-    RidersGuild.getRiderNotificationSubscriberList().getBroadcaster().run(
-      new BroadcastMessage(StableFactory.getNullHorseInstance()));
+
+*   This is Java, unmistakably:
+
+        RidersGuild.getRiderNotificationSubscriberList().getBroadcaster().run(
+          new BroadcastMessage(StableFactory.getNullHorseInstance()));
+
+*   OOP in itself does little to take complexity out of programming—in fact, my impression is that OOP
+    *encourages* complexity:
+
+    >   The problems that the [Enterprise JavaBeans] standard was attempting to address, such as
+    >   object-relational mapping and transactional integrity, were complex, however many programmers found the
+    >   APIs to
+    >   be just as difficult, leading to a perception that EJBs introduced complexity without delivering real
+    >   benefits.—[Wikipedia](http://en.wikipedia.org/wiki/Enterprise_JavaBeans)
+
+    I could describe my experience with [SQLAlchemy](http://www.sqlalchemy.org/) (a Python ORM toolkit) with
+    the exactly same words. ORM is somewhat hard, but in the end i went back to handwritten SQL queries
+    (with interpolated variable contents) simply because it was conceptually so much less of a burden.
 
 
 
@@ -82,21 +98,23 @@
 
 *   Computers don't need readable programs—humans do.
 
-Literate Programming can provide tools to make organized, beautiful
-source code and documentation, but no amount of CSS can demystify a
-badly chosen variable name.
+    Literate Programming can provide tools to make organized, beautiful
+    source code and documentation, but no amount of CSS can demystify a
+    badly chosen variable name.
 
->    "Programs are not just a technical contrivance, they are a medium of
->    intentional communication—with the machine, but more importantly with
->    your development community, and ultimately with yourself."—Douglas
->    Crockford, *Quality*, talk delivered on Yahoo!'s internal Frontend
->    Engineering Summit in 2007,
->    [http://www.youtube.com/watch?v=t9YLtDJZtPY](http://www.youtube.com/watch?v=t9YLtDJZtPY)
->
->    "The simplest thing we can do to enhance the value of our codebase is to
->    make our programs more readable."—Douglas Crockford, *Quality*, talk
->    delivered on Yahoo!'s internal Frontend Engineering Summit in 2007,
->    [http://www.youtube.com/watch?v=t9YLtDJZtPY](http://www.youtube.com/watch?v=t9YLtDJZtPY)
+    >    "Programs are not just a technical contrivance, they are a medium of
+    >    intentional communication—with the machine, but more importantly with
+    >    your development community, and ultimately with yourself."—Douglas
+    >    Crockford, *Quality*, talk delivered on Yahoo!'s internal Frontend
+    >    Engineering Summit in 2007,
+    >    [http://www.youtube.com/watch?v=t9YLtDJZtPY](http://www.youtube.com/watch?v=t9YLtDJZtPY)
+
+*   This talk is all about enabling programmers to write more readable programs:
+
+    >    "The simplest thing we can do to enhance the value of our codebase is to
+    >    make our programs more readable."—Douglas Crockford, *Quality*, talk
+    >    delivered on Yahoo!'s internal Frontend Engineering Summit in 2007,
+    >    [http://www.youtube.com/watch?v=t9YLtDJZtPY](http://www.youtube.com/watch?v=t9YLtDJZtPY)
 
 
 ############################################################################################################
@@ -112,7 +130,7 @@ badly chosen variable name.
 
 *   based on their underlying storage needs (extension)
 
-*   and intended semantics & use (intention)
+*   and intended semantics & use (intention).
 
 
 ############################################################################################################
@@ -121,17 +139,17 @@ badly chosen variable name.
 
 *   In JavaScript, the `typeof` operator returns a string
 
-*   whereas in Python, types are represented by the classes that
-    implement them
+*   whereas in Python, types are represented by the objects that implement them (the reality is a little
+    more complicated).
 
-*   (the reality is a little more complicated).
-
-*   Representing / identifying types by texts is straightforward,
+*   Representing / identifying (classes of) things by texts is straightforward,
     simple, accessible and extensible
 
 *   it works for 7 billion people and their pets
 
-*   so it should be good enough for a computer application.
+*   it works for the 171,476 words of English (in the OED)
+
+*   so it should be good enough for this purpose.
 
 *   Examples:
 
@@ -160,41 +178,66 @@ badly chosen variable name.
 
 *   Long answer:
 
-value            JS `typeof`
----------------- -------------
-`true`           `boolean`
-`->`             `function`
-`'text'`         `string`
-`undefined`      `undefined`
-`42`             `number`
-`Infinity`       `number`
-`NaN`            `number`
-`[]`             `object`
-`{}`             `object`
-`new Date()`     `object`
-`global`         `object`
-`new RegExp()`   `object`
-`new Error()`    `object`
-`arguments`      `object`
-`null`           `object`
+    *   these work:
 
-:  Behavior of the JS `typeof` operator
+        `value =`        `typeof value`
+        ---------------- ---------------
+        `true`           `'boolean'`
+        `->`             `'function'`
+        `'text'`         `'string'`
+        `undefined`      `'undefined'`
+        `new Object()`   `'object'`
+        `42`             `'number'`
+
+    *   this is doubtful:
+
+        `value =`        `typeof value`
+        ---------------- ---------------
+        `Infinity`       `'number'`
+
+    *   this is troublesome:
+
+        `value =`        `typeof value`
+        ---------------- ---------------
+        `NaN`            `'number'`
+
+    *   and the rest is silence, painful silence:
+
+        `value =`        `typeof value`
+        ---------------- ---------------
+        `[]`             `'object'`
+        `{}`             `'object'`
+        `new Date()`     `'object'`
+        `global`         `'object'`
+        `new RegExp()`   `'object'`
+        `new Error()`    `'object'`
+        `arguments`      `'object'`
+        `null`           `'object'`
+
 
 *   Likewise, the `instanceof` operator is deeply broken:
 
-        typeof 42 == 'number'                   # true
-        ( new Number 42 ) instanceof Number     # true
-        typeof NaN == 'number'                  # true
+    *   these are OK:
 
-        42 instanceof Number                    # false
-        NaN instanceof Number                   # false
+            typeof 42 == 'number'                   # true
+            ( new Number 42 ) instanceof Number     # true
+            NaN instanceof Number                   # false
+
+    *   these are nuts:
+
+            typeof NaN == 'number'                  # true
+            42 instanceof Number                    # false
+
+*   Testing whether a result is a number or not is really important in JavaScript because `1 / 0` and
+    `1 * 'foo'` yield `Infinity` and `NaN`, respectively.
+
 
 *   ⚞OMFG⚟
 
 
 ############################################################################################################
 
-# Remedy: The Miller Device (1/2)
+# Remedy: The Miller Device
 
 *   Fortunately, there is a `toString` method in `Object.protype` that behaves a tad more civilized:
 
@@ -220,7 +263,7 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-# Remedy: The Miller Device (2/2)
+# Remedy: The Miller Device
 
 *   We exploit the goodness of the Miller Device to arrive at a sane type system. From
     `COFFEENODE/TYPES.coffee`:
@@ -274,6 +317,9 @@ value            `Object::toString.call value`
             return 'jsinfinity'   if x == Infinity or x == -Infinity
             return 'number'
 
+
+        # **NB**: this is the preliminary version of `type_of`; the final version is shown later.
+
         #---------------------------------------------------------------------------------------------
         $.type_of = ( x ) ->
           """Given any kind of value ``x``, return its type."""
@@ -309,8 +355,10 @@ value            `Object::toString.call value`
     *   `number`
 
 *   The second group contains data types that are not nearly as
-    universally accepted but are present in all modern JavaScript VMs.
-    Some (like `jsnotanumber`) are introduced by CoffeeNode:
+    universally accepted across languages, but they are present in all modern JavaScript VMs.
+
+    **NB** that while the *types* `jsnotanumber` and `jsinfinity` are introduced by CoffeeNode,
+    the *values* are available in all JS VMs:
 
     *   `jsundefined`
     *   `jsarguments`
