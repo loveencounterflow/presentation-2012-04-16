@@ -1092,3 +1092,6 @@ value            `Object::toString.call value`
 
 
 ![](./resources/computer-languages-on-a-hertzsprung-russell-diagram.png)
+
+: Hertzsprung-Russell Diagram of Computer Languages
+
