@@ -872,7 +872,7 @@ value            `Object::toString.call value`
           'jsregex':        'ecma'
           'jsundefined':    'undefined ecma'
 
-![](../resources/coffeenode-jstype-features.png)
+![](./resources/coffeenode-jstype-features.png)
 
 *   A peek into `COFFEENODE/Λ/registry/specific-methods`:
 
@@ -885,7 +885,7 @@ value            `Object::toString.call value`
           'normalize':                  '*'
           'words-of':                   '?text'
 
-![](../resources/coffeenode-specific-Δ-methods.png)
+![](./resources/coffeenode-specific-Δ-methods.png)
 
 *   When a 'type-specific Δ method' is called for, we check whether the description of the type of the first
     argument 'matches' the description of the method:
@@ -1040,7 +1040,7 @@ value            `Object::toString.call value`
     idioms that approach natural language.
 
 *   That has been done before—for the first time in history by Grace Hopper (1906–1992) who invented
-    the programming language FLOW-MATIC between 1953 and 1959. A sample (slightly edited)::
+    the programming language FLOW-MATIC between 1953 and 1959. A sample (slightly edited):
 
               ....................................................................................
          (0)  input  inventory  file-a price        file-b;
@@ -1086,167 +1086,9 @@ value            `Object::toString.call value`
         (17)  stop. (end)
 
 
-
-
-
-
-
-
 ############################################################################################################
 
-#   Automatic Δ methods
+#   Beyond `*.cnd`
 
 
-
-############################################################################################################
-
-#   Automatic Δ methods
-
-
-############################################################################################################
-
-#   Automatic Δ methods
-
-new_$type
-as_$type
-isa_$type
-validate_isa_$type
-
-
-############################################################################################################
-
-# XXXXXXXXXX
-
-"Good architecture is necessary to give programs enough structure to be
-able to grow large without collapsing into a puddle of
-confusion."—Douglas Crockford, *Quality*, talk delivered on Yahoo!'s
-internal Frontend Engineering Summit in 2007,
-[http://www.youtube.com/watch?v=t9YLtDJZtPY](http://www.youtube.com/watch?v=t9YLtDJZtPY)
-
-"you should use standard, easily recognizable idioms in preference to
-overly clever techniques that purport to offer better
-performance."—*Joshua Bloch, “Effective Java Second Edition”, pg. 242*
-
-
-"All languages are equally powerful in the sense of being Turing
-equivalent, but that’s not the sense of the word programmers care about.
-(No one wants to program a Turing machine.) The kind of power
-programmers care about may not be formally definable, but one way to
-explain it would be to say that it refers to features you could only get
-in the less powerful language by writing an interpreter for the more
-powerful language in it. If language A has an operator for removing
-spaces from strings and language B doesn’t, that probably doesn’t make A
-more powerful, because you can probably write a subroutine to do it in
-B. But if A supports, say, recursion, and B doesn’t, that’s not likely
-to be something you can fix by writing library functions."—Paul Graham,
-*Beating the Averages*
-
-
-
-
-# Screaming Caps Libraries
-
-Qualifications:
-
-*   Stateless libraries are just collections of methods. They may be
-    configured, but runtime configuration changes are not guaranteed to
-    work and are generally frowned upon.
-
-*   MULTIMIX compatibility—use `$ = module.exports` to define what is
-    visible to the outside; always use `@` (i.e. `this`) to call library
-    methods from other library methods.
-
-## The Tower of Babylon
-
-*   FlowMatic
-*   CoffeeNode
-*   IcedCoffeeScript
-*   CoffeeScript
-*   JavaScript
-*   [bytecode]
-*   C(++)
-*   assembler
-*   machine code
-
-# The Oops of OOP
-
-# The Vocabulary
-
-## JavaScript
-
-! != !== % %= & && &= \* */*= + ++ += , ----= ... ? ... : ... / /\* //
-/= < << <<= <= = == === \> \>= \>\> \>\>= \>\>\> \>\>\>= \^ \^= Array
-ArrayBuffer Boolean break case catch class const continue Date debugger
-decodeURI decodeURIComponent default delete do do...while each else
-encodeURI encodeURIComponent enum Error eval EvalError export extends
-false finally Float32Array Float64Array for Function function get if
-implements import in Infinity instanceof Int16Array Int32Array Int8Array
-interface isFinite isNaN Iterator JSON label let Math NaN new null
-Number Object of package parseFloat parseInt private protected public
-RangeError ReferenceError RegExp return set static StopIteration String
-super switch SyntaxError this throw true try TypeError typeof
-Uint16Array Uint32Array Uint8Array Uint8ClampedArray unary + unary
-*undefined uneval URIError var void while with x.name x[ 'name' ] yield
-| |= || \~
-
-## CoffeeScript
-
-*\> ? .. ... \#\#\# ( x for x in y when x \> 0 ) [ 0 ... 10 ] while loop
-until for of in @ is isnt class :: extends switch when else then """ '''
-///...///
-
-## CoffeeNode
-
-### Specific Λ Methods
-
-as-list absolute add all-of any-of as-html chrs-of clear contains
-contains-only-digits contains-only-numbers copy delete-value drop-prefix
-drop-suffix ends-with equals extend facets-of fill filter find
-find-first first-idx-of first-value-of flatten flush flush-left
-flush-right get glean-lines-of has idxs-of insert interleave intersect
-invert is-empty is-even is-odd is-zero join join-comma join-commaspace
-join-fields join-lines join-space join-tight keys-of last-idx-of
-last-value-of length-of lines-of as-upper-case as-lower-case matches
-merge names-of negate normalize partition pluck pop pull push
-remove-doublets remove-key remove-slice remove-value remove-values
-repeat replace reset rest-of reverse rpr rpr-all shuffle select set
-shallow-copy slice smallest-idx-of sort split starts-with subtract trim
-union-of update values-of words-of arity-of
-
-### Generic Λ Methods
-
-after as-hash-key as-json assemble bye call compose echo freeze
-from-hash-key from-json get-descriptor infinity is-blank-text is-frozen
-is-mutable is-nonempty-text is-nonnegative-integer is-positive-number
-is-property-name-of is-shallow-frozen is-text-without-whitespace is-word
-isa isa-boolean isa-function isa-integer isa-jsarguments isa-jsctx
-isa-jsdate isa-jserror isa-jsglobal isa-jsinfinity isa-jsnotanumber
-isa-jsregex isa-jsundefined isa-jswindow isa-list isa-null isa-number
-isa-pod isa-text isnt-empty isnt-undefined
-looks-like-a-property-descriptor make-revocable max min once
-set-property shallow-freeze simple-equality-types type-of validate
-validate-arity validate-is-empty validate-is-frozen validate-is-indexed
-validate-is-integer validate-is-mutable validate-is-nonempty-list
-validate-is-nonempty-text validate-is-nonnegative-integer
-validate-is-nonnegative-number validate-is-nonzero-number
-validate-is-positive-integer validate-is-positive-number
-validate-is-text-without-whitespace validate-is-word validate-isa
-validate-isa-boolean validate-isa-function validate-isa-jsarguments
-validate-isa-jsarraybuffer validate-isa-jsctx validate-isa-jsdate
-validate-isa-jserror validate-isa-jsglobal validate-isa-jsinfinity
-validate-isa-jsnotanumber validate-isa-jsregex validate-isa-jsundefined
-validate-isa-jswindow validate-isa-list validate-isa-null
-validate-isa-number validate-isa-pod validate-isa-text
-validate-isa-text-or-anyregex validate-isa-text-or-jsregex
-validate-isa-text-or-regex validate-isnt-empty validate-isnt-undefined
-wait-for-keyboard xray
-
-### Nouns
-
-BITSNPIECES COFFEESCRIPT DIFF ENGINE FLOWMATIC FS HASH HTML JQUERY
-MACROS MULTIMIX PANDOC QUANTITY REGEX ROUTE SET TRM TYPES VALIDATE Δ Λ Σ
-
-JSARGUMENTS JSDATE JSERROR JSGLOBAL JSINFINITY JSNOTANUMBER JSREGEX
-JSUNDEFINED
-
-BOOLEAN FUNCTION LIST NULL NUMBER POD TEXT
+![](./resources/computer-languages-on-a-hertzsprung-russell-diagram.png)

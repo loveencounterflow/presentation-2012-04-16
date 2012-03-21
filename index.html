@@ -845,7 +845,7 @@ module.exports = ( require '../_read-registry-jstypes' )
 </code></pre></li>
 </ul>
 <div class="figure">
-<img src="../resources/coffeenode-jstype-features.png" /><p class="caption"></p>
+<img src="./resources/coffeenode-jstype-features.png" /><p class="caption"></p>
 </div>
 <ul>
 <li><p>A peek into <code>COFFEENODE/Λ/registry/specific-methods</code>:</p>
@@ -860,7 +860,7 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 </code></pre></li>
 </ul>
 <div class="figure">
-<img src="../resources/coffeenode-specific-%CE%94-methods.png" /><p class="caption"></p>
+<img src="./resources/coffeenode-specific-%CE%94-methods.png" /><p class="caption"></p>
 </div>
 <ul>
 <li><p>When a ‘type-specific Δ method’ is called for, we check whether the description of the type of the first argument ‘matches’ the description of the method:</p>
@@ -957,7 +957,7 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 <li><p><code>x[ 'foo' ] == undefined</code> is the source for an important class of silent failures in JavaScript, and we’re still unable to fix this with CoffeeScript and <code>*.cnd</code> alone.</p></li>
 <li><p>Also, we cannot extend the syntax of the language to add stuff.</p></li>
 <li><p>I’d really like to explore what we can do if we had a flexible system where we can easily define new syntax—both to produce more formulaic, terse domain-specific languages (DSLs) and more eloquent idioms that approach natural language.</p></li>
-<li><p>That has been done before—for the first time in history by Grace Hopper (1906–1992) who invented the programming language FLOW-MATIC between 1953 and 1959. A sample (slightly edited)::</p>
+<li><p>That has been done before—for the first time in history by Grace Hopper (1906–1992) who invented the programming language FLOW-MATIC between 1953 and 1959. A sample (slightly edited):</p>
 <pre><code>      ....................................................................................
  (0)  input  inventory  file-a price        file-b;
       output priced-inv file-c unpriced-inv file-d;
@@ -1005,62 +1005,10 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 <p id="section-27"></p>
 </div>
 <div class="slide">
-<h1 id="automatic-&#948;-methods">Automatic Δ methods</h1>
-<p id="section-28"></p>
+<h1 id="beyond-.cnd-1">Beyond <code>*.cnd</code></h1>
+<div class="figure">
+<img src="./resources/computer-languages-on-a-hertzsprung-russell-diagram.png" /><p class="caption"></p>
 </div>
-<div class="slide">
-<h1 id="automatic-&#948;-methods-1">Automatic Δ methods</h1>
-<p id="section-29"></p>
-</div>
-<div class="slide">
-<h1 id="automatic-&#948;-methods-2">Automatic Δ methods</h1>
-<p>new<em><span class="math">$type as_$</span>type isa</em><span class="math">$type validate_isa_$</span>type</p>
-<p id="section-30"></p>
-</div>
-<div class="slide">
-<h1 id="xxxxxxxxxx">XXXXXXXXXX</h1>
-<p>“Good architecture is necessary to give programs enough structure to be able to grow large without collapsing into a puddle of confusion.”—Douglas Crockford, <em>Quality</em>, talk delivered on Yahoo!’s internal Frontend Engineering Summit in 2007, <a href="http://www.youtube.com/watch?v=t9YLtDJZtPY">http://www.youtube.com/watch?v=t9YLtDJZtPY</a></p>
-<p>“you should use standard, easily recognizable idioms in preference to overly clever techniques that purport to offer better performance.”—<em>Joshua Bloch, “Effective Java Second Edition”, pg. 242</em></p>
-<p>“All languages are equally powerful in the sense of being Turing equivalent, but that’s not the sense of the word programmers care about. (No one wants to program a Turing machine.) The kind of power programmers care about may not be formally definable, but one way to explain it would be to say that it refers to features you could only get in the less powerful language by writing an interpreter for the more powerful language in it. If language A has an operator for removing spaces from strings and language B doesn’t, that probably doesn’t make A more powerful, because you can probably write a subroutine to do it in B. But if A supports, say, recursion, and B doesn’t, that’s not likely to be something you can fix by writing library functions.”—Paul Graham, <em>Beating the Averages</em></p>
-</div>
-<div class="slide">
-<h1 id="screaming-caps-libraries">Screaming Caps Libraries</h1>
-<p>Qualifications:</p>
-<ul>
-<li><p>Stateless libraries are just collections of methods. They may be configured, but runtime configuration changes are not guaranteed to work and are generally frowned upon.</p></li>
-<li><p>MULTIMIX compatibility—use <code>$ = module.exports</code> to define what is visible to the outside; always use <code>@</code> (i.e. <code>this</code>) to call library methods from other library methods.</p></li>
-</ul>
-<h2 id="the-tower-of-babylon">The Tower of Babylon</h2>
-<ul>
-<li>FlowMatic</li>
-<li>CoffeeNode</li>
-<li>IcedCoffeeScript</li>
-<li>CoffeeScript</li>
-<li>JavaScript</li>
-<li>[bytecode]</li>
-<li>C(++)</li>
-<li>assembler</li>
-<li>machine code</li>
-</ul>
-</div>
-<div class="slide">
-<h1 id="the-oops-of-oop">The Oops of OOP</h1>
-</div>
-<div class="slide">
-<h1 id="the-vocabulary-1">The Vocabulary</h1>
-<h2 id="javascript">JavaScript</h2>
-<p>! != !== % %= &amp; &amp;&amp; &amp;= * <em>/</em>= + ++ += , —-= … ? … : … / /* // /= &lt; &lt;&lt; &lt;&lt;= &lt;= = == === &gt; &gt;= &gt;&gt; &gt;&gt;= &gt;&gt;&gt; &gt;&gt;&gt;= ^ ^= Array ArrayBuffer Boolean break case catch class const continue Date debugger decodeURI decodeURIComponent default delete do do…while each else encodeURI encodeURIComponent enum Error eval EvalError export extends false finally Float32Array Float64Array for Function function get if implements import in Infinity instanceof Int16Array Int32Array Int8Array interface isFinite isNaN Iterator JSON label let Math NaN new null Number Object of package parseFloat parseInt private protected public RangeError ReferenceError RegExp return set static StopIteration String super switch SyntaxError this throw true try TypeError typeof Uint16Array Uint32Array Uint8Array Uint8ClampedArray unary + unary *undefined uneval URIError var void while with x.name x[ ‘name’ ] yield | |= || ~</p>
-<h2 id="coffeescript">CoffeeScript</h2>
-<p>*&gt; ? .. … ### ( x for x in y when x &gt; 0 ) [ 0 … 10 ] while loop until for of in @ is isnt class :: extends switch when else then “”&quot; ‘’’ ///…///</p>
-<h2 id="coffeenode">CoffeeNode</h2>
-<h3 id="specific-&#955;-methods">Specific Λ Methods</h3>
-<p>as-list absolute add all-of any-of as-html chrs-of clear contains contains-only-digits contains-only-numbers copy delete-value drop-prefix drop-suffix ends-with equals extend facets-of fill filter find find-first first-idx-of first-value-of flatten flush flush-left flush-right get glean-lines-of has idxs-of insert interleave intersect invert is-empty is-even is-odd is-zero join join-comma join-commaspace join-fields join-lines join-space join-tight keys-of last-idx-of last-value-of length-of lines-of as-upper-case as-lower-case matches merge names-of negate normalize partition pluck pop pull push remove-doublets remove-key remove-slice remove-value remove-values repeat replace reset rest-of reverse rpr rpr-all shuffle select set shallow-copy slice smallest-idx-of sort split starts-with subtract trim union-of update values-of words-of arity-of</p>
-<h3 id="generic-&#955;-methods">Generic Λ Methods</h3>
-<p>after as-hash-key as-json assemble bye call compose echo freeze from-hash-key from-json get-descriptor infinity is-blank-text is-frozen is-mutable is-nonempty-text is-nonnegative-integer is-positive-number is-property-name-of is-shallow-frozen is-text-without-whitespace is-word isa isa-boolean isa-function isa-integer isa-jsarguments isa-jsctx isa-jsdate isa-jserror isa-jsglobal isa-jsinfinity isa-jsnotanumber isa-jsregex isa-jsundefined isa-jswindow isa-list isa-null isa-number isa-pod isa-text isnt-empty isnt-undefined looks-like-a-property-descriptor make-revocable max min once set-property shallow-freeze simple-equality-types type-of validate validate-arity validate-is-empty validate-is-frozen validate-is-indexed validate-is-integer validate-is-mutable validate-is-nonempty-list validate-is-nonempty-text validate-is-nonnegative-integer validate-is-nonnegative-number validate-is-nonzero-number validate-is-positive-integer validate-is-positive-number validate-is-text-without-whitespace validate-is-word validate-isa validate-isa-boolean validate-isa-function validate-isa-jsarguments validate-isa-jsarraybuffer validate-isa-jsctx validate-isa-jsdate validate-isa-jserror validate-isa-jsglobal validate-isa-jsinfinity validate-isa-jsnotanumber validate-isa-jsregex validate-isa-jsundefined validate-isa-jswindow validate-isa-list validate-isa-null validate-isa-number validate-isa-pod validate-isa-text validate-isa-text-or-anyregex validate-isa-text-or-jsregex validate-isa-text-or-regex validate-isnt-empty validate-isnt-undefined wait-for-keyboard xray</p>
-<h3 id="nouns">Nouns</h3>
-<p>BITSNPIECES COFFEESCRIPT DIFF ENGINE FLOWMATIC FS HASH HTML JQUERY MACROS MULTIMIX PANDOC QUANTITY REGEX ROUTE SET TRM TYPES VALIDATE Δ Λ Σ</p>
-<p>JSARGUMENTS JSDATE JSERROR JSGLOBAL JSINFINITY JSNOTANUMBER JSREGEX JSUNDEFINED</p>
-<p>BOOLEAN FUNCTION LIST NULL NUMBER POD TEXT</p>
 </div>
 
 
