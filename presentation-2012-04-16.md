@@ -1255,7 +1255,9 @@ value            `Object::toString.call value`
 
 ![](./resources/flowmatic-logo-3.0-small.png)
 
-*   Both has been done before—for the first time in history by Grace Hopper (1906–1992) who invented
+*   Both formulaic and eloquent programming has been done before.
+
+*   For the first time in history by Grace Hopper (1906–1992) who invented
     the programming language FLOW-MATIC between 1953 and 1959. A sample (slightly edited):
 
               ....................................................................................
