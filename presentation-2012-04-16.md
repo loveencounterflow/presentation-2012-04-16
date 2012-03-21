@@ -1273,6 +1273,16 @@ value            `Object::toString.call value`
     *   for those who like it, you get easy-to-use classes (i have no use for them, as i do mixins /
         traits);
 
+    *   you get the existential operator `?` which is great to circumnavigate the many cases where missing
+        attributes result in `undefined`:
+
+            solipsism = true if mind? and not world?
+
+            speed ?= 75         # caveat: may create a global variable
+
+            footprints = yeti ? "bear"
+
+
     *   you get post-`if` statements, list comprehensions, ranges, sane `for ... in / of` loops;
 
     *   you can use all of JavaScript and everything that 3rd party libraries offer—in most cases, it is
@@ -1280,7 +1290,7 @@ value            `Object::toString.call value`
 
 
 
-*   CoffeeScript and `*.cnd` files are a great help to avoid the perceived void that is in that region.
+*   XXXXXXXXXXXXXXXXXXXXXXXXX CoffeeScript and `*.cnd` files are a great help to avoid the perceived void that is in that region.
 
 
 

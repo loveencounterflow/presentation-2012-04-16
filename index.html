@@ -1148,10 +1148,17 @@ NaN == NaN                      /* false    */
     return a * b * c
 </code></pre></li>
 <li><p>for those who like it, you get easy-to-use classes (i have no use for them, as i do mixins / traits);</p></li>
+<li><p>you get the existential operator <code>?</code> which is great to circumnavigate the many cases where missing attributes result in <code>undefined</code>:</p>
+<pre><code>solipsism = true if mind? and not world?
+
+speed ?= 75         # caveat: may create a global variable
+
+footprints = yeti ? &quot;bear&quot;
+</code></pre></li>
 <li><p>you get post-<code>if</code> statements, list comprehensions, ranges, sane <code>for ... in / of</code> loops;</p></li>
 <li><p>you can use all of JavaScript and everything that 3rd party libraries offer—in most cases, it is absolutely trivial to turn some library into a <code>require</code>able module.</p></li>
 </ul></li>
-<li><p>CoffeeScript and <code>*.cnd</code> files are a great help to avoid the perceived void that is in that region.</p></li>
+<li><p>XXXXXXXXXXXXXXXXXXXXXXXXX CoffeeScript and <code>*.cnd</code> files are a great help to avoid the perceived void that is in that region.</p></li>
 </ul>
 </div>
 
