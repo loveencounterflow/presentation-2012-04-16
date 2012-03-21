@@ -63,6 +63,12 @@ font-style:       normal;
 list-style-type:  disc;
 }
 
+li ul li ul li {
+font-size:        100%;
+font-style:       normal;
+list-style-type:  disc;
+}
+
 ul li {
 list-style:       disc;
 line-height:      120%;
@@ -72,4 +78,13 @@ blockquote a {
   font-style:     normal;
   font-weight:    bold;
   font-size:      90%;
+}
+
+div.figure {
+  text-align:             center;
+}
+
+p.caption {
+  font-size:              80%;
+  font-style:             italic;
 }

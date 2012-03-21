@@ -113,7 +113,7 @@ var w3c_slidy = {
     this.patch_anchors();
     this.slide_number = this.find_slide_number(location.href);
     window.offscreenbuffering = true;
-    this.size_adjustment = this.find_size_adjust();
+    //this.size_adjustment = this.find_size_adjust();
     this.time_left = this.find_duration();
     this.hide_image_toolbar();  // suppress IE image toolbar popup
     this.init_outliner();  // activate fold/unfold support

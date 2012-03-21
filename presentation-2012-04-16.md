@@ -1019,7 +1019,14 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-#   Beyond `*.cnd`
+#   FlowMatic: Beyond `*.cnd`
+
+![](./resources/flowmatic-logo-3.0.png)
+
+
+############################################################################################################
+
+#   FlowMatic: Beyond `*.cnd`
 
 *   We've seen that we can do *lot* with `*.cnd` modules.
 
@@ -1088,10 +1095,203 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-#   Beyond `*.cnd`
+#   FlowMatic: Beyond `*.cnd`
+
+## Comparison of Programming Languages
+
+![Hertzsprung-Russell Diagram of Computer Languages](./resources/computer-languages-on-a-hertzsprung-russell-diagram.png)
+
+############################################################################################################
+
+#   FlowMatic: Beyond `*.cnd`
+
+## Comparison of Programming Languages (cont'd)
+
+![](./resources/computer-languages-on-a-hertzsprung-russell-diagram-small.png)
+
+*   Some languages are so crazy, you can hardly use them properly if you care for manageable, correct
+    algorithms.
+
+*   One example is PHP, which is only marginally less crazy than Brainfuck. You can only write correct
+    programs if you read up on 10 years of user discussion revealing bugs and giving workarounds—for each
+    single function. Things are not getting fixed in PHP, they get discussed in the online manual. PHP has
+    an surprisingly complicated syntax. PHP cannot speak Unicode, so why should you care to speak PHP?
+
+*   Another example is Ruby, whose followers worship Monkey Patching.
+
+*   Another well-known example is Perl, whose gotchas are not oversights or accidents, but intentionally
+    built into the language. Here's the reason i never continued to program in Perl:
+
+    *   Assigns `'c'` to `$foo` and throws the rest of the array away:
+
+            $foo = ( 'a', 'b', 'c' );
+
+    *   This looks like it should do the same thing as the first example, but instead it sets `$foo` to the
+        length of `@foo`, so `$foo == 3`:
+
+            @foo = ( 'a', 'b', 'c' );
+            $foo = @foo;
+
+############################################################################################################
+
+#   FlowMatic: Beyond `*.cnd`
+
+## Comparison of Programming Languages (cont'd)
+
+![](./resources/computer-languages-on-a-hertzsprung-russell-diagram-small.png)
+
+*   Java:
+
+    *   is crazy from overzealous bureaucracy:
+
+            class x {
+                public static void main( String args[] ) {
+                    System.out.println( "Hello World!" ); } }
+
+    *   and guilty of forcing its implementation details down the throats of its users:
+
+        >   "The Float class wraps a value of primitive type float in an object. An object of type Float
+            contains a single field whose type is float."—[*Java Manual*](http://docs.oracle.com/javase/1.4.2/docs/api/java/lang/Float.html)
 
 
-![](./resources/computer-languages-on-a-hertzsprung-russell-diagram.png)
+    *   For all that Java does to enslave its users, itself takes a rather lighthearted view of life and the
+        universe:
 
-: Hertzsprung-Russell Diagram of Computer Languages
+            1.0 / 0.0                       /* Infinity */
+            0.0 / 0.0                       /* NaN      */
+            Math.sqrt( -2.0 )               /* NaN      */
+            NaN == NaN                      /* false    */
+            (int) ( Double.NaN )            /* 0        */
+
+
+    *   This is just the tip of the iceberg of idiocy:
+
+        >   "To make matters worse, the rules for comparing NaN and -0 are different between the primitive float type
+        >   and the wrapper class Float. For float values, comparing two NaN values for equality will yield false,
+        >   but comparing two NaN Float objects using Float.equals() will yield true. The motivation for this is
+        >   that otherwise it would be impossible to use an NaN Float object as a key in a HashMap. Similarly, while
+        >   0 and —0 are considered equal when represented as float values, comparing 0 and —0 as Float objects
+        >   using Float.compareTo() indicates that —0 is considered to be less than 0."—[*Java theory and practice*](http://www.ibm.com/developerworks/java/library/j-jtp0114/)
+
+    *   Do you trust a computer language that fails on `0 == —0`?
+
+############################################################################################################
+
+#   FlowMatic: Beyond `*.cnd`
+
+## Comparison of Programming Languages (cont'd)
+
+![](./resources/computer-languages-on-a-hertzsprung-russell-diagram-small.png)
+
+*   C++ is crazy because while it gives you the power to rule the universe, it does nothing to help you
+    free allocated memory or do text manipulation. You'll have to run the world using nothing but
+    a set of screwdrivers, some of them with pretty patterns. Good luck.
+
+*   C is like C++, only the screwdrivers have no fancy patterns.
+
+*   Assembler is like C, but the screwdrivers are flintstones.
+
+*   Basic is like C, minus the screwdrivers. Craziness gone, but very boring.
+
+*   VisualBasic pretends to be simple and manages to be circumlocutory. It is a strange parasite that is
+    inextricably interwoven with the intestines of its hosts, which are Microsoft Office applications.
+
+############################################################################################################
+
+#   FlowMatic: Beyond `*.cnd`
+
+## Comparison of Programming Languages (cont'd)
+
+![](./resources/computer-languages-on-a-hertzsprung-russell-diagram-small.png)
+
+*   Python tries to be sane and a role model for OOP.
+
+*   Its number systems is easiest the best one i've ever seen.
+
+*   But its developers are so smart they've become very, very stubborn.
+
+*   No experiments here.
+
+*   It is not crazy enough for me.
+
+############################################################################################################
+
+#   FlowMatic: Beyond `*.cnd`
+
+## Comparison of Programming Languages (cont'd)
+
+![](./resources/computer-languages-on-a-hertzsprung-russell-diagram-small.png)
+
+*   JavaScript's craziness is one of the most widely known facts of Computer Science.
+
+*   But its flexibility, simplicity and straightforwardness are much less well known:
+
+    *   Python has an `import` statement, an unwieldy beast. NodeJS has the `require` function, which
+        is **more straightforward and more powerful, but without the complexities of `import`**.
+
+    *   Pythoneers are often afflicted by Compulsory Typing Disorder. When you `import` something, then
+        that something is a `Module`, something that is not a class, an instance or anything else. The
+        entity's type is completely useless, but we always have to type everything, right?
+
+    *   Nope:
+
+        in module `meaning-of-everything.coffee`:
+
+            module.exports = 42
+
+        in module `show-me-the-answers.coffee`:
+
+            log require './meaning-of-everything.coffee'
+
+        gives you `42`. You just 'imported a number'. Or anything else. Maybe the binary data
+        of an image.
+
+    *   Often it is practical to just import a single function with `require`.
+
+*   For me, the 'Inhabitable Zone' of programming languages is between JavaScript and Python.
+
+############################################################################################################
+
+#   FlowMatic: Beyond `*.cnd`
+
+## Comparison of Programming Languages (cont'd)
+
+![](./resources/computer-languages-on-a-hertzsprung-russell-diagram-small.png)
+
+*   When you move from JavaScript to CoffeeScript, you considerably reduce the amount of craziness that
+    could vex you. This is because
+
+    *   you get rid of 99.9% of all braces and parentheses;
+
+    *   you implicitly use JavaScript's non-coercing 'strict equality' operator, avoiding many gotchas;
+
+    *   you get a great syntax for function definition (very important in asynchronous, callback-rich code):
+
+            f = ( a, b, c = 42 ) ->
+                return a * b * c
+
+    *   for those who like it, you get easy-to-use classes (i have no use for them, as i do mixins /
+        traits);
+
+    *   you get post-`if` statements, list comprehensions, ranges, sane `for ... in / of` loops;
+
+    *   you can use all of JavaScript and everything that 3rd party libraries offer—in most cases, it is
+        absolutely trivial to turn some library into a `require`able module.
+
+
+
+*   CoffeeScript and `*.cnd` files are a great help to avoid the perceived void that is in that region.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
