@@ -459,9 +459,11 @@ value            `Object::toString.call value`
 *   Sadly, there is no way to override the behavior of ``==`` and ``===``.
 
 *   It isn't advisable, either—such a global language change could easily affect
-    code acting under the premise that `( [] == [] ) == false`.
+    code acting under the premise that
 
-*   Don't Monkey-Patch. Ever.
+        ( [] == [] ) == false
+
+*   Don't Monkey-Patch. Ever. Except if.
 
 *   So we have to put the functionality into libraries.
 
@@ -544,9 +546,9 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-# Types and Kinds
+# Type Hierarchy (and what we can do with it)
 
-## Types are a Closed Set
+## JavaScript Types are a Closed Set
 
 *   To repeat: *Each* piece of data has a type.
 
@@ -586,9 +588,9 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-# Types and Kinds
+# Type Hierarchy (and what we can do with it)
 
-## Kinds are an Open Set
+## Extended Types are an Open Set
 
 *   But JavaScript is very flexible, so you can build arbitrary objects.
     From `COFFEENODE/SET`:
@@ -644,7 +646,8 @@ value            `Object::toString.call value`
               d:      1
               }
 
-*   which is basically a POD that gives its 'kind' by specifying a name under the key `~isa`
+*   which is basically a plain old dictionary (POD) that gives its extension type as a name under
+    the key `~isa`
 
 *   and contains a sub-POD `elements` that keeps the records.
 
@@ -747,7 +750,7 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-# Types and Kinds
+# Type Hierarchy (and what we can do with it)
 
 ## Having Fun with Sets
 
@@ -785,9 +788,9 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-# Types and Kinds
+# Type Hierarchy (and what we can do with it)
 
-## Kinds are Kind To You
+## Type-Checking
 
 *   So what happens if you throw unsuitable data at `new_set`?—Let's try:
 
@@ -814,7 +817,7 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-# Types and Kinds
+# Type Hierarchy (and what we can do with it)
 
 ##   Tagged Data Types? Are you Kidding?
 
@@ -848,9 +851,9 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-# Types and Kinds
+# Type Hierarchy (and what we can do with it)
 
-##   Matching types and methods
+##   Matching Types and Methods
 
 *   A peek into `COFFEENODE/Λ/registry/jstypes`:
 
@@ -911,7 +914,24 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-# Types and Kinds
+# Type Hierarchy (and what we can do with it)
+
+##  Extension Types have Tags, too
+
+*   This is `COFFEENODE/SET/type-descriptions.coffee:
+
+        module.exports =
+          'SET/set':
+            'features':             'mutable facetted json'
+
+*   Tagging of extension types ensure that we can go on a smooth path from patching native types to
+    integrating extension types.
+
+
+
+############################################################################################################
+
+# Type Hierarchy (and what we can do with it)
 
 ##   Keeping Peace, Avoiding Conflicts
 
@@ -1257,8 +1277,8 @@ value            `Object::toString.call value`
 
 *   Both formulaic and eloquent programming has been done before.
 
-*   For the first time in history by Grace Hopper (1906–1992) who invented
-    the programming language FLOW-MATIC between 1953 and 1959. A sample (slightly edited):
+*   The first eloquent programming language in history was invented between 1953 and 1959 by Grace Hopper
+    (1906–1992), who called it FLOW-MATIC. A sample (slightly edited):
 
               ....................................................................................
          (0)  input  inventory  file-a price        file-b;
@@ -1304,10 +1324,52 @@ value            `Object::toString.call value`
         (17)  stop. (end)
 
 
+############################################################################################################
+
+#   FlowMatic: Beyond `*.cnd`
+
+![](./resources/flowmatic-logo-3.0-small.png)
+
+*   Probably the tersest programming language ever is APL, which was developed by Kenneth E. Iverson in 1964.
+
+*   This program finds all prime numbers from `1` to `R`:
+
+        (~R∊R∘.×R)/R←1↓⍳R
+
+*   And this one takes a boolean matrix and calculates the new generation according to
+    the rules of Conway's Game of Life:
+
+        life←{↑1 ⍵∨.∧3 4=+/,¯1 0 1∘.⊖¯1 0 1∘.⌽⊂⍵}
+
+*   My guess is that most usable / desirable / practical / learnable / popular syntaxes will fall somewhere
+    in between the two extremes shown.
+
+*   Well, there are exceptions. Example: Ideographic Description Language, a Unicode standard
+    to allow for the graphic decomposition of Chinese characters:
+
+        參: ⿱厽㐱
+        厽: ⿱厶厸
+        厸: ⿰厶厶
+        㐱: ⿱人彡
+
+        參: ⿱⿱厶厸㐱
+        參: ⿱⿱厶⿰厶厶㐱
+        參: ⿱⿱厶⿰厶厶⿱人彡
 
 
 
 
+
+*   CoffeeScript is very close to what i consider ideal for general purposes.
+
+
+############################################################################################################
+
+#   FlowMatic: Beyond `*.cnd`
+
+![](./resources/flowmatic-logo-3.0-small.png)
+
+![](./resources/turris-babel-1092x1123.jpg)
 
 
 
