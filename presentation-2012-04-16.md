@@ -1459,7 +1459,7 @@ roman (o_O)         `0rMMXII`\                  2012.\
 
 *   But *is* clear that FlowMatic will include ways to
 
-    *   Define your own formats (for number parsing, but also for entire statement syntax),
+    *   define your own formats (for number parsing, but also for entire statement syntax),
 
     *   derive a new grammar from an existing one,
 
@@ -1472,7 +1472,7 @@ roman (o_O)         `0rMMXII`\                  2012.\
 
 *   without touching any other part of the language.
 
-*   Language versioning will be a *very* different beat from what we know today;
+*   Language versioning will be a *very* different beast from what we know today;
 
 *   basically, linear versioning will be replaced by tagged multidimensional versioning.
 
