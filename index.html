@@ -997,9 +997,7 @@ $foo = @foo;
 <img src="./resources/computer-languages-on-a-hertzsprung-russell-diagram-small.png" /><p class="caption"></p>
 </div>
 <ul>
-<li><p>Java:</p>
-<ul>
-<li><p>is crazy from overzealous bureaucracy:</p>
+<li><p>Java is crazy from overzealous bureaucracy:</p>
 <pre><code>class x {
     public static void main( String args[] ) {
         System.out.println( &quot;Hello World!&quot; ); } }
@@ -1020,7 +1018,6 @@ NaN == NaN                      /* false    */
 <p>“To make matters worse, the rules for comparing NaN and –0 are different between the primitive float type and the wrapper class Float. For float values, comparing two NaN values for equality will yield false, but comparing two NaN Float objects using Float.equals() will yield true. The motivation for this is that otherwise it would be impossible to use an NaN Float object as a key in a HashMap. Similarly, while 0 and —0 are considered equal when represented as float values, comparing 0 and —0 as Float objects using Float.compareTo() indicates that —0 is considered to be less than 0.”—<a href="http://www.ibm.com/developerworks/java/library/j-jtp0114/"><em>Java theory and practice</em></a></p>
 </blockquote></li>
 <li><p>Do you trust a computer language that fails on <code>0 == —0</code>?</p></li>
-</ul></li>
 </ul>
 <p id="section-30"></p>
 </div>
@@ -1114,7 +1111,8 @@ footprints = yeti ? &quot;bear&quot;
 <li><p>We’ve seen that we can do <em>lot</em> with <code>*.cnd</code> modules.</p></li>
 <li><p>It’s almost a new language.</p></li>
 <li><p>Almost.</p></li>
-<li><p>Except we have no handle to manipulate the non-verbal / syntactical behaviors. All of this stuff is beyond our reach to influence; similar constructs cannot be introduced:</p>
+<li><p>Except we have no handle to manipulate the non-verbal / syntactical behaviors.</p></li>
+<li><p>All of this stuff is beyond our reach, and similar constructs cannot be introduced:</p>
 <pre><code>x + y
 x[ 3 ] = 42
 a = [ 8, 7, 6, ]
@@ -1215,7 +1213,7 @@ f()
 參: ⿱⿱厶⿰厶厶㐱
 參: ⿱⿱厶⿰厶厶⿱人彡
 </code></pre></li>
-<li><p>CoffeeScript is very close to what i consider ideal for general purposes.</p></li>
+<li><p>Syntactically, CoffeeScript is very close to what i consider ideal for general purposes.</p></li>
 </ul>
 <p id="section-38"></p>
 </div>
@@ -1227,6 +1225,129 @@ f()
 <div class="figure">
 <img src="./resources/turris-babel-1092x1123.jpg" /><p class="caption"></p>
 </div>
+<p id="section-39"></p>
+</div>
+<div class="slide">
+<h1 id="flowmatic-beyond-.cnd-5">FlowMatic: Beyond <code>*.cnd</code></h1>
+<div class="figure">
+<img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
+</div>
+<ul>
+<li><p>When we program in JavaScript, there are still cases where a careful programmer should keep a however misty awreness of the C foundations of that language, for example when reasoning about numerical correctness. CoffeeNode can’t help you in this respect, either.</p></li>
+<li><p>It is not easy to get rid of that without having to deal with a lot of things such as BigDecimal APIs</p></li>
+<li><p>which is conceptual clutter as far as proper programm execution is the target.</p></li>
+<li><p>Only when we write a new language that hides these implementation details form the user can we make real advancements in expressivity.</p></li>
+<li><p>FlowMatic not a language per se, it’s more of a toolbox to author languages.</p></li>
+<li><p>But there is still a plan to give it one ‘central’ or ‘default’ dialect (ideas for a name welcome) which will be very close to CoffeeScript</p></li>
+<li><p>mainly as a way to lower entry levels for newbies</p></li>
+<li><p>and because CoffeeScript is a <em>pretty</em> good language, of course.</p></li>
+</ul>
+<p id="section-40"></p>
+</div>
+<div class="slide">
+<h1 id="flowmatic-beyond-.cnd-6">FlowMatic: Beyond <code>*.cnd</code></h1>
+<div class="figure">
+<img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
+</div>
+<ul>
+<li>These are the number formats i envision for the central dialect:</li>
+</ul>
+<table>
+<col width="19%" />
+<col width="26%" />
+<col width="53%" />
+<tbody>
+<tr class="odd">
+<td align="left">integer</td>
+<td align="left"><code>576553498</code><br /><code>87'651</code></td>
+<td align="left"><br />Optional digit groups.</td>
+</tr>
+<tr class="even">
+<td align="left">float</td>
+<td align="left"><code>87'651.45</code><br /><code>5345.3e12</code></td>
+<td align="left">All floats must have a decimal mark.<br />Optional exponent.</td>
+</tr>
+<tr class="odd">
+<td align="left">decimal</td>
+<td align="left"><code>132!</code><br /><code>244324!000</code><br /><code>1:342</code></td>
+<td align="left">Decimal integer, remains integer in operations.<br />Same, but rounded to thousands.<br />Decimal float with precision 3.</td>
+</tr>
+<tr class="even">
+<td align="left">quantity</td>
+<td align="left"><code>12kg</code><br /><code>1755!µg</code><br /><code>12:98€</code></td>
+<td align="left">Number with (registered) unit.<br />Will keep precise to µgrams.<br />Monetary value with cent precision.</td>
+</tr>
+<tr class="odd">
+<td align="left">scaled</td>
+<td align="left"><code>64k</code><br /><code>23.0milli</code></td>
+<td align="left">Same as <code>64'000</code>.<br />Same as <code>0.0023</code>.</td>
+</tr>
+<tr class="even">
+<td align="left">imaginary</td>
+<td align="left"><code>3.5j</code></td>
+<td align="left">Same as <code>3.5 * √ -1</code></td>
+</tr>
+<tr class="odd">
+<td align="left">complex</td>
+<td align="left"><code>3.5j4.2</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">hexadecimal</td>
+<td align="left"><code>0x45ac2</code><br /><code>0x1'0000'04f8</code><br /></td>
+<td align="left">Always integer.<br />Optional Grouping.</td>
+</tr>
+<tr class="odd">
+<td align="left">octal</td>
+<td align="left"><code>0o775</code><br /></td>
+<td align="left">Always integer.<br /></td>
+</tr>
+<tr class="even">
+<td align="left">binary</td>
+<td align="left"><code>0b00110001</code><br /><code>0b'0011'0001</code><br /></td>
+<td align="left">Always integer.<br />Optional Grouping.</td>
+</tr>
+<tr class="odd">
+<td align="left">other bases</td>
+<td align="left"><code>03_2110</code><br /><code>08_775</code></td>
+<td align="left">Base 3.<br />Base 8.</td>
+</tr>
+<tr class="even">
+<td align="left">roman (o_O)</td>
+<td align="left"><code>0rMMXII</code><br /></td>
+<td align="left">2012.<br /></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>To give an example, <code>2:63~€</code> is</p>
+<ul>
+<li><p>a <code>quantity</code></p></li>
+<li><p>with magnitude <code>2.63</code></p></li>
+<li><p>and unit <code>€</code>.</p></li>
+<li><p>It has a decimal precision of 2;</p></li>
+<li><p>In numerical operations, the ‘round half away from zero’ rule is applied, which is widely used in commercial applictions.</p></li>
+</ul></li>
+<li><p>Whether the Roman numeral format will make it into the central dialect is not clear.</p></li>
+<li><p>But <em>is</em> clear that FlowMatic will include ways to</p>
+<ul>
+<li><p>Define your own formats (for number parsing, but also for entire statement syntax),</p></li>
+<li><p>derive a new grammar from an existing one,</p></li>
+<li><p>and markup file names and file contents to ensure the correct dialect is used for parsing.</p></li>
+</ul></li>
+<li><p>When that ability comes around, fierce discussions and year-long waiting periods for new syntactical features will very much have become part of the past</p></li>
+<li><p>because anyone can just fork a dialect and start using it</p></li>
+<li><p>without touching any other part of the language.</p></li>
+<li><p>Language versioning will be a <em>very</em> different beat from what we know today;</p></li>
+<li><p>basically, linear versioning will be replaced by tagged multidimensional versioning.</p></li>
+<li><p>You could specify a format with a function call to get roman numerals:</p>
+<pre><code>myformat: new-language
+    extension:  'foo'
+    uses:
+      :central 3557
+      :0.3 &lt; roman-numerals &lt; 0.6
+</code></pre></li>
+</ul>
 </div>
 
 

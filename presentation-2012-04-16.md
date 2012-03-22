@@ -1078,40 +1078,38 @@ value            `Object::toString.call value`
 
 ![](./resources/computer-languages-on-a-hertzsprung-russell-diagram-small.png)
 
-*   Java:
+*   Java is crazy from overzealous bureaucracy:
 
-    *   is crazy from overzealous bureaucracy:
+        class x {
+            public static void main( String args[] ) {
+                System.out.println( "Hello World!" ); } }
 
-            class x {
-                public static void main( String args[] ) {
-                    System.out.println( "Hello World!" ); } }
+*   and guilty of forcing its implementation details down the throats of its users:
 
-    *   and guilty of forcing its implementation details down the throats of its users:
-
-        >   "The Float class wraps a value of primitive type float in an object. An object of type Float
-            contains a single field whose type is float."—[*Java Manual*](http://docs.oracle.com/javase/1.4.2/docs/api/java/lang/Float.html)
+    >   "The Float class wraps a value of primitive type float in an object. An object of type Float
+        contains a single field whose type is float."—[*Java Manual*](http://docs.oracle.com/javase/1.4.2/docs/api/java/lang/Float.html)
 
 
-    *   For all that Java does to enslave its users, itself takes a rather lighthearted view of life and the
-        universe:
+*   For all that Java does to enslave its users, itself takes a rather lighthearted view of life and the
+    universe:
 
-            1.0 / 0.0                       /* Infinity */
-            0.0 / 0.0                       /* NaN      */
-            Math.sqrt( -2.0 )               /* NaN      */
-            NaN == NaN                      /* false    */
-            (int) ( Double.NaN )            /* 0        */
+        1.0 / 0.0                       /* Infinity */
+        0.0 / 0.0                       /* NaN      */
+        Math.sqrt( -2.0 )               /* NaN      */
+        NaN == NaN                      /* false    */
+        (int) ( Double.NaN )            /* 0        */
 
 
-    *   This is just the tip of the iceberg of idiocy:
+*   This is just the tip of the iceberg of idiocy:
 
-        >   "To make matters worse, the rules for comparing NaN and -0 are different between the primitive float type
-        >   and the wrapper class Float. For float values, comparing two NaN values for equality will yield false,
-        >   but comparing two NaN Float objects using Float.equals() will yield true. The motivation for this is
-        >   that otherwise it would be impossible to use an NaN Float object as a key in a HashMap. Similarly, while
-        >   0 and —0 are considered equal when represented as float values, comparing 0 and —0 as Float objects
-        >   using Float.compareTo() indicates that —0 is considered to be less than 0."—[*Java theory and practice*](http://www.ibm.com/developerworks/java/library/j-jtp0114/)
+    >   "To make matters worse, the rules for comparing NaN and -0 are different between the primitive float type
+    >   and the wrapper class Float. For float values, comparing two NaN values for equality will yield false,
+    >   but comparing two NaN Float objects using Float.equals() will yield true. The motivation for this is
+    >   that otherwise it would be impossible to use an NaN Float object as a key in a HashMap. Similarly, while
+    >   0 and —0 are considered equal when represented as float values, comparing 0 and —0 as Float objects
+    >   using Float.compareTo() indicates that —0 is considered to be less than 0."—[*Java theory and practice*](http://www.ibm.com/developerworks/java/library/j-jtp0114/)
 
-    *   Do you trust a computer language that fails on `0 == —0`?
+*   Do you trust a computer language that fails on `0 == —0`?
 
 ############################################################################################################
 
@@ -1241,8 +1239,9 @@ value            `Object::toString.call value`
 
 *   Almost.
 
-*   Except we have no handle to manipulate the non-verbal / syntactical behaviors. All of this stuff is
-    beyond our reach to influence; similar constructs cannot be introduced:
+*   Except we have no handle to manipulate the non-verbal / syntactical behaviors.
+
+*   All of this stuff is beyond our reach, and similar constructs cannot be introduced:
 
         x + y
         x[ 3 ] = 42
@@ -1357,10 +1356,7 @@ value            `Object::toString.call value`
         參: ⿱⿱厶⿰厶厶⿱人彡
 
 
-
-
-
-*   CoffeeScript is very close to what i consider ideal for general purposes.
+*   Syntactically, CoffeeScript is very close to what i consider ideal for general purposes.
 
 
 ############################################################################################################
@@ -1370,6 +1366,133 @@ value            `Object::toString.call value`
 ![](./resources/flowmatic-logo-3.0-small.png)
 
 ![](./resources/turris-babel-1092x1123.jpg)
+
+
+############################################################################################################
+
+#   FlowMatic: Beyond `*.cnd`
+
+![](./resources/flowmatic-logo-3.0-small.png)
+
+*   When we program in JavaScript, there are still cases where a careful programmer should keep a however
+    misty awreness of the C foundations of that language, for example when reasoning about numerical
+    correctness. CoffeeNode can't help you in this respect, either.
+
+*   It is not easy to get rid of that without having to deal with a lot of things such as BigDecimal APIs
+
+*   which is conceptual clutter as far as proper programm execution is the target.
+
+*   Only when we write a new language that hides these implementation details form the user can we make
+    real advancements in expressivity.
+
+*   FlowMatic not a language per se, it's more of a toolbox to author languages.
+
+*   But there is still a plan to give it one 'central' or 'default' dialect (ideas for a name welcome) which
+    will be very close to CoffeeScript
+
+*   mainly as a way to lower entry levels for newbies
+
+*   and because CoffeeScript is a *pretty* good language, of course.
+
+############################################################################################################
+
+#   FlowMatic: Beyond `*.cnd`
+
+![](./resources/flowmatic-logo-3.0-small.png)
+
+
+*   These are the number formats i envision for the central dialect:
+
+------------------  --------------------------  --------------------------------------------------------
+                    `576553498`\                \
+integer             `87'651`                    Optional digit groups.
+
+float               `87'651.45`\                All floats must have a decimal mark.\
+                    `5345.3e12`                 Optional exponent.
+
+decimal             `132!`\                     Decimal integer, remains integer in operations.\
+                    `244324!000`\               Same, but rounded to thousands.\
+                    `1:342`                     Decimal float with precision 3.
+
+quantity            `12kg`\                     Number with (registered) unit.\
+                    `1755!µg`\                  Will keep precise to µgrams.\
+                    `12:98€`                    Monetary value with cent precision.
+
+scaled              `64k`\                      Same as `64'000`.\
+                    `23.0milli`                 Same as `0.0023`.
+
+imaginary           `3.5j`                      Same as `3.5 * √ -1`
+
+complex             `3.5j4.2`
+
+hexadecimal         `0x45ac2`\                  Always integer.\
+                    `0x1'0000'04f8`\            Optional Grouping.
+
+octal               `0o775`\                    Always integer.\
+
+binary              `0b00110001`\               Always integer.\
+                    `0b'0011'0001`\             Optional Grouping.
+
+other bases         `03_2110`\                  Base 3.\
+                    `08_775`                    Base 8.
+
+roman (o_O)         `0rMMXII`\                  2012.\
+
+------------------  --------------------------  --------------------------------------------------------
+
+
+*   To give an example, `2:63~€` is
+
+    *   a `quantity`
+
+    *   with magnitude `2.63`
+
+    *   and unit `€`.
+
+    *   It has a decimal precision of 2;
+
+    *   In numerical operations, the 'round half away from zero' rule is applied, which is widely used
+        in commercial applictions.
+
+*   Whether the Roman numeral format will make it into the central dialect is not clear.
+
+*   But *is* clear that FlowMatic will include ways to
+
+    *   Define your own formats (for number parsing, but also for entire statement syntax),
+
+    *   derive a new grammar from an existing one,
+
+    *   and markup file names and file contents to ensure the correct dialect is used for parsing.
+
+*   When that ability comes around, fierce discussions and year-long waiting periods for new syntactical
+    features will very much have become part of the past
+
+*   because anyone can just fork a dialect and start using it
+
+*   without touching any other part of the language.
+
+*   Language versioning will be a *very* different beat from what we know today;
+
+*   basically, linear versioning will be replaced by tagged multidimensional versioning.
+
+*   You could specify a format with a function call to get roman numerals:
+
+        myformat: new-language
+            extension:  'foo'
+            uses:
+              :central 3557
+              :0.3 < roman-numerals < 0.6
+
+
+
+
+
+
+
+
+
+
+
 
 
 
