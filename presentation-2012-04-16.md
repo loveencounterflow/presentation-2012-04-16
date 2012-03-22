@@ -642,7 +642,7 @@ value            `Object::toString.call value`
 *   Using this code in a `*.cnd` module (the `new_set` vocable courtesy of the LSD system that augments
     `*.cnd` files):
 
-        log new_set 'helo world'
+        new_set 'helo world'
 
     gives you
 
@@ -837,25 +837,25 @@ value            `Object::toString.call value`
 
 *   A list is characterized as
 
-    *   `list`—each type is tagged with its own name; important for what follows.
+    *   `list`:       each type is tagged with its own name; important for what follows.
 
-    *   `mutable`–you can modify the object. Frozen lists (tuples) miss this tag.
+    *   `mutable`:    you can modify the object. Frozen lists (tuples) miss this tag.
 
-    *   `facetted`—meaning you can do the `x[ foo ]` thing.
+    *   `facetted`:   meaning you can do the `x[ foo ]` thing.
 
-    *   `indexed`—meaning the `foo` in `x[ foo ]` must be a number.
+    *   `indexed`:    meaning the `foo` in `x[ foo ]` must be a number.
 
-    *   `dense`—a sparse list would be missing this tag.
+    *   `dense`:      a sparse list would be missing this tag.
 
-    *   `ordered`—unlike a POD, which misses this tag.
+    *   `ordered`:    unlike a POD, which misses this tag.
 
-    *   `repetitive`—values may be repeated.
+    *   `repetitive`: values may be repeated.
 
-    *   `ecma`—this dignifies everything that is in ECMA's book.
+    *   `ecma`:       this dignifies everything that is in ECMA's book.
 
-    *   `json`—this data type can be fed to `JSON.stringify` / `as_json`
+    *   `json`:       this data type can be fed to `JSON.stringify` / `as_json`
 
-    *   `basic`—this pertains to the six data types earlier shown in the first group of JS native data
+    *   `basic`:      this pertains to the six data types earlier shown in the first group of JS native data
         types.
 
 

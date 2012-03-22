@@ -659,7 +659,7 @@ $.new = ( x = null ) -&gt;
   return R
 </code></pre></li>
 <li><p>Using this code in a <code>*.cnd</code> module (the <code>new_set</code> vocable courtesy of the LSD system that augments <code>*.cnd</code> files):</p>
-<pre><code>log new_set 'helo world'
+<pre><code>new_set 'helo world'
 </code></pre>
 <p>gives you</p>
 <pre><code>{   ~isa:     'SET/set'
@@ -812,16 +812,16 @@ and doesn't match the method description.
 <li><p>No, really.</p></li>
 <li><p>A list is characterized as</p>
 <ul>
-<li><p><code>list</code>—each type is tagged with its own name; important for what follows.</p></li>
-<li><p><code>mutable</code>–you can modify the object. Frozen lists (tuples) miss this tag.</p></li>
-<li><p><code>facetted</code>—meaning you can do the <code>x[ foo ]</code> thing.</p></li>
-<li><p><code>indexed</code>—meaning the <code>foo</code> in <code>x[ foo ]</code> must be a number.</p></li>
-<li><p><code>dense</code>—a sparse list would be missing this tag.</p></li>
-<li><p><code>ordered</code>—unlike a POD, which misses this tag.</p></li>
-<li><p><code>repetitive</code>—values may be repeated.</p></li>
-<li><p><code>ecma</code>—this dignifies everything that is in ECMA’s book.</p></li>
-<li><p><code>json</code>—this data type can be fed to <code>JSON.stringify</code> / <code>as_json</code></p></li>
-<li><p><code>basic</code>—this pertains to the six data types earlier shown in the first group of JS native data types.</p></li>
+<li><p><code>list</code>: each type is tagged with its own name; important for what follows.</p></li>
+<li><p><code>mutable</code>: you can modify the object. Frozen lists (tuples) miss this tag.</p></li>
+<li><p><code>facetted</code>: meaning you can do the <code>x[ foo ]</code> thing.</p></li>
+<li><p><code>indexed</code>: meaning the <code>foo</code> in <code>x[ foo ]</code> must be a number.</p></li>
+<li><p><code>dense</code>: a sparse list would be missing this tag.</p></li>
+<li><p><code>ordered</code>: unlike a POD, which misses this tag.</p></li>
+<li><p><code>repetitive</code>: values may be repeated.</p></li>
+<li><p><code>ecma</code>: this dignifies everything that is in ECMA’s book.</p></li>
+<li><p><code>json</code>: this data type can be fed to <code>JSON.stringify</code> / <code>as_json</code></p></li>
+<li><p><code>basic</code>: this pertains to the six data types earlier shown in the first group of JS native data types.</p></li>
 </ul></li>
 </ul>
 <p id="section-21"></p>
