@@ -164,7 +164,7 @@ var w3c_slidy = {
 
     this.add_listener(document, "keydown", this.key_down);
     this.add_listener(document, "keypress", this.key_press);
-    this.add_listener(window, "resize", this.resized);
+    //this.add_listener(window, "resize", this.resized);
     this.add_listener(window, "scroll", this.scrolled);
     this.add_listener(window, "unload", this.unloaded);
 

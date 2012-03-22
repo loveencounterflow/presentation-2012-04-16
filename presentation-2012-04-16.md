@@ -1256,9 +1256,10 @@ value            `Object::toString.call value`
 *   I'd really like to explore what we could do if we had a flexible system where we can easily define
     new syntax—both to
 
-    *   produce more formulaic / terser domain-specific languages (DSLs), and
+    *   define more eloquent idioms that approach natural language, and to
 
-    *   more eloquent idioms that approach natural language.
+    *   define more formulaic / terser idioms.
+
 
 
 ############################################################################################################
@@ -1385,7 +1386,7 @@ value            `Object::toString.call value`
 *   Only when we write a new language that hides these implementation details form the user can we make
     real advancements in expressivity.
 
-*   FlowMatic not a language per se, it's more of a toolbox to author languages.
+*   FlowMatic is not a language per se, it's more of a toolbox to author languages.
 
 *   But there is still a plan to give it one 'central' or 'default' dialect (ideas for a name welcome) which
     will be very close to CoffeeScript
