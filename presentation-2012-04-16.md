@@ -1413,11 +1413,11 @@ float               `87'651.45`\                All floats must have a decimal m
 
 decimal             `132!`\                     Decimal integer, remains integer in operations.\
                     `244324!000`\               Same, but rounded to thousands.\
-                    `1:342`                     Decimal float with precision 3.
+                    `1;342`                     Decimal float with precision 3.
 
 quantity            `12kg`\                     Number with (registered) unit.\
                     `1755!µg`\                  Will keep precise to µgrams.\
-                    `12:98€`                    Monetary value with cent precision.
+                    `12;98€`                    Monetary value with cent precision.
 
 scaled              `64k`\                      Same as `64'000`.\
                     `23.0milli`                 Same as `0.0023`.
@@ -1442,7 +1442,7 @@ roman (o_O)         `0rMMXII`\                  2012.\
 ------------------  --------------------------  --------------------------------------------------------
 
 
-*   To give an example, `2:63~€` is
+*   To give an example, `2;63~€` is
 
     *   a `quantity`
 
