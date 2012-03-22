@@ -8,9 +8,9 @@
 
 ############################################################################################################
 
-# Prelude: What Made me Leave Python
+# Prelude
 
-## after 10 Years of Loving it
+## What Made me Leave Python after 10 Years of Loving it
 
 *   I earned the *Popular Question* badge on StackOverflow.com 3 times:
 
@@ -40,9 +40,9 @@
 
 ############################################################################################################
 
-# Prelude: What Made me Leave OOP
+# Prelude
 
-## after 10 Years of Trying to Love it
+##  What Made me Leave OOP after 10 Years of Trying to Love it
 
 *   to quote:
 
@@ -83,6 +83,8 @@
 
 # Approaches to Programming
 
+##  Different Schools of Thought
+
 *   Engineering
 
 *   Architecture
@@ -94,7 +96,9 @@
 
 ############################################################################################################
 
-# Language is Important
+# Approaches to Programming
+
+## Language is Important
 
 *   Computers don't need readable programs—humans do.
 
@@ -121,21 +125,20 @@
 
 # CoffeeNode Data Type Therapy
 
-
-############################################################################################################
-
-# What is a Data Type?
+## What is a Data Type?
 
 *   A classification of data
 
 *   based on their underlying storage needs (extension)
 
-*   and intended semantics & use (intention).
+*   and semantics & use (intention).
 
 
 ############################################################################################################
 
-# How are Data Types Represented?
+# CoffeeNode Data Type Therapy
+
+## How are Data Types Represented?
 
 *   In JavaScript, the `typeof` operator returns a string
 
@@ -172,7 +175,9 @@
 
 ############################################################################################################
 
-# JS Types—Are they Good Enough?
+# CoffeeNode Data Type Therapy
+
+## JS Types—Are they Good Enough?
 
 *   Short answer: No.
 
@@ -237,7 +242,9 @@
 
 ############################################################################################################
 
-# Remedy: The Miller Device
+# CoffeeNode Data Type Therapy
+
+## Remedy: The Miller Device
 
 *   Fortunately, there is a `toString` method in `Object.protype` that behaves a tad more civilized:
 
@@ -263,7 +270,9 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-# Remedy: The Miller Device
+# CoffeeNode Data Type Therapy
+
+## Remedy: The Miller Device
 
 *   We exploit the goodness of the Miller Device to arrive at a sane type system. From
     `COFFEENODE/TYPES.coffee`:
@@ -441,9 +450,9 @@ value            `Object::toString.call value`
 *   Among the basic things that don't work very well in plain JavaScript
     are equality and containedness with collection data types
 
-*   which means that `[] == []` and `{} == {}` are `false` when they should be `true`
+*   which means that `[] === []` and `{} === {}` are `false` when they should be `true`;
 
-*   and also `[ 456, 893, [ 5, 6, 7, ], ].indexOf [ 5, 6, 7, ]` gives `-1` ('not found') instead of `2`.
+*   also, `[ 456, 893, [ 5, 6, 7, ], ].indexOf [ 5, 6, 7, ]` gives `-1` ('not found') instead of `2`.
 
 *   JavaScript's `===` (CoffeeScript: `==`) 'strict equality operator' is more like a 'object identity
     operator'
@@ -461,7 +470,7 @@ value            `Object::toString.call value`
 *   It isn't advisable, either—such a global language change could easily affect
     code acting under the premise that
 
-        ( [] == [] ) == false
+        ( [] === [] ) === false
 
 *   Don't Monkey-Patch. Ever. Except if.
 
@@ -473,18 +482,18 @@ value            `Object::toString.call value`
     calling the below method):
 
         #---------------------------------------------------------------------------------------------
-        $.equals = ( me, probe ) ->
+        $.equals = ( me, you ) ->
 
-          return false if not TYPES.isa_list probe
-          return false if me.length != probe.length
+          return false if not TYPES.isa_list you
+          return false if me.length != you.length
           return true  if me.length == 0
 
           #...........................................................................................
           for idx in [ 0 ... me.length ]
 
             #.........................................................................................
-            my_element      = me[    idx ]
-            your_element    = probe[ idx ]
+            my_element      = me[  idx ]
+            your_element    = you[ idx ]
 
             return false if ( TYPES.type_of my_element ) != ( TYPES.type_of your_element )
             return false if not Σ.emit "!Δ/call/specific/equals", my_element, your_element
@@ -550,7 +559,10 @@ value            `Object::toString.call value`
 
 ## JavaScript Types are a Closed Set
 
-*   To repeat: *Each* piece of data has a type.
+*   *Each* piece of data has exactly one type.
+
+*   Types are disjunct: if ``( type_of a ) == A`` and ``( type_of a ) == B`` are true, then ``A == B``
+    must also be true.
 
 *   In JavaScript (and, therefore, CoffeeScript) this data type can only ever
     be one of
