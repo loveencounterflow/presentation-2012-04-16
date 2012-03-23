@@ -658,7 +658,7 @@ $.new = ( x = null ) -&gt;
   #...........................................................................................
   return R
 </code></pre></li>
-<li><p>Using this code in a <code>*.cnd</code> module (the <code>new_set</code> vocable courtesy of the LSD system that augments <code>*.cnd</code> files):</p>
+<li><p>Using this code in a CoffeeMatic module (the <code>new_set</code> vocable courtesy of the LSD system that augments CoffeeMatic files):</p>
 <pre><code>new_set 'helo world'
 </code></pre>
 <p>gives you</p>
@@ -680,11 +680,11 @@ $.new = ( x = null ) -&gt;
 <p id="section-16"></p>
 </div>
 <div class="slide">
-<h1 id="wait--.cnd-files">Wait—<code>*.cnd</code> Files???</h1>
+<h1 id="wait--coffeematic-files">Wait—CoffeeMatic Files???</h1>
 <h2 id="theyre-just-coffeescript">They’re just CoffeeScript</h2>
 <ul>
 <li><p><code>cnd</code> is short for ‘CoffeeNode’.</p></li>
-<li><p><code>*.cnd</code> files implement a kind of ‘augmented’ CoffeeScript</p></li>
+<li><p>CoffeeMatic files implement a kind of ‘augmented’ CoffeeScript</p></li>
 <li><p>where the grammar is left untouched</p></li>
 <li><p>but vocabulary gets injected prior to execution.</p></li>
 <li><p>You run them with</p>
@@ -739,10 +739,10 @@ log reverse copy names
 <p id="section-17"></p>
 </div>
 <div class="slide">
-<h1 id="wait--.cnd-files-1">Wait—<code>*.cnd</code> Files???</h1>
+<h1 id="wait--coffeematic-files-1">Wait—CoffeeMatic Files???</h1>
 <h2 id="the-vocabulary">The Vocabulary</h2>
 <ul>
-<li><p>Currently there are three groups of words that qualify for automatic inclusion in <code>*.cnd</code> files:</p>
+<li><p>Currently there are three groups of words that qualify for automatic inclusion in CoffeeMatic files:</p>
 <ul>
 <li><p>Specific Δ Methods: they are dispatched to the type library that is associated with the type of the first argument in the call (a.k.a. the ‘prinicipal noun’).</p></li>
 <li><p>Generic Δ Methods: they are dispatched to the library that is identified in a registry (more later).</p></li>
@@ -1110,9 +1110,9 @@ footprints = yeti ? &quot;bear&quot;
 <p id="section-33"></p>
 </div>
 <div class="slide">
-<h1 id="flowmatic-beyond-.cnd">FlowMatic: Beyond <code>*.cnd</code></h1>
+<h1 id="beyond-coffeematic-flowmatic">Beyond CoffeeMatic: FlowMatic</h1>
 <ul>
-<li><p>We’ve seen that we can do <em>lot</em> with <code>*.cnd</code> modules.</p></li>
+<li><p>We’ve seen that we can do <em>lot</em> with CoffeeMatic modules.</p></li>
 <li><p>It’s almost a new language.</p></li>
 <li><p>Almost.</p></li>
 <li><p>Except we have no handle to manipulate the non-verbal / syntactical behaviors.</p></li>
@@ -1122,7 +1122,7 @@ x[ 3 ] = 42
 a = [ 8, 7, 6, ]
 f()
 </code></pre></li>
-<li><p><code>x[ 'foo' ] == undefined</code> is the source for an important class of silent failures in JavaScript, and we’re still unable to fix this with CoffeeScript and <code>*.cnd</code> alone.</p></li>
+<li><p><code>x[ 'foo' ] == undefined</code> is the source for an important class of silent failures in JavaScript, and we’re still unable to fix this with CoffeeScript and CoffeeMatic alone.</p></li>
 <li><p>Extending the syntax of CoffeeScript is feasible, but cumbersome.</p></li>
 <li><p>I’d really like to explore what we could do if we had a flexible system where we can easily define new syntax—both to</p>
 <ul>
@@ -1133,14 +1133,14 @@ f()
 <p id="section-34"></p>
 </div>
 <div class="slide">
-<h1 id="flowmatic-beyond-.cnd-1">FlowMatic: Beyond <code>*.cnd</code></h1>
+<h1 id="beyond-coffeematic-flowmatic-1">Beyond CoffeeMatic: FlowMatic</h1>
 <div class="figure">
 <img src="./resources/flowmatic-logo-3.0.png" /><p class="caption"></p>
 </div>
 <p id="section-35"></p>
 </div>
 <div class="slide">
-<h1 id="flowmatic-beyond-.cnd-2">FlowMatic: Beyond <code>*.cnd</code></h1>
+<h1 id="beyond-coffeematic-flowmatic-2">Beyond CoffeeMatic: FlowMatic</h1>
 <div class="figure">
 <img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
 </div>
@@ -1194,7 +1194,7 @@ f()
 <p id="section-36"></p>
 </div>
 <div class="slide">
-<h1 id="flowmatic-beyond-.cnd-3">FlowMatic: Beyond <code>*.cnd</code></h1>
+<h1 id="beyond-coffeematic-flowmatic-3">Beyond CoffeeMatic: FlowMatic</h1>
 <div class="figure">
 <img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
 </div>
@@ -1222,7 +1222,7 @@ f()
 <p id="section-37"></p>
 </div>
 <div class="slide">
-<h1 id="flowmatic-beyond-.cnd-4">FlowMatic: Beyond <code>*.cnd</code></h1>
+<h1 id="beyond-coffeematic-flowmatic-4">Beyond CoffeeMatic: FlowMatic</h1>
 <div class="figure">
 <img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
 </div>
@@ -1232,7 +1232,7 @@ f()
 <p id="section-38"></p>
 </div>
 <div class="slide">
-<h1 id="flowmatic-beyond-.cnd-5">FlowMatic: Beyond <code>*.cnd</code></h1>
+<h1 id="beyond-coffeematic-flowmatic-5">Beyond CoffeeMatic: FlowMatic</h1>
 <div class="figure">
 <img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
 </div>
@@ -1249,7 +1249,7 @@ f()
 <p id="section-39"></p>
 </div>
 <div class="slide">
-<h1 id="flowmatic-beyond-.cnd-6">FlowMatic: Beyond <code>*.cnd</code></h1>
+<h1 id="beyond-coffeematic-flowmatic-6">Beyond CoffeeMatic: FlowMatic</h1>
 <div class="figure">
 <img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
 </div>

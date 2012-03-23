@@ -639,8 +639,8 @@ value            `Object::toString.call value`
           #...........................................................................................
           return R
 
-*   Using this code in a `*.cnd` module (the `new_set` vocable courtesy of the LSD system that augments
-    `*.cnd` files):
+*   Using this code in a CoffeeMatic module (the `new_set` vocable courtesy of the LSD system that augments
+    CoffeeMatic files):
 
         new_set 'helo world'
 
@@ -666,13 +666,13 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-# Wait—`*.cnd` Files???
+# Wait—CoffeeMatic Files???
 
 ## They're just CoffeeScript
 
 *   `cnd` is short for 'CoffeeNode'.
 
-*   `*.cnd` files implement a kind of 'augmented' CoffeeScript
+*   CoffeeMatic files implement a kind of 'augmented' CoffeeScript
 
 *   where the grammar is left untouched
 
@@ -738,11 +738,11 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-# Wait—`*.cnd` Files???
+# Wait—CoffeeMatic Files???
 
 ## The Vocabulary
 
-*   Currently there are three groups of words that qualify for automatic inclusion in `*.cnd` files:
+*   Currently there are three groups of words that qualify for automatic inclusion in CoffeeMatic files:
 
     *   Specific Δ Methods: they are dispatched to the type library that is associated with the type
         of the first argument in the call (a.k.a. the 'prinicipal noun').
@@ -1243,9 +1243,9 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-#   FlowMatic: Beyond `*.cnd`
+#   Beyond CoffeeMatic: FlowMatic
 
-*   We've seen that we can do *lot* with `*.cnd` modules.
+*   We've seen that we can do *lot* with CoffeeMatic modules.
 
 *   It's almost a new language.
 
@@ -1261,7 +1261,7 @@ value            `Object::toString.call value`
         f()
 
 *   `x[ 'foo' ] == undefined` is the source for an important class of silent failures in JavaScript, and
-    we're still unable to fix this with CoffeeScript and `*.cnd` alone.
+    we're still unable to fix this with CoffeeScript and CoffeeMatic alone.
 
 *   Extending the syntax of CoffeeScript is feasible, but cumbersome.
 
@@ -1276,14 +1276,14 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-#   FlowMatic: Beyond `*.cnd`
+#   Beyond CoffeeMatic: FlowMatic
 
 ![](./resources/flowmatic-logo-3.0.png)
 
 
 ############################################################################################################
 
-#   FlowMatic: Beyond `*.cnd`
+#   Beyond CoffeeMatic: FlowMatic
 
 ![](./resources/flowmatic-logo-3.0-small.png)
 
@@ -1338,7 +1338,7 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-#   FlowMatic: Beyond `*.cnd`
+#   Beyond CoffeeMatic: FlowMatic
 
 ![](./resources/flowmatic-logo-3.0-small.png)
 
@@ -1374,7 +1374,7 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-#   FlowMatic: Beyond `*.cnd`
+#   Beyond CoffeeMatic: FlowMatic
 
 ![](./resources/flowmatic-logo-3.0-small.png)
 
@@ -1383,7 +1383,7 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-#   FlowMatic: Beyond `*.cnd`
+#   Beyond CoffeeMatic: FlowMatic
 
 ![](./resources/flowmatic-logo-3.0-small.png)
 
@@ -1409,7 +1409,7 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-#   FlowMatic: Beyond `*.cnd`
+#   Beyond CoffeeMatic: FlowMatic
 
 ![](./resources/flowmatic-logo-3.0-small.png)
 
