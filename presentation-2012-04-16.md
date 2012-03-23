@@ -123,6 +123,25 @@
 
 ############################################################################################################
 
+# Approaches to Programming
+
+## Why you should care about LSD
+
+*   Short for a style of programming that is
+
+    *   Library-Oriented
+
+    *   Semantics-Inspired
+
+    *   Data-Centric
+
+Data-Centric
+    ~ dsfasdfsdfasdfasdf
+
+
+
+############################################################################################################
+
 # CoffeeNode Data Type Therapy
 
 ## What is a Data Type?
@@ -1356,7 +1375,9 @@ value            `Object::toString.call value`
 *   My guess is that most usable / desirable / practical / learnable / popular syntaxes will fall somewhere
     in between the two extremes shown.
 
-*   Well, there are exceptions. Example: Ideographic Description Language, a Unicode standard
+*   But that varies with personal preferences and application domain.
+
+*   Example: Ideographic Description Language, a Unicode standard
     to allow for the graphic decomposition of Chinese characters:
 
         參: ⿱厽㐱

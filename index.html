@@ -93,6 +93,20 @@
 <p id="section-4"></p>
 </div>
 <div class="slide">
+<h1 id="approaches-to-programming-2">Approaches to Programming</h1>
+<h2 id="why-you-should-care-about-lsd">Why you should care about LSD</h2>
+<ul>
+<li><p>Short for a style of programming that is</p>
+<ul>
+<li><p>Library-Oriented</p></li>
+<li><p>Semantics-Inspired</p></li>
+<li><p>Data-Centric</p></li>
+</ul></li>
+</ul>
+<p>Data-Centric ~ dsfasdfsdfasdfasdf</p>
+<p id="section-5"></p>
+</div>
+<div class="slide">
 <h1 id="coffeenode-data-type-therapy">CoffeeNode Data Type Therapy</h1>
 <h2 id="what-is-a-data-type">What is a Data Type?</h2>
 <ul>
@@ -100,7 +114,7 @@
 <li><p>based on their underlying storage needs (extension)</p></li>
 <li><p>and semantics &amp; use (intention).</p></li>
 </ul>
-<p id="section-5"></p>
+<p id="section-6"></p>
 </div>
 <div class="slide">
 <h1 id="coffeenode-data-type-therapy-1">CoffeeNode Data Type Therapy</h1>
@@ -129,7 +143,7 @@
 </code></pre></li>
 </ul></li>
 </ul>
-<p id="section-6"></p>
+<p id="section-7"></p>
 </div>
 <div class="slide">
 <h1 id="coffeenode-data-type-therapy-2">CoffeeNode Data Type Therapy</h1>
@@ -262,7 +276,7 @@ NaN instanceof Number                   # false
 <li><p>Testing whether a result is a number or not is really important in JavaScript because <code>1 / 0</code> and <code>1 * 'foo'</code> yield <code>Infinity</code> and <code>NaN</code>, respectively.</p></li>
 <li><p>⚞OMFG⚟</p></li>
 </ul>
-<p id="section-7"></p>
+<p id="section-8"></p>
 </div>
 <div class="slide">
 <h1 id="coffeenode-data-type-therapy-3">CoffeeNode Data Type Therapy</h1>
@@ -341,7 +355,7 @@ NaN instanceof Number                   # false
 </tr>
 </tbody>
 </table>
-<p id="section-8"></p>
+<p id="section-9"></p>
 </div>
 <div class="slide">
 <h1 id="coffeenode-data-type-therapy-4">CoffeeNode Data Type Therapy</h1>
@@ -413,7 +427,7 @@ log isa_jsinfinity 1 / 0            # true
 log isa_number     1 / 0            # false
 </code></pre></li>
 </ul>
-<p id="section-9"></p>
+<p id="section-10"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it">Type Hierarchy (and what we can do with it)</h1>
@@ -450,7 +464,7 @@ log isa_number     1 / 0            # false
 <li><code>jsarraybuffer</code></li>
 </ul></li>
 </ul>
-<p id="section-10"></p>
+<p id="section-11"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-1">Type Hierarchy (and what we can do with it)</h1>
@@ -492,7 +506,7 @@ f d[ 'a' ], d[ 'b' ]        # fails because `d` has no member `b`
 <dd><p>… full of strange API decisions, bugs and unfixable shortcomings—see <a href="http://blog.stevenlevithan.com">http://blog.stevenlevithan.com</a>.</p>
 </dd>
 </dl>
-<p id="section-11"></p>
+<p id="section-12"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-2">Type Hierarchy (and what we can do with it)</h1>
@@ -504,7 +518,7 @@ f d[ 'a' ], d[ 'b' ]        # fails because `d` has no member `b`
 <li><p>also, <code>[ 456, 893, [ 5, 6, 7, ], ].indexOf [ 5, 6, 7, ]</code> gives <code>-1</code> (‘not found’) instead of <code>2</code>.</p></li>
 <li><p>JavaScript’s <code>===</code> (CoffeeScript: <code>==</code>) ‘strict equality operator’ is more like a ‘object identity operator’</p></li>
 </ul>
-<p id="section-12"></p>
+<p id="section-13"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-3">Type Hierarchy (and what we can do with it)</h1>
@@ -543,7 +557,7 @@ $.equals = ( me, you ) -&gt;
 <li><p>and is a synchronous signal handling library.</p></li>
 <li><p>More later.</p></li>
 </ul>
-<p id="section-13"></p>
+<p id="section-14"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-4">Type Hierarchy (and what we can do with it)</h1>
@@ -584,7 +598,7 @@ $.contains = ( me, probe ) -&gt;
   return false
 </code></pre></li>
 </ul>
-<p id="section-14"></p>
+<p id="section-15"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-5">Type Hierarchy (and what we can do with it)</h1>
@@ -619,7 +633,7 @@ $.contains = ( me, probe ) -&gt;
 <li><p>You would have to write some C extension to your JavaScript VM to add a type</p></li>
 <li><p>but whatever VM you use, the available types form a closed set at run time. And most added objects don’t bother for typing; they just ‘look like’ ordinary plain objects, so you would have to inspect attributes to classify them.</p></li>
 </ul>
-<p id="section-15"></p>
+<p id="section-16"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-6">Type Hierarchy (and what we can do with it)</h1>
@@ -677,7 +691,7 @@ $.new = ( x = null ) -&gt;
 <li><p>which is basically a plain old dictionary (POD) that gives its extension type as a name under the key <code>~isa</code></p></li>
 <li><p>and contains a sub-POD <code>elements</code> that keeps the records.</p></li>
 </ul>
-<p id="section-16"></p>
+<p id="section-17"></p>
 </div>
 <div class="slide">
 <h1 id="wait--coffeematic-files">Wait—CoffeeMatic Files???</h1>
@@ -736,7 +750,7 @@ log reverse copy names
 </code></pre></li>
 <li><p>Since the additional vocabulary is injected at the top of the script, you can always use your own semantics—so if you define your own <code>push</code> function, you will get your own function, not the CoffeeNode version.</p></li>
 </ul>
-<p id="section-17"></p>
+<p id="section-18"></p>
 </div>
 <div class="slide">
 <h1 id="wait--coffeematic-files-1">Wait—CoffeeMatic Files???</h1>
@@ -754,7 +768,7 @@ log reverse copy names
 <li><p>CoffeeNode library names are spelled in SCREAMING CAPS using the Latin and the Greek alphabet.</p></li>
 </ul></li>
 </ul>
-<p id="section-18"></p>
+<p id="section-19"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-7">Type Hierarchy (and what we can do with it)</h1>
@@ -782,7 +796,7 @@ $.contains = $.has = ( me, probe ) -&gt;
 </code></pre></li>
 <li><p>I just discover i should’ve really written <code>return POD.contains me[ 'elements' ], probe</code></p></li>
 </ul>
-<p id="section-19"></p>
+<p id="section-20"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-8">Type Hierarchy (and what we can do with it)</h1>
@@ -803,7 +817,7 @@ and doesn't match the method description.
 <li><p>this tells you that in CoffeeNode, data types &amp; kinds are <em>tagged</em>.</p></li>
 <li><p>Do you know of any other language / environment that tags data types? I think it’s elementary!</p></li>
 </ul>
-<p id="section-20"></p>
+<p id="section-21"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-9">Type Hierarchy (and what we can do with it)</h1>
@@ -824,7 +838,7 @@ and doesn't match the method description.
 <li><p><code>basic</code>: this pertains to the six data types earlier shown in the first group of JS native data types.</p></li>
 </ul></li>
 </ul>
-<p id="section-21"></p>
+<p id="section-22"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-10">Type Hierarchy (and what we can do with it)</h1>
@@ -880,7 +894,7 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 <li><p>Because each type is tagged with its own name, you always have the choice to match types and methods simply by naming the types that the method applies to.</p></li>
 <li><p>This is what happens with <code>words_of</code>. One could argue that this method is <em>much too peculiar to earn the distinction of being globally available</em> (which is not quite true anyway), but i strongly feel that the vast majority of methods in the <code>jstypes</code> library <em>should</em> attain that status.</p></li>
 </ul>
-<p id="section-22"></p>
+<p id="section-23"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-11">Type Hierarchy (and what we can do with it)</h1>
@@ -893,7 +907,7 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 </code></pre></li>
 <li><p>Tagging of extension types ensure that we can go on a smooth path from patching native types to integrating extension types.</p></li>
 </ul>
-<p id="section-23"></p>
+<p id="section-24"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-12">Type Hierarchy (and what we can do with it)</h1>
@@ -909,7 +923,7 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 <li><p>Some day.</p></li>
 <li><p>BTW we’re sort of prepared for that—each CoffeeNode library module is (planned to become) an installable entry in the npm module registry and on GitHub.com.</p></li>
 </ul>
-<p id="section-24"></p>
+<p id="section-25"></p>
 </div>
 <div class="slide">
 <h1 id="method-call-styles">Method Call Styles</h1>
@@ -931,7 +945,7 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 </ul></li>
 <li><p>In JavaScript and other modern languages, things like collection manipulation etc. are built into the language, together with an API that manages access to these facilities. One could argue that these should <em>not</em> be concerns for the language proper, but a matter of libraries. In fact, i argue that even <em>the very syntax</em> of the language itself can be moved into a library.</p></li>
 </ul>
-<p id="section-25"></p>
+<p id="section-26"></p>
 </div>
 <div class="slide">
 <h1 id="how-&#963;-works">How Σ works</h1>
@@ -964,14 +978,14 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 </code></pre></li>
 </ul></li>
 </ul>
-<p id="section-26"></p>
+<p id="section-27"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages">Comparison of Programming Languages</h1>
 <div class="figure">
 <img src="./resources/computer-languages-on-a-hertzsprung-russell-diagram.png" alt="Hertzsprung-Russell Diagram of Computer Languages" /><p class="caption">Hertzsprung-Russell Diagram of Computer Languages</p>
 </div>
-<p id="section-27"></p>
+<p id="section-28"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd">Comparison of Programming Languages (cont’d)</h1>
@@ -993,7 +1007,7 @@ $foo = @foo;
 </code></pre></li>
 </ul></li>
 </ul>
-<p id="section-28"></p>
+<p id="section-29"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-1">Comparison of Programming Languages (cont’d)</h1>
@@ -1023,7 +1037,7 @@ NaN == NaN                      /* false    */
 </blockquote></li>
 <li><p>Do you trust a computer language that fails on <code>0 == —0</code>?</p></li>
 </ul>
-<p id="section-29"></p>
+<p id="section-30"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-2">Comparison of Programming Languages (cont’d)</h1>
@@ -1037,7 +1051,7 @@ NaN == NaN                      /* false    */
 <li><p>Basic is like C, minus the screwdrivers. Craziness gone, but very boring.</p></li>
 <li><p>VisualBasic pretends to be simple and manages to be circumlocutory. It is a strange parasite that is inextricably interwoven with the intestines of its hosts, which are Microsoft Office applications.</p></li>
 </ul>
-<p id="section-30"></p>
+<p id="section-31"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-3">Comparison of Programming Languages (cont’d)</h1>
@@ -1053,7 +1067,7 @@ NaN == NaN                      /* false    */
 <li><p>No experiments here.</p></li>
 <li><p>It is not crazy enough for me.</p></li>
 </ul>
-<p id="section-31"></p>
+<p id="section-32"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-4">Comparison of Programming Languages (cont’d)</h1>
@@ -1076,7 +1090,7 @@ NaN == NaN                      /* false    */
 <p>gives you <code>42</code>. You just ‘imported a number’. Or anything else. Maybe the binary data of an image.</p></li>
 <li><p>Often it is practical to just import a single function with <code>require</code>.</p></li>
 </ul>
-<p id="section-32"></p>
+<p id="section-33"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-5">Comparison of Programming Languages (cont’d)</h1>
@@ -1107,7 +1121,7 @@ footprints = yeti ? &quot;bear&quot;
 <li><p>you can use all of JavaScript and everything that 3rd party libraries offer—in most cases, it is absolutely trivial to turn some library into a <code>require</code>able module.</p></li>
 <li><p>I’ve only scratched the surface here.</p></li>
 </ul>
-<p id="section-33"></p>
+<p id="section-34"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic">Beyond CoffeeMatic: FlowMatic</h1>
@@ -1130,14 +1144,14 @@ f()
 <li><p>define more formulaic / terser idioms.</p></li>
 </ul></li>
 </ul>
-<p id="section-34"></p>
+<p id="section-35"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic-1">Beyond CoffeeMatic: FlowMatic</h1>
 <div class="figure">
 <img src="./resources/flowmatic-logo-3.0.png" /><p class="caption"></p>
 </div>
-<p id="section-35"></p>
+<p id="section-36"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic-2">Beyond CoffeeMatic: FlowMatic</h1>
@@ -1191,7 +1205,7 @@ f()
 (17)  stop. (end)
 </code></pre></li>
 </ul>
-<p id="section-36"></p>
+<p id="section-37"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic-3">Beyond CoffeeMatic: FlowMatic</h1>
@@ -1207,7 +1221,8 @@ f()
 <pre><code>life←{↑1 ⍵∨.∧3 4=+/,¯1 0 1∘.⊖¯1 0 1∘.⌽⊂⍵}
 </code></pre></li>
 <li><p>My guess is that most usable / desirable / practical / learnable / popular syntaxes will fall somewhere in between the two extremes shown.</p></li>
-<li><p>Well, there are exceptions. Example: Ideographic Description Language, a Unicode standard to allow for the graphic decomposition of Chinese characters:</p>
+<li><p>But that varies with personal preferences and application domain.</p></li>
+<li><p>Example: Ideographic Description Language, a Unicode standard to allow for the graphic decomposition of Chinese characters:</p>
 <pre><code>參: ⿱厽㐱
 厽: ⿱厶厸
 厸: ⿰厶厶
@@ -1219,7 +1234,7 @@ f()
 </code></pre></li>
 <li><p>Syntactically, CoffeeScript is very close to what i consider ideal for general purposes.</p></li>
 </ul>
-<p id="section-37"></p>
+<p id="section-38"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic-4">Beyond CoffeeMatic: FlowMatic</h1>
@@ -1229,7 +1244,7 @@ f()
 <div class="figure">
 <img src="./resources/turris-babel-1092x1123.jpg" /><p class="caption"></p>
 </div>
-<p id="section-38"></p>
+<p id="section-39"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic-5">Beyond CoffeeMatic: FlowMatic</h1>
@@ -1246,7 +1261,7 @@ f()
 <li><p>mainly as a way to lower entry levels for newbies</p></li>
 <li><p>and because CoffeeScript is a <em>pretty</em> good language, of course.</p></li>
 </ul>
-<p id="section-39"></p>
+<p id="section-40"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic-6">Beyond CoffeeMatic: FlowMatic</h1>
