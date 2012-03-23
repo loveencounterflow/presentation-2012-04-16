@@ -135,8 +135,35 @@
 
     *   Data-Centric
 
-Data-Centric
+
     ~ dsfasdfsdfasdfasdf
+
+Data-Centric
+  ~ When we program, it's all about the data. OOP maintains data should be 'smart', that we should write
+    `sesame.open()`. The sesame 'knows' how to 'open' itself, and when we want that to happen, we should
+    'send it the message `open`' so it does that.
+
+    Bollocks.
+
+    How about `door.open()`. Magic doors or what? Could as well be `fritz.open( door )`, no?
+
+    I think data should just be data—100% pure state. No additives, please.
+
+Library-Based
+  ~ Stateless libraries are the workhorses of LSD. They are cleanly separated from business data.
+
+Semantics-Inspired
+  ~ As Wittgenstein put it,
+
+    > what can be said at all can be said clearly, and what we cannot talk about we must pass over in silence.
+
+    With 'semantics' i do not here mean the 'semantic' of 'semantic web'. That is just a mirage, a passing
+    fad. I'm talking about clarity.
+
+    For there to arise clarity in a program, the parts of the code should be clear, they should be
+    arranged in a clear way, and they should interact in clear ways.
+
+    One reason my programs consist of 99% 'scrabble words'. No abbr. pls.
 
 
 
