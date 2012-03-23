@@ -651,7 +651,7 @@ value            `Object::toString.call value`
 
 # Type Hierarchy (and what we can do with it)
 
-## Extended Types are an Open Set
+## Extended Types
 
 *   But JavaScript is very flexible, so you can build arbitrary objects.
     From `COFFEENODE/SET`:
@@ -688,10 +688,16 @@ value            `Object::toString.call value`
           #...........................................................................................
           return R
 
-*   Using this code in a CoffeeMatic module (the `new_set` vocable courtesy of the LSD system that augments
-    CoffeeMatic files):
 
-        new_set 'helo world'
+############################################################################################################
+
+# Type Hierarchy (and what we can do with it)
+
+## Using `Set.new`
+
+*   Using the `SET` library, we can create and manipulate sets:
+
+        SET.new 'helo world'
 
     gives you
 
@@ -715,11 +721,80 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
+# Type Hierarchy (and what we can do with it)
+
+## Using `type_of`
+
+*   This is the updated `type_of` method that recognizes extension types:
+
+        #---------------------------------------------------------------------------------------------
+        $.type_of = ( x ) ->
+          #...........................................................................................
+          validate_argument_count_equals 1
+          #...........................................................................................
+          return 'null'         if x is null
+          return 'jsundefined'  if x is undefined
+          #...........................................................................................
+          R = x[ '~isa' ]
+          return R if R?
+          #...........................................................................................
+          R = coffeenode_type_by_js_type[ js_type_of x ]
+          unless R? then throw new Error "unable to determine type of #{rpr x}"
+          return if @isa_function R then R x else R
+
+*   And it works:
+
+        x = SET.new [ 'a', 'b', 'c' ]
+        log TYPES.type_of x                     # 'SET/set'
+        log TYPES.isa x, 'SET/set'              # true
+        log TYPES.isa x, 'pod'                  # false
+
+        log SET.contains x, 'a'                 # true
+        log SET.contains x, 'x'                 # false
+
+        log SET.length_of x                     # 3
+
+
+############################################################################################################
+
+# Type Hierarchy (and what we can do with it)
+
+## Having Fun with Sets
+
+*   A real advantage over using Plain Old JavaScript Objects directly for sets is the type-safety of
+    CoffeeNode sets:
+
+        log SET.new [ 98765.432, null, true, 'abc', ]
+
+    gives
+
+        {   ~isa:                 'SET/set',
+            elements:
+              '░░░n/98765.432':   1
+              '░░░x/null':        1
+              '░░░x/true':        1
+              'abc':              1
+              }
+
+*   The `░░░` here represent three arbitrarily chosen codepoints from the Unicode Private Use Area.
+
+*   JavaScript only ever uses texts for POD keys, but using this sigil we can (with very high certainty)
+    ensure that our special strings don't interfere with any other strings.
+
+*   The `SET/contains` method (which coincides with `SET.has`) is *very* simple:
+
+        #-----------------------------------------------------------------------------------------
+        $.contains = $.has = ( me, probe ) ->
+          return me[ 'elements' ][ HASH.as_hash_key probe ] isnt undefined
+
+*   I just discover i should've really written `return POD.contains me[ 'elements' ], probe`
+
+
+############################################################################################################
+
 # Wait—CoffeeMatic Files???
 
 ## They're just CoffeeScript
-
-*   `cnd` is short for 'CoffeeNode'.
 
 *   CoffeeMatic files implement a kind of 'augmented' CoffeeScript
 
@@ -807,44 +882,6 @@ value            `Object::toString.call value`
         such as `rpr` for the 'representation' of a value, `idx` for 'index', `chr` for 'character'.
 
     *   CoffeeNode library names are spelled in SCREAMING CAPS using the Latin and the Greek alphabet.
-
-
-############################################################################################################
-
-# Type Hierarchy (and what we can do with it)
-
-## Having Fun with Sets
-
-*   A real advantage over using Plain Old JavaScript Objects directly is the type-safety of CoffeeNode sets:
-
-        log new_set [ 98765.432, null, true, 'abc', ]
-
-    gives
-
-        {   ~isa:                 'SET/set',
-            elements:
-              '���n/98765.432':   1
-              '���x/null':        1
-              '���x/true':        1
-              'abc':              1
-              }
-
-*   OK, that's ugly.
-
-*   The `���` result from `\ufdef`—a so-called Unicode surrogate code point which can
-    never go single in a valid Unicode string. Well, here it does so, bending the rules without
-    breaking them. Welcome to the Matrix.
-
-*   JavaScript only ever uses texts for POD keys, but using this sigil we can (with very high certainty)
-    ensure that our special strings don't interfere with any other strings.
-
-*   The `SET/contains` method (which coincides with `SET.has`) is *very* simple:
-
-        #-----------------------------------------------------------------------------------------
-        $.contains = $.has = ( me, probe ) ->
-          return me[ 'elements' ][ HASH.as_hash_key probe ] isnt undefined
-
-*   I just discover i should've really written `return POD.contains me[ 'elements' ], probe`
 
 
 ############################################################################################################
