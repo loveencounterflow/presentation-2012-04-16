@@ -150,7 +150,10 @@ Data-Centric
     I think data should just be data—100% pure state. No additives, please.
 
 Library-Based
-  ~ Stateless libraries are the workhorses of LSD. They are cleanly separated from business data.
+  ~ Stateless libraries are the workhorses of LSD. They are cleanly separated from business data. They may
+    contain constants and data collections, but they are in most cases not supposed to change during
+    run time. They mostly contain nothing but methods. A library is often built to handle one specific
+    data type or to perform tasks in one specialized field of concern.
 
 Semantics-Inspired
   ~ As Wittgenstein put it,
