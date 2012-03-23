@@ -136,8 +136,6 @@
     *   Data-Centric
 
 
-    ~ dsfasdfsdfasdfasdf
-
 Data-Centric
   ~ When we program, it's all about the data. OOP maintains data should be 'smart', that we should write
     `sesame.open()`. The sesame 'knows' how to 'open' itself, and when we want that to happen, we should
