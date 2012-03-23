@@ -161,7 +161,9 @@ Semantics-Inspired
     > what can be said at all can be said clearly, and what we cannot talk about we must pass over in silence.
 
     With 'semantics' i do not here mean the 'semantic' of 'semantic web'. That is just a mirage, a passing
-    fad. I'm talking about clarity.
+    fad that came and went with XML.
+
+    I'm talking about clarity.
 
     For there to arise clarity in a program, the parts of the code should be clear, they should be
     arranged in a clear way, and they should interact in clear ways.
