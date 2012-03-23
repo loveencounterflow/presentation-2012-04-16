@@ -226,7 +226,7 @@ Semantics-Inspired
 
 # CoffeeNode Data Type Therapy
 
-## JS Types—Are they Good Enough?
+## JS Type Checking—Is it Good Enough?
 
 *   Short answer: No.
 
