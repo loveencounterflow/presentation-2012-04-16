@@ -751,6 +751,26 @@ log SET.contains x, 'x'                 # false
 
 log SET.length_of x                     # 3
 </code></pre></li>
+<li><p>This looks very object-oriented, but is conceptually different.</p></li>
+<li><p>The common conception of OOP methods is that they take an amplicit first argument, which is the object instance that the method is called on; in Python, this is the semi-explicit <code>self</code> parameter, while in JavaScript, it’s the fully implicit <code>this</code>:</p>
+<pre><code>def f( self, x, y ):
+  return self.sum( x, y ) * 42
+
+this.f = function ( x, y ) {
+  return this.sum( x, y ) * 42; }
+</code></pre></li>
+<li><p>It’s a little annoying to always having to write out the relevant library name.</p></li>
+<li><p>Mainly to avoid this and also to get some other features, there are CoffeeMatic (<code>*.cmat</code>) files, which are simply augmented CoffeeScript files. I’ll come back to those later. Preview:</p>
+<pre><code>x = new_set [ 'a', 'b', 'c' ]
+log type_of x                     # 'SET/set'
+log isa x, 'SET/set'              # true
+log isa x, 'pod'                  # false
+
+log contains x, 'a'               # true
+log contains x, 'x'               # false
+
+log length_of x                   # 3
+</code></pre></li>
 </ul>
 <p id="section-19"></p>
 </div>
@@ -764,15 +784,16 @@ log SET.length_of x                     # 3
 <p>gives</p>
 <pre><code>{   ~isa:                 'SET/set',
     elements:
-      '░░░n/98765.432':   1
-      '░░░x/null':        1
-      '░░░x/true':        1
+      '△○□n/98765.432':   1
+      '△○□x/null':        1
+      '△○□x/true':        1
       'abc':              1
       }
 </code></pre></li>
-<li><p>The <code>░░░</code> here represent three arbitrarily chosen codepoints from the Unicode Private Use Area.</p></li>
 <li><p>JavaScript only ever uses texts for POD keys, but using this sigil we can (with very high certainty) ensure that our special strings don’t interfere with any other strings.</p></li>
-<li><p>The <code>SET/contains</code> method (which coincides with <code>SET.has</code>) is <em>very</em> simple:</p>
+<li><p>The <code>△○□</code> here represent three arbitrarily chosen codepoints from the Unicode Private Use Area (how they will actually display will depend on installed fonts). Since the PUA contains 6400 codepoints, is not very frequently used, and there are around 262 billion three-character combinations from this block, an accidental collision with an actual text that was meant to start this way can be considered sufficiently unlikely.</p>
+<p>(The 100% safe alternative would be to prefix <em>all</em> keys, including string keys, but that would mean a burden on resources for the most useful and most frequent use case for sets and PODs.)</p></li>
+<li><p>The <code>SET/contains</code> method (which coincides with <code>SET.has</code>) is very simple:</p>
 <pre><code>#-----------------------------------------------------------------------------------------
 $.contains = $.has = ( me, probe ) -&gt;
   return me[ 'elements' ][ HASH.as_hash_key probe ] isnt undefined
@@ -782,92 +803,16 @@ $.contains = $.has = ( me, probe ) -&gt;
 <p id="section-20"></p>
 </div>
 <div class="slide">
-<h1 id="wait--coffeematic-files">Wait—CoffeeMatic Files???</h1>
-<h2 id="theyre-just-coffeescript">They’re just CoffeeScript</h2>
-<ul>
-<li><p>CoffeeMatic files implement a kind of ‘augmented’ CoffeeScript</p></li>
-<li><p>where the grammar is left untouched</p></li>
-<li><p>but vocabulary gets injected prior to execution.</p></li>
-<li><p>You run them with</p>
-<pre><code>cnd run route/to/your/script.cnd
-</code></pre></li>
-<li><p>It all happens in <code>COFFEENODE/ENGINE/wrap-0.0.3.coffee</code>, where the <code>cnd</code> extension gets registered:</p>
-<pre><code>#-----------------------------------------------------------------------------------------
-require.extensions[ '.cnd' ] = ( module, route ) -&gt;
-  source  = njs_fs.readFileSync route, 'utf-8'
-  #.......................................................................................
-  content = Σ.emit 'COFFEENODE/engine/wrap/0.0.3',
-    'module':   module
-    'route':    route
-    'source':   source
-  #.......................................................................................
-  module._compile content, route
-</code></pre></li>
-<li><p>The transformation of the source code is quite primitive: we simply iterate over all the identifiers in the source, and where words are found that belong to the received vocabulary, we either add a signal emitter or a <code>require</code> statement. This:</p>
-<pre><code>names = []
-for word in words_of 'Alpha Beta Gamma'
-  push names, word
-
-log names
-log reverse copy names
-</code></pre>
-<p>gets transposed into this:</p>
-<pre><code>#---------------------------------------------------------------------------------------
-# Minimal standard vocabulary
-$           = exports ? @
-bye         = ( P... ) -&gt; throw new Error P...
-log         = ( require 'COFFEENODE/ENGINE/get-log-method' )()
-echo        = console.log
-
-#---------------------------------------------------------------------------------------&quot;
-# Δ methods and standard libraries
-
-Λ = require 'COFFEENODE/Λ/implementation'
-words_of = Λ.get_emitter 'words_of'
-push = Λ.get_emitter 'push'
-reverse = Λ.get_emitter 'reverse'
-copy = Λ.get_emitter 'copy'
-
-names = []
-for word in words_of 'Alpha Beta Gamma'
-  push names, word
-
-log names
-log reverse copy names
-</code></pre></li>
-<li><p>Since the additional vocabulary is injected at the top of the script, you can always use your own semantics—so if you define your own <code>push</code> function, you will get your own function, not the CoffeeNode version.</p></li>
-</ul>
-<p id="section-21"></p>
-</div>
-<div class="slide">
-<h1 id="wait--coffeematic-files-1">Wait—CoffeeMatic Files???</h1>
-<h2 id="the-vocabulary">The Vocabulary</h2>
-<ul>
-<li><p>Currently there are three groups of words that qualify for automatic inclusion in CoffeeMatic files:</p>
-<ul>
-<li><p>Specific Δ Methods: they are dispatched to the type library that is associated with the type of the first argument in the call (a.k.a. the ‘prinicipal noun’).</p></li>
-<li><p>Generic Δ Methods: they are dispatched to the library that is identified in a registry (more later).</p></li>
-<li><p>Libraries included in the <code>COFFEENODE/library</code> folder.</p></li>
-</ul></li>
-<li><p>Naming conventions:</p>
-<ul>
-<li><p>Δ methods should be fully spelled-out verbs or verb-ish expressions: <code>push</code>, <code>reverse</code>, <code>sort</code>, <code>copy</code>, <code>clear</code>, <code>compose</code>, <code>names_of</code>, <code>validate_isa_text</code>. There are a few accepted abbreviations, such as <code>rpr</code> for the ‘representation’ of a value, <code>idx</code> for ‘index’, <code>chr</code> for ‘character’.</p></li>
-<li><p>CoffeeNode library names are spelled in SCREAMING CAPS using the Latin and the Greek alphabet.</p></li>
-</ul></li>
-</ul>
-<p id="section-22"></p>
-</div>
-<div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-10">Type Hierarchy (and what we can do with it)</h1>
 <h2 id="type-checking">Type-Checking</h2>
 <ul>
-<li><p>So what happens if you throw unsuitable data at <code>new_set</code>?—Let’s try:</p></li>
-<li><p><code>new_set new_set 'abc'</code> gives you</p>
+<li><p>So what happens if you throw unsuitable data at <code>SET.new</code>?—Let’s try:</p></li>
+<li><p><code>SET.new SET.new 'abc'</code> gives you</p>
 <pre><code>Error: as_set is applicable to a set, but not implemented in COFFEENODE/jstypes/SET
 </code></pre>
 <p>This tells you that although a set is a suitable argument to <code>as_set</code>, it currently isn’t implemented (and maybe shouldn’t—still pondering this question).</p></li>
 <li><p>How the hell does the system <em>know</em> this?</p></li>
-<li><p><code>log new_set 42</code> gives you</p>
+<li><p><code>log SET.new 42</code> gives you</p>
 <pre><code>Error: 'as_set' is not applicable to a number;
 'as_set' requires { +facetted },
 but type 'number' is tagged with { basic, ecma, json, number, numeric }
@@ -876,7 +821,7 @@ and doesn't match the method description.
 <li><p>this tells you that in CoffeeNode, data types &amp; kinds are <em>tagged</em>.</p></li>
 <li><p>Do you know of any other language / environment that tags data types? I think it’s elementary!</p></li>
 </ul>
-<p id="section-23"></p>
+<p id="section-21"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-11">Type Hierarchy (and what we can do with it)</h1>
@@ -897,7 +842,7 @@ and doesn't match the method description.
 <li><p><code>basic</code>: this pertains to the six data types earlier shown in the first group of JS native data types.</p></li>
 </ul></li>
 </ul>
-<p id="section-24"></p>
+<p id="section-22"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-12">Type Hierarchy (and what we can do with it)</h1>
@@ -951,22 +896,22 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 </ul></li>
 <li><p>The matching process is not fully general, as more complicated patterns are not possible. You cannot currently say <em>match either ( a and b ) or else ( c and d )</em>. It appears to suffice though.</p></li>
 <li><p>Because each type is tagged with its own name, you always have the choice to match types and methods simply by naming the types that the method applies to.</p></li>
-<li><p>This is what happens with <code>words_of</code>. One could argue that this method is <em>much too peculiar to earn the distinction of being globally available</em> (which is not quite true anyway), but i strongly feel that the vast majority of methods in the <code>jstypes</code> library <em>should</em> attain that status.</p></li>
+<li><p>This is what happens with <code>words_of</code>. One could argue that this method is <em>much too peculiar to earn the distinction of being globally available</em>, but i strongly feel that the vast majority of methods in the <code>jstypes</code> library <em>should</em> attain that status.</p></li>
 </ul>
-<p id="section-25"></p>
+<p id="section-23"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-13">Type Hierarchy (and what we can do with it)</h1>
 <h2 id="extension-types-have-tags-too">Extension Types have Tags, too</h2>
 <ul>
-<li><p>This is `COFFEENODE/SET/type-descriptions.coffee:</p>
+<li><p>This is <code>COFFEENODE/SET/type-descriptions.coffee</code>:</p>
 <pre><code>module.exports =
   'SET/set':
     'features':             'mutable facetted json'
 </code></pre></li>
 <li><p>Tagging of extension types ensure that we can go on a smooth path from patching native types to integrating extension types.</p></li>
 </ul>
-<p id="section-26"></p>
+<p id="section-24"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-14">Type Hierarchy (and what we can do with it)</h1>
@@ -982,69 +927,14 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 <li><p>Some day.</p></li>
 <li><p>BTW we’re sort of prepared for that—each CoffeeNode library module is (planned to become) an installable entry in the npm module registry and on GitHub.com.</p></li>
 </ul>
-<p id="section-27"></p>
-</div>
-<div class="slide">
-<h1 id="method-call-styles">Method Call Styles</h1>
-<ul>
-<li><p>There are several ways to call library methods:</p>
-<ul>
-<li><p>Easiest, slowest: use Δ methods. This will do signal emission and argument validation behind the scenes; you only have to care for the type library responsible for the prinicipal noun to support the verb:</p>
-<pre><code>push names, user_name
-</code></pre></li>
-<li><p>Type-safest, a little faster: call library methods. This will still do validation, but this time the code is annotated: ‘hey i believe i’m having a list here, so please check that and push a value’. Yo get type validation with no extra syntax!</p>
-<pre><code>LIST.push names, user_name
-</code></pre></li>
-<li><p>Less type-safe, yet a little faster: use library implementation methods:</p>
-<pre><code>LIST._.push names, user_name
-</code></pre></li>
-<li><p>Most problematic, fastest: use native JS object methods. In this particular case, the <code>push</code> method is without major flaws, although it acts a bit strange in case the pushee should happen to be <code>undefined</code>:</p>
-<pre><code>names.push user_name
-</code></pre></li>
-</ul></li>
-<li><p>In JavaScript and other modern languages, things like collection manipulation etc. are built into the language, together with an API that manages access to these facilities. One could argue that these should <em>not</em> be concerns for the language proper, but a matter of libraries. In fact, i argue that even <em>the very syntax</em> of the language itself can be moved into a library.</p></li>
-</ul>
-<p id="section-28"></p>
-</div>
-<div class="slide">
-<h1 id="how-&#963;-works">How Σ works</h1>
-<ul>
-<li><p>A synchronous signal handling library</p></li>
-<li><p>API:</p>
-<ul>
-<li><p>You create a signal by calling <code>Σ.emit</code>; first argument is the signal name, other arguments as required for the purpose:</p>
-<pre><code>x = Σ.emit 'signal-name', 42, 108
-</code></pre></li>
-<li><p>You catch a signal by passing a signal matcher and a listener function to <code>Σ.listen</code>; listeners take the signal as first argument and other arguments as required for the purpose:</p>
-<pre><code>Σ.listen 'signal-matcher', ( signal, foo, bar ) -&gt;
-    ...
-    Σ.update signal, 'new '
-</code></pre></li>
-<li><p>When you look into the signal, you’ll find the first optional argument got treated specially—it becomes <code>signal[ 'value' ]</code>:</p>
-<pre><code>{ '~isa': 'Σ/signal'
-  name:                 'signal-name'
-  arguments:            [ 42, 108 ]
-  value:                42
-  count:                1
-  'is-mandatory':       false
-  'listener-locators':  [ 'file:///route/to/script.cnd#39,3' ],
-  data: null }
-</code></pre></li>
-<li><p>You can rename a signal; this will modify signal[ ‘name’ ]</p>
-<pre><code>Σ.listen 'signal-matcher', ( signal, arguments... ) -&gt;
-    ...
-    Σ.update signal, 'new '
-</code></pre></li>
-</ul></li>
-</ul>
-<p id="section-29"></p>
+<p id="section-25"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages">Comparison of Programming Languages</h1>
 <div class="figure">
 <img src="./resources/computer-languages-on-a-hertzsprung-russell-diagram.png" alt="Hertzsprung-Russell Diagram of Computer Languages" /><p class="caption">Hertzsprung-Russell Diagram of Computer Languages</p>
 </div>
-<p id="section-30"></p>
+<p id="section-26"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd">Comparison of Programming Languages (cont’d)</h1>
@@ -1053,7 +943,7 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 </div>
 <ul>
 <li><p>Some languages are so crazy, you can hardly use them properly if you care for manageable, correct algorithms.</p></li>
-<li><p>One example is PHP, which is only marginally less crazy than Brainfuck. You can only write correct programs if you read up on 10 years of user discussion revealing bugs and giving workarounds—for each single function. Things are not getting fixed in PHP, they get discussed in the online manual. PHP has an surprisingly complicated syntax. PHP cannot speak Unicode, so why should you care to speak PHP?</p></li>
+<li><p>One example is PHP, which is only marginally less crazy than Brainfuck. You can only write correct programs if you read up on 10 years of user discussion revealing bugs and giving workarounds—for each single function. Things are not getting fixed in PHP, they get discussed in the online manual. PHP has a surprisingly complicated syntax. PHP cannot speak Unicode, so why should you care to speak PHP?</p></li>
 <li><p>Another example is Ruby, whose followers worship Monkey Patching.</p></li>
 <li><p>Another well-known example is Perl, whose gotchas are not oversights or accidents, but intentionally built into the language. Here’s the reason i never continued to program in Perl:</p>
 <ul>
@@ -1066,7 +956,7 @@ $foo = @foo;
 </code></pre></li>
 </ul></li>
 </ul>
-<p id="section-31"></p>
+<p id="section-27"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-1">Comparison of Programming Languages (cont’d)</h1>
@@ -1083,7 +973,9 @@ $foo = @foo;
 <blockquote>
 <p>“The Float class wraps a value of primitive type float in an object. An object of type Float contains a single field whose type is float.”—<a href="http://docs.oracle.com/javase/1.4.2/docs/api/java/lang/Float.html"><em>Java Manual</em></a></p>
 </blockquote></li>
-<li><p>For all that Java does to enslave its users, itself takes a rather lighthearted view of life and the universe:</p>
+<li><p>Overzealous Object-Oriented Bureaucracy Syndrom (OOOBS) is a common affliction among OOP programmers, but Java gets the OOOBS Language Award (OOOBSLA) for building extremely tight assumptions about how to write programs and even how to architecture applications with modules right into the language.</p></li>
+<li><p>There’s no escape route, Java’s programmers are Java’s prisoners. Talk about ‘not making prisoners’, well, Java does.</p></li>
+<li><p>For all that Java does to enslave its users, itself takes a rather lighthearted view of life and the universe. Kind of an innocently whistling prison guard:</p>
 <pre><code>1.0 / 0.0                       /* Infinity */
 0.0 / 0.0                       /* NaN      */
 Math.sqrt( -2.0 )               /* NaN      */
@@ -1092,11 +984,12 @@ NaN == NaN                      /* false    */
 </code></pre></li>
 <li><p>This is just the tip of the iceberg of idiocy:</p>
 <blockquote>
-<p>“To make matters worse, the rules for comparing NaN and –0 are different between the primitive float type and the wrapper class Float. For float values, comparing two NaN values for equality will yield false, but comparing two NaN Float objects using Float.equals() will yield true. The motivation for this is that otherwise it would be impossible to use an NaN Float object as a key in a HashMap. Similarly, while 0 and —0 are considered equal when represented as float values, comparing 0 and —0 as Float objects using Float.compareTo() indicates that —0 is considered to be less than 0.”—<a href="http://www.ibm.com/developerworks/java/library/j-jtp0114/"><em>Java theory and practice</em></a></p>
+<p>&quot;To make matters worse, the rules for comparing NaN and –0 are different between the primitive float type and the wrapper class Float. For float values, comparing two NaN values for equality will yield false, but comparing two NaN Float objects using Float.equals() will yield true.</p>
+<p>[…] Similarly, while 0 and —0 are considered equal when represented as float values, comparing 0 and —0 as Float objects using Float.compareTo() indicates that —0 is considered to be less than 0.&quot;—<a href="http://www.ibm.com/developerworks/java/library/j-jtp0114/"><em>Java theory and practice</em></a></p>
 </blockquote></li>
 <li><p>Do you trust a computer language that fails on <code>0 == —0</code>?</p></li>
 </ul>
-<p id="section-32"></p>
+<p id="section-28"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-2">Comparison of Programming Languages (cont’d)</h1>
@@ -1109,8 +1002,10 @@ NaN == NaN                      /* false    */
 <li><p>Assembler is like C, but the screwdrivers are flintstones.</p></li>
 <li><p>Basic is like C, minus the screwdrivers. Craziness gone, but very boring.</p></li>
 <li><p>VisualBasic pretends to be simple and manages to be circumlocutory. It is a strange parasite that is inextricably interwoven with the intestines of its hosts, which are Microsoft Office applications.</p></li>
+<li><p>Assembler is the least OOP-ish language imaginable.</p></li>
+<li><p>It has been conjectured that the complete absence of languages that are very OOP and very sane at the same time is an indication that there <em>can</em> be no such thing: You <em>have</em> to be crazy in order to drive OOP thinking to its logical consequences. Therefore, the Grand Void is bound to remain a patch devoid of languages.</p></li>
 </ul>
-<p id="section-33"></p>
+<p id="section-29"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-3">Comparison of Programming Languages (cont’d)</h1>
@@ -1126,7 +1021,7 @@ NaN == NaN                      /* false    */
 <li><p>No experiments here.</p></li>
 <li><p>It is not crazy enough for me.</p></li>
 </ul>
-<p id="section-34"></p>
+<p id="section-30"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-4">Comparison of Programming Languages (cont’d)</h1>
@@ -1137,9 +1032,9 @@ NaN == NaN                      /* false    */
 <li><p>JavaScript’s craziness is one of the most widely known facts of Computer Science.</p></li>
 <li><p>But its flexibility, simplicity and straightforwardness are much less well known.</p></li>
 <li><p>Python has an <code>import</code> statement, an unwieldy beast. NodeJS has the <code>require</code> function, which is <strong>more straightforward and more powerful, but without the complexities of <code>import</code></strong>.</p></li>
-<li><p>Pythoneers are often afflicted by Compulsory Typing Disorder. When you <code>import</code> something, then that something is a <code>Module</code>, something that is not a class, an instance or anything else. The entity’s type is completely useless.</p></li>
+<li><p>Pythoneers are often afflicted by Compulsory Typing Disorder. When you <code>import</code> something, then that something is a <code>Module</code>, an almost completely useless type.</p></li>
 <li><p>But we always have to type everything, right?</p></li>
-<li><p>Nope:</p>
+<li><p>Nope, not in NodeJS, which implements the standards of <a href="http://www.commonjs.org/">CommonJS</a>:</p>
 <p>in module <code>meaning-of-everything.coffee</code>:</p>
 <pre><code>module.exports = 42
 </code></pre>
@@ -1149,7 +1044,7 @@ NaN == NaN                      /* false    */
 <p>gives you <code>42</code>. You just ‘imported a number’. Or anything else. Maybe the binary data of an image.</p></li>
 <li><p>Often it is practical to just import a single function with <code>require</code>.</p></li>
 </ul>
-<p id="section-35"></p>
+<p id="section-31"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-5">Comparison of Programming Languages (cont’d)</h1>
@@ -1162,11 +1057,27 @@ NaN == NaN                      /* false    */
 <li><p>you get rid of 99.9% of all braces and parentheses;</p></li>
 <li><p>you implicitly use JavaScript’s non-coercing ‘strict equality’ operator, avoiding many gotchas;</p></li>
 <li><p>you get a great syntax for function definition (very important in asynchronous, callback-rich code):</p>
-<pre><code>f = ( a, b, c = 42 ) -&gt;
+<pre><code>#-----------------------------------------------------------------------------------------
+f = ( a, b, c = 42 ) -&gt;
   return &quot;#{a} #{b} #{c}&quot;
 
+#-----------------------------------------------------------------------------------------
 g = ( names... ) -&gt;
   return &quot;The participants: #{names.join ', '}&quot;
+
+#-----------------------------------------------------------------------------------------
+read
+  #.......................................................................................
+  '/tmp/participants'
+  encoding:     'utf-8'
+  format:       'csv'
+  #.......................................................................................
+  ( error, chunk ) -&gt;
+    if error:
+      log &quot;something went wrong&quot;
+      throw error
+    finalize_results() unless chunk?
+    push buffer, chunk
 </code></pre></li>
 <li><p>for those who like it, you get easy-to-use classes (i have no use for them, as i do mixins / traits);</p></li>
 <li><p>you get the existential operator <code>?</code> which is great to circumnavigate the many cases where missing attributes result in <code>undefined</code>:</p>
@@ -1179,6 +1090,167 @@ footprints = yeti ? &quot;bear&quot;
 <li><p>you get post-<code>if</code> statements, list comprehensions, ranges, sane <code>for ... in / of</code> loops;</p></li>
 <li><p>you can use all of JavaScript and everything that 3rd party libraries offer—in most cases, it is absolutely trivial to turn some library into a <code>require</code>able module.</p></li>
 <li><p>I’ve only scratched the surface here.</p></li>
+</ul>
+<p id="section-32"></p>
+</div>
+<div class="slide">
+<h1 id="beyond-coffeescript-coffeematic">Beyond CoffeeScript: CoffeeMatic</h1>
+<h2 id="coffeescript-with-a-twist">CoffeeScript with a Twist</h2>
+<ul>
+<li><p>CoffeeMatic files implement a kind of ‘augmented’ CoffeeScript</p></li>
+<li><p>where the grammar is left untouched</p></li>
+<li><p>but vocabulary gets injected prior to execution.</p></li>
+<li><p>You run them with</p>
+<pre><code>cnd run route/to/your/script.cnd
+</code></pre></li>
+<li><p>It all happens in <code>COFFEENODE/ENGINE/wrap-0.0.3.coffee</code>, where the <code>cnd</code> extension gets registered:</p>
+<pre><code>#-----------------------------------------------------------------------------------------
+require.extensions[ '.cnd' ] = ( module, route ) -&gt;
+  source  = njs_fs.readFileSync route, 'utf-8'
+  #.......................................................................................
+  content = Σ.emit 'COFFEENODE/engine/wrap/0.0.3',
+    'module':   module
+    'route':    route
+    'source':   source
+  #.......................................................................................
+  module._compile content, route
+</code></pre></li>
+<li><p>The transformation of the source code is quite primitive: we simply iterate over all the identifiers in the source, and where words are found that belong to the received vocabulary, we either add a signal emitter or a <code>require</code> statement. This:</p>
+<pre><code>names = []
+for word in words_of 'Alpha Beta Gamma'
+  push names, word
+
+log names
+log reverse copy names
+</code></pre>
+<p>gets transposed into this:</p>
+<pre><code>#---------------------------------------------------------------------------------------
+# Minimal standard vocabulary
+$           = exports ? @
+bye         = ( P... ) -&gt; throw new Error P...
+log         = ( require 'COFFEENODE/ENGINE/get-log-method' )()
+echo        = console.log
+
+#---------------------------------------------------------------------------------------&quot;
+# Δ methods and standard libraries
+
+Λ = require 'COFFEENODE/Λ/implementation'
+words_of = Λ.get_emitter 'words_of'
+push = Λ.get_emitter 'push'
+reverse = Λ.get_emitter 'reverse'
+copy = Λ.get_emitter 'copy'
+
+names = []
+for word in words_of 'Alpha Beta Gamma'
+  push names, word
+
+log names
+log reverse copy names
+</code></pre></li>
+<li><p>Since the additional vocabulary is injected at the top of the script, you can always use your own semantics—so if you define your own <code>push</code> function, you will get your own function, not the CoffeeNode version.</p></li>
+</ul>
+<p id="section-33"></p>
+</div>
+<div class="slide">
+<h1 id="beyond-coffeescript-coffeematic-1">Beyond CoffeeScript: CoffeeMatic</h1>
+<h2 id="the-vocabulary">The Vocabulary</h2>
+<ul>
+<li>Currently there are three groups of words that qualify for automatic inclusion in CoffeeMatic files:</li>
+</ul>
+<dl>
+<dt>Specific Δ Methods</dt>
+<dd><p>… are dispatched to the type library that is associated with the type of the first argument in the call (a.k.a. the ‘prinicipal noun’).</p>
+</dd>
+<dt>Generic Δ Methods</dt>
+<dd><p>… are dispatched to the library that is identified in a registry (more later).</p>
+</dd>
+<dt>Library names</dt>
+<dd><p>… of all the libraries found in the <code>COFFEENODE/library</code> folder.</p>
+</dd>
+<dt>plus</dt>
+<dd><p>… possibly names that can be discovered on a configurable search path (not yet implemented).</p>
+</dd>
+</dl>
+<ul>
+<li><p>Naming conventions:</p>
+<ul>
+<li><p>Δ methods should be fully spelled-out verbs or verb-ish expressions: <code>push</code>, <code>reverse</code>, <code>sort</code>, <code>copy</code>, <code>clear</code>, <code>compose</code>, <code>names_of</code>, <code>validate_isa_text</code>. There are a few accepted abbreviations, such as <code>rpr</code> for the ‘representation’ of a value, <code>idx</code> for ‘index’, <code>chr</code> for ‘character’.</p></li>
+<li><p>CoffeeNode library names are spelled in SCREAMING CAPS using the Latin and the Greek alphabet.</p>
+<p>(I do not want to rule out library names written in Brahmi, Cherokee or Chinese, but right now the convention is to distinguish library modules from other modules using case so we need a multi-cameral script. Cyrillic and Geogian already qualify.)</p></li>
+</ul></li>
+</ul>
+<p id="section-34"></p>
+</div>
+<div class="slide">
+<h1 id="beyond-coffeescript-coffeematic-2">Beyond CoffeeScript: CoffeeMatic</h1>
+<h2 id="vocabularies">Vocabularies</h2>
+<dl>
+<dt>Specific Δ Methods</dt>
+<dd><p>… number around 90:</p>
+<p>absolute, add, all-of, any-of, as-lower-case, as-upper-case, chrs-of, clear, contains, contains-only-digits, contains-only-numbers, copy, delete-value, drop-prefix, drop-suffix, ends-with, equals, extend, facets-of, fill, filter, find, flatten, flush, flush-left, flush-right, get, has, idxs-of, insert, interleave, intersect, invert, is-empty, is-even, is-odd, is-zero, join, keys-of, last-idx-of, last-value-of, length-of, lines-of, matches, max, min, merge, names-of, negate, normalize, partition, pluck, pop, pull, push, remove-doublets, remove-key, remove-slice, remove-value, repeat, replace, reset, rest-of, reverse, rpr, select, set, shallow-copy, shuffle, slice, smallest-idx-of, sort, split, starts-with, subtract, trim, union-of, update, values-of, words-of.</p>
+</dd>
+<dt>Generic Δ Methods</dt>
+<dd><p>… number a little over 100:</p>
+<dl>
+<dt>testing and validating values:</dt>
+<dd><p>is-blank-text, is-frozen, is-mutable, is-nonempty-text, is-nonnegative-integer, is-positive-number, is-property-name-of, is-shallow-frozen, is-text-without-whitespace, is-word, isnt-empty, isnt-undefined.</p>
+<p>validate-is-empty, validate-is-frozen, validate-is-indexed, …</p>
+</dd>
+<dt>testing and validating types:</dt>
+<dd><p>type-of, isa, isa-boolean, isa-function, isa-integer, isa-jsarguments, isa-jsctx, isa-jsdate, isa-jserror, isa- jsglobal, isa-jsinfinity, isa-jsnotanumber, isa-jsregex, isa-jsundefined, isa-jswindow, isa-list, isa-null, isa-number, isa-pod, isa-text.</p>
+<p>validate-isa, validate-isa-boolean, …</p>
+</dd>
+<dt>testing and validating type tags:</dt>
+<dd><p>is-mutable, is-indexed, is-facetted, is-ordered, is-repetitive, is-single_valued, is-dense, is-callable, is- numeric, is-basic, is-ecma.</p>
+</dd>
+<dt>from the MULTIMIX library (for mixins and property handling):</dt>
+<dd><p>assemble, compose, set-property.</p>
+</dd>
+<dt>from the Σ library:</dt>
+<dd><p>listen, emit.</p>
+</dd>
+<dt>from the TRM library (console text coloring etc.):</dt>
+<dd><p>grey, red, green, yellow, blue, magenta, cyan, white, orange, olive, plum, gold.</p>
+</dd>
+<dt>other stuff:</dt>
+<dd><p>after, as-json, bye, echo, freeze, from-json, make-revocable, once, shallow-freeze, wait-for-keyboard, xray, call, get-descriptor, infinity.</p>
+</dd>
+</dl>
+</dd>
+<dt>Library names</dt>
+<dd><p>… of all the libraries found in the <code>COFFEENODE/library</code> folder:</p>
+<dl>
+<dt>libraries for native types:</dt>
+<dd><p>BOOLEAN, FUNCTION, JSARGUMENTS, JSDATE, JSERROR, JSGLOBAL, JSINFINITY, JSNOTANUMBER, JSREGEX, JSUNDEFINED, LIST, NULL, NUMBER, POD, TEXT.</p>
+</dd>
+<dt>other:</dt>
+<dd><p>BITSNPIECES, COFFEESCRIPT, DEFAULT, DIFF, ENGINE, FLOWMATIC, FS, HASH, HTML, JQUERY, MACROS, MULTIMIX, PANDOC, QUANTITY, REGEX, ROUTE, SET, TRM, TYPES, VALIDATE, Δ, Λ, Σ.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p id="section-35"></p>
+</div>
+<div class="slide">
+<h1 id="beyond-coffeescript-coffeematic-3">Beyond CoffeeScript: CoffeeMatic</h1>
+<h2 id="method-call-styles">Method Call Styles</h2>
+<ul>
+<li><p>There are several ways to call specific Δ methods:</p>
+<ul>
+<li><p><strong>Easiest, slowest</strong>: use ‘bare words’; the Δ library will catch the implicit signal and dispatch method execution to the appropriate library. This will call <code>LIST.push</code> if <code>names</code> is a list, and <code>TEXT.push</code> if <code>names</code> is a text (probably not what you want in this case, but has conceivable use cases). The receiving method will validate argument count, argument types and argument value sanity to increase the probability of code correctness:</p>
+<pre><code>push names, user_name
+</code></pre></li>
+<li><p><strong>Type-safest, a little faster</strong>: call library methods. Since specific Δ methods all check the type of the first argument (so any method in, say, <code>LIST</code> can only be called with a first argument that is a list), you practically annotate your code with a remark about value type: <em>‘hey i believe i’m having a list here, so please check that and push a value’</em>. You get type validation with no extra syntax!</p>
+<pre><code>LIST.push names, user_name
+</code></pre></li>
+<li><p>Less type-safe, yet a little faster: use library implementation methods:</p>
+<pre><code>LIST._.push names, user_name
+</code></pre></li>
+<li><p>Most problematic, fastest: use native JS object methods. In this particular case, the <code>push</code> method is without major flaws, although it acts a bit strange in case the pushee should happen to be <code>undefined</code>:</p>
+<pre><code>names.push user_name
+</code></pre></li>
+</ul></li>
+<li><p>In JavaScript and other modern languages, things like collection manipulation etc. are built into the language, together with an API that manages access to these facilities. One could argue that these should <em>not</em> be concerns for the language proper, but a matter of libraries. In fact, i argue that even <em>the very syntax</em> of the language itself can be moved into a library.</p></li>
 </ul>
 <p id="section-36"></p>
 </div>
@@ -1425,6 +1497,39 @@ f()
       :central 3557
       :0.3 &lt; roman-numerals &lt; 0.6
 </code></pre></li>
+</ul>
+<p id="section-43"></p>
+</div>
+<div class="slide">
+<h1 id="how-&#963;-works">How Σ works</h1>
+<ul>
+<li><p>A synchronous signal handling library</p></li>
+<li><p>API:</p>
+<ul>
+<li><p>You create a signal by calling <code>Σ.emit</code>; first argument is the signal name, other arguments as required for the purpose:</p>
+<pre><code>x = Σ.emit 'signal-name', 42, 108
+</code></pre></li>
+<li><p>You catch a signal by passing a signal matcher and a listener function to <code>Σ.listen</code>; listeners take the signal as first argument and other arguments as required for the purpose:</p>
+<pre><code>Σ.listen 'signal-matcher', ( signal, foo, bar ) -&gt;
+    ...
+    Σ.update signal, 'new '
+</code></pre></li>
+<li><p>When you look into the signal, you’ll find the first optional argument got treated specially—it becomes <code>signal[ 'value' ]</code>:</p>
+<pre><code>{ '~isa': 'Σ/signal'
+  name:                 'signal-name'
+  arguments:            [ 42, 108 ]
+  value:                42
+  count:                1
+  'is-mandatory':       false
+  'listener-locators':  [ 'file:///route/to/script.cnd#39,3' ],
+  data: null }
+</code></pre></li>
+<li><p>You can rename a signal; this will modify signal[ ‘name’ ]</p>
+<pre><code>Σ.listen 'signal-matcher', ( signal, arguments... ) -&gt;
+    ...
+    Σ.update signal, 'new '
+</code></pre></li>
+</ul></li>
 </ul>
 </div>
 

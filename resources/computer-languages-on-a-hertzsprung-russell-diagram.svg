@@ -310,9 +310,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.77488872"
-     inkscape:cx="-28.127456"
-     inkscape:cy="736.76207"
+     inkscape:zoom="1.1302441"
+     inkscape:cx="347.05855"
+     inkscape:cy="705.9325"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      showgrid="false"
@@ -565,7 +565,7 @@
          x="679.88477"
          y="687.78369"
          style="font-size:28px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:IndUni-N;-inkscape-font-specification:IndUni-N Bold"
-         id="tspan3775">(in Pythons)</tspan></text>
+         id="tspan3775">(in van-Rossums)</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3777"
@@ -573,7 +573,9 @@
        x="-78.774208"
        style="font-size:28px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:IndUni-N;-inkscape-font-specification:IndUni-N Bold"
        xml:space="preserve"
-       transform="matrix(0,-0.9999782,1.0000218,0,0,0)"><tspan
+       transform="matrix(0,-0.9999782,1.0000218,0,0,0)"
+       inkscape:export-xdpi="90.016273"
+       inkscape:export-ydpi="90.016273"><tspan
          id="tspan3781"
          style="font-size:28px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:IndUni-N;-inkscape-font-specification:IndUni-N Bold"
          y="-378.35217"
@@ -583,7 +585,7 @@
          y="-343.35217"
          x="-78.774208"
          sodipodi:role="line"
-         id="tspan3785">(in A. E. Neumans)</tspan></text>
+         id="tspan3785">(in A.-E.-Neumans)</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:28px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:IndUni-N;-inkscape-font-specification:IndUni-N Bold"
@@ -886,8 +888,7 @@
   <g
      inkscape:groupmode="layer"
      id="layer6"
-     inkscape:label="Regions"
-     sodipodi:insensitive="true">
+     inkscape:label="Regions">
     <path
        sodipodi:type="arc"
        style="opacity:0.27981651;color:#000000;fill:none;stroke:#00ffe5;stroke-width:6.98130703;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
@@ -901,22 +902,83 @@
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:89.99999762%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu Bold Italic"
-       x="269.56601"
-       y="235.76292"
+       x="12.984275"
+       y="284.42499"
        id="text4106"
        sodipodi:linespacing="89.999998%"><tspan
          sodipodi:role="line"
-         id="tspan4108"
-         x="269.56601"
-         y="235.76292">Inhabitable</tspan><tspan
-         sodipodi:role="line"
-         x="269.56601"
-         y="271.76291"
-         id="tspan4110">Zone</tspan></text>
+         x="12.984275"
+         y="284.42499"
+         id="tspan4110">Inhabitable</tspan></text>
     <path
        style="opacity:0.27981651;color:#000000;fill:none;stroke:#00ffe5;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;marker-start:url(#DotM);visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        d="M 396.04596,255.12681 277.10359,276.34355"
        id="path4112"
        inkscape:connector-curvature="0" />
+    <text
+       sodipodi:linespacing="89.999998%"
+       id="text3117"
+       y="284.42499"
+       x="28.984274"
+       style="font-size:40px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:89.99999762%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu Bold Italic"
+       xml:space="preserve"><tspan
+         y="284.42499"
+         x="28.984274"
+         id="tspan3119"
+         sodipodi:role="line" /><tspan
+         id="tspan3121"
+         y="320.42496"
+         x="28.984274"
+         sodipodi:role="line">Zone</tspan></text>
+    <rect
+       style="color:#000000;fill:#f5f7ff;fill-opacity:1;stroke:none;stroke-width:9.60000038;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3933"
+       width="139.7928"
+       height="28.312468"
+       x="495.82245"
+       y="394.09732" />
+    <g
+       id="g3137"
+       transform="matrix(1.2390456,0,0,1.2390456,-32.129872,-67.102466)">
+      <text
+         sodipodi:linespacing="125%"
+         id="text3125"
+         y="366.98849"
+         x="458.25345"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:WieynkFraktur;-inkscape-font-specification:WieynkFraktur"
+         xml:space="preserve"><tspan
+           y="366.98849"
+           x="458.25345"
+           id="tspan3127"
+           sodipodi:role="line">The</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3129"
+         y="394.20316"
+         x="433.36929"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:WieynkFraktur;-inkscape-font-specification:WieynkFraktur"
+         xml:space="preserve"><tspan
+           y="394.20316"
+           x="433.36929"
+           id="tspan3131"
+           sodipodi:role="line">Grand</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3133"
+         y="424.85822"
+         x="446.99475"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:WieynkFraktur;-inkscape-font-specification:WieynkFraktur"
+         xml:space="preserve"><tspan
+           y="424.85822"
+           x="446.99475"
+           id="tspan3135"
+           sodipodi:role="line">Void</tspan></text>
+    </g>
+    <path
+       style="opacity:0.26605506;color:#000000;fill:none;stroke:#585978;stroke-width:9.60000038;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="M 373.37066,574.5893 C 340.63438,272.88456 667.11251,162.28899 667.11251,162.28899"
+       id="path3145"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
   </g>
 </svg>

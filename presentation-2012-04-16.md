@@ -754,6 +754,35 @@ value            `Object::toString.call value`
 
         log SET.length_of x                     # 3
 
+*   This looks very object-oriented, but is conceptually different.
+
+*   The common conception of OOP methods is that they take an amplicit first argument, which is the
+    object instance that the method is called on; in Python, this is the semi-explicit `self` parameter,
+    while in JavaScript, it's the fully implicit `this`:
+
+
+        def f( self, x, y ):
+          return self.sum( x, y ) * 42
+
+        this.f = function ( x, y ) {
+          return this.sum( x, y ) * 42; }
+
+*   It's a little annoying to always having to write out the relevant library name.
+
+*   Mainly to avoid this and also to get some other features, there are CoffeeMatic (`*.cmat`) files,
+    which are simply augmented CoffeeScript files.
+    I'll come back to those later. Preview:
+
+        x = new_set [ 'a', 'b', 'c' ]
+        log type_of x                     # 'SET/set'
+        log isa x, 'SET/set'              # true
+        log isa x, 'pod'                  # false
+
+        log contains x, 'a'               # true
+        log contains x, 'x'               # false
+
+        log length_of x                   # 3
+
 
 ############################################################################################################
 
@@ -770,18 +799,26 @@ value            `Object::toString.call value`
 
         {   ~isa:                 'SET/set',
             elements:
-              '░░░n/98765.432':   1
-              '░░░x/null':        1
-              '░░░x/true':        1
+              '△○□n/98765.432':   1
+              '△○□x/null':        1
+              '△○□x/true':        1
               'abc':              1
               }
-
-*   The `░░░` here represent three arbitrarily chosen codepoints from the Unicode Private Use Area.
 
 *   JavaScript only ever uses texts for POD keys, but using this sigil we can (with very high certainty)
     ensure that our special strings don't interfere with any other strings.
 
-*   The `SET/contains` method (which coincides with `SET.has`) is *very* simple:
+*   The `△○□` here represent three arbitrarily chosen codepoints from the Unicode Private Use Area (how they
+    will actually display will depend on installed fonts). Since the PUA contains 6400 codepoints, is not
+    very frequently used, and there are around 262 billion three-character combinations from this block,
+    an accidental collision with an actual text that was meant to start this way can be considered
+    sufficiently unlikely.
+
+    (The 100% safe alternative would be to prefix *all* keys, including string keys,
+    but that would mean a burden on resources for the most useful and most frequent use case for sets and
+    PODs.)
+
+*   The `SET/contains` method (which coincides with `SET.has`) is very simple:
 
         #-----------------------------------------------------------------------------------------
         $.contains = $.has = ( me, probe ) ->
@@ -792,107 +829,13 @@ value            `Object::toString.call value`
 
 ############################################################################################################
 
-# Wait—CoffeeMatic Files???
-
-## They're just CoffeeScript
-
-*   CoffeeMatic files implement a kind of 'augmented' CoffeeScript
-
-*   where the grammar is left untouched
-
-*   but vocabulary gets injected prior to execution.
-
-*   You run them with
-
-        cnd run route/to/your/script.cnd
-
-*   It all happens in `COFFEENODE/ENGINE/wrap-0.0.3.coffee`, where the `cnd` extension gets registered:
-
-        #-----------------------------------------------------------------------------------------
-        require.extensions[ '.cnd' ] = ( module, route ) ->
-          source  = njs_fs.readFileSync route, 'utf-8'
-          #.......................................................................................
-          content = Σ.emit 'COFFEENODE/engine/wrap/0.0.3',
-            'module':   module
-            'route':    route
-            'source':   source
-          #.......................................................................................
-          module._compile content, route
-
-*   The transformation of the source code is quite primitive: we simply iterate over all the identifiers in
-    the source, and where words are found that belong to the received vocabulary, we either add a signal
-    emitter or a `require` statement. This:
-
-        names = []
-        for word in words_of 'Alpha Beta Gamma'
-          push names, word
-
-        log names
-        log reverse copy names
-
-    gets transposed into this:
-
-        #---------------------------------------------------------------------------------------
-        # Minimal standard vocabulary
-        $           = exports ? @
-        bye         = ( P... ) -> throw new Error P...
-        log         = ( require 'COFFEENODE/ENGINE/get-log-method' )()
-        echo        = console.log
-
-        #---------------------------------------------------------------------------------------"
-        # Δ methods and standard libraries
-
-        Λ = require 'COFFEENODE/Λ/implementation'
-        words_of = Λ.get_emitter 'words_of'
-        push = Λ.get_emitter 'push'
-        reverse = Λ.get_emitter 'reverse'
-        copy = Λ.get_emitter 'copy'
-
-        names = []
-        for word in words_of 'Alpha Beta Gamma'
-          push names, word
-
-        log names
-        log reverse copy names
-
-*   Since the additional vocabulary is injected at the top of the script, you can always use your own
-    semantics—so if you define your own `push` function, you will get your own function, not the CoffeeNode
-    version.
-
-
-############################################################################################################
-
-# Wait—CoffeeMatic Files???
-
-## The Vocabulary
-
-*   Currently there are three groups of words that qualify for automatic inclusion in CoffeeMatic files:
-
-    *   Specific Δ Methods: they are dispatched to the type library that is associated with the type
-        of the first argument in the call (a.k.a. the 'prinicipal noun').
-
-    *   Generic Δ Methods: they are dispatched to the library that is identified in a registry (more later).
-
-    *   Libraries included in the `COFFEENODE/library` folder.
-
-*   Naming conventions:
-
-    *   Δ methods should be fully spelled-out verbs or verb-ish expressions: `push`, `reverse`, `sort`,
-        `copy`, `clear`, `compose`, `names_of`, `validate_isa_text`. There are a few accepted abbreviations,
-        such as `rpr` for the 'representation' of a value, `idx` for 'index', `chr` for 'character'.
-
-    *   CoffeeNode library names are spelled in SCREAMING CAPS using the Latin and the Greek alphabet.
-
-
-############################################################################################################
-
 # Type Hierarchy (and what we can do with it)
 
 ## Type-Checking
 
-*   So what happens if you throw unsuitable data at `new_set`?—Let's try:
+*   So what happens if you throw unsuitable data at `SET.new`?—Let's try:
 
-*   `new_set new_set 'abc'` gives you
+*   `SET.new SET.new 'abc'` gives you
 
         Error: as_set is applicable to a set, but not implemented in COFFEENODE/jstypes/SET
 
@@ -901,7 +844,7 @@ value            `Object::toString.call value`
 
 *   How the hell does the system *know* this?
 
-*   `log new_set 42` gives you
+*   `log SET.new 42` gives you
 
         Error: 'as_set' is not applicable to a number;
         'as_set' requires { +facetted },
@@ -1006,7 +949,7 @@ value            `Object::toString.call value`
     simply by naming the types that the method applies to.
 
 *   This is what happens with `words_of`. One could argue that this method is *much too peculiar to earn
-    the distinction of being globally available* (which is not quite true anyway), but i strongly feel
+    the distinction of being globally available*, but i strongly feel
     that the vast majority of methods in the `jstypes` library *should* attain that status.
 
 
@@ -1016,7 +959,7 @@ value            `Object::toString.call value`
 
 ##  Extension Types have Tags, too
 
-*   This is `COFFEENODE/SET/type-descriptions.coffee:
+*   This is `COFFEENODE/SET/type-descriptions.coffee`:
 
         module.exports =
           'SET/set':
@@ -1058,81 +1001,6 @@ value            `Object::toString.call value`
     entry in the npm module registry and on GitHub.com.
 
 
-############################################################################################################
-
-# Method Call Styles
-
-*   There are several ways to call library methods:
-
-    *   Easiest, slowest: use Δ methods. This will do signal emission and argument
-        validation behind the scenes; you only have to care for the type library responsible for the
-        prinicipal noun to support the verb:
-
-            push names, user_name
-
-    *   Type-safest, a little faster: call library methods. This will still do validation, but this time
-        the code is annotated: 'hey i believe i'm having a list here, so please check that and push
-        a value'. Yo get type validation with no extra syntax!
-
-            LIST.push names, user_name
-
-    *   Less type-safe, yet a little faster: use library implementation methods:
-
-            LIST._.push names, user_name
-
-    *   Most problematic, fastest: use native JS object methods. In this particular case, the `push` method
-        is without major flaws, although it acts a bit strange in case the pushee should happen to be
-        `undefined`:
-
-            names.push user_name
-
-*   In JavaScript and other modern languages, things like collection
-    manipulation etc. are built into the language, together with an API that
-    manages access to these facilities. One could argue that these should
-    *not* be concerns for the language proper, but a matter of libraries. In
-    fact, i argue that even *the very syntax* of the language itself can be
-    moved into a library.
-
-
-############################################################################################################
-
-#   How Σ works
-
-*   A synchronous signal handling library
-
-*   API:
-
-    *   You create a signal by calling `Σ.emit`; first argument is the signal name, other arguments as
-        required for the purpose:
-
-            x = Σ.emit 'signal-name', 42, 108
-
-    *   You catch a signal by passing a signal matcher and a listener function to `Σ.listen`; listeners
-        take the signal as first argument and other arguments as required for the purpose:
-
-            Σ.listen 'signal-matcher', ( signal, foo, bar ) ->
-                ...
-                Σ.update signal, 'new '
-
-    *   When you look into the signal, you'll find the first optional argument got treated specially—it
-        becomes `signal[ 'value' ]`:
-
-            { '~isa': 'Σ/signal'
-              name:                 'signal-name'
-              arguments:            [ 42, 108 ]
-              value:                42
-              count:                1
-              'is-mandatory':       false
-              'listener-locators':  [ 'file:///route/to/script.cnd#39,3' ],
-              data: null }
-
-
-
-    *   You can rename a signal; this will modify signal[ 'name' ]
-
-            Σ.listen 'signal-matcher', ( signal, arguments... ) ->
-                ...
-                Σ.update signal, 'new '
 
 
 ############################################################################################################
@@ -1153,7 +1021,7 @@ value            `Object::toString.call value`
 *   One example is PHP, which is only marginally less crazy than Brainfuck. You can only write correct
     programs if you read up on 10 years of user discussion revealing bugs and giving workarounds—for each
     single function. Things are not getting fixed in PHP, they get discussed in the online manual. PHP has
-    an surprisingly complicated syntax. PHP cannot speak Unicode, so why should you care to speak PHP?
+    a surprisingly complicated syntax. PHP cannot speak Unicode, so why should you care to speak PHP?
 
 *   Another example is Ruby, whose followers worship Monkey Patching.
 
@@ -1187,9 +1055,16 @@ value            `Object::toString.call value`
     >   "The Float class wraps a value of primitive type float in an object. An object of type Float
         contains a single field whose type is float."—[*Java Manual*](http://docs.oracle.com/javase/1.4.2/docs/api/java/lang/Float.html)
 
+*   Overzealous Object-Oriented Bureaucracy Syndrom (OOOBS) is a common affliction among OOP programmers,
+    but Java gets the
+    OOOBS Language Award (OOOBSLA) for building extremely tight assumptions about how to write programs
+    and even how to architecture applications with modules right into the language.
+
+*   There's no escape route, Java's programmers are Java's prisoners. Talk about 'not making prisoners',
+    well, Java does.
 
 *   For all that Java does to enslave its users, itself takes a rather lighthearted view of life and the
-    universe:
+    universe. Kind of an innocently whistling prison guard:
 
         1.0 / 0.0                       /* Infinity */
         0.0 / 0.0                       /* NaN      */
@@ -1202,8 +1077,9 @@ value            `Object::toString.call value`
 
     >   "To make matters worse, the rules for comparing NaN and -0 are different between the primitive float type
     >   and the wrapper class Float. For float values, comparing two NaN values for equality will yield false,
-    >   but comparing two NaN Float objects using Float.equals() will yield true. The motivation for this is
-    >   that otherwise it would be impossible to use an NaN Float object as a key in a HashMap. Similarly, while
+    >   but comparing two NaN Float objects using Float.equals() will yield true.
+    >
+    >   [...] Similarly, while
     >   0 and —0 are considered equal when represented as float values, comparing 0 and —0 as Float objects
     >   using Float.compareTo() indicates that —0 is considered to be less than 0."—[*Java theory and practice*](http://www.ibm.com/developerworks/java/library/j-jtp0114/)
 
@@ -1227,6 +1103,14 @@ value            `Object::toString.call value`
 
 *   VisualBasic pretends to be simple and manages to be circumlocutory. It is a strange parasite that is
     inextricably interwoven with the intestines of its hosts, which are Microsoft Office applications.
+
+*   Assembler is the least OOP-ish language imaginable.
+
+*   It has been conjectured that the complete absence of languages that are very OOP and very sane at the
+    same time is an indication that there *can* be no such thing: You *have* to be crazy in order to
+    drive OOP thinking to its logical consequences. Therefore, the Grand Void is bound to remain a patch
+    devoid of languages.
+
 
 ############################################################################################################
 
@@ -1262,12 +1146,11 @@ value            `Object::toString.call value`
     is **more straightforward and more powerful, but without the complexities of `import`**.
 
 *   Pythoneers are often afflicted by Compulsory Typing Disorder. When you `import` something, then
-    that something is a `Module`, something that is not a class, an instance or anything else. The
-    entity's type is completely useless.
+    that something is a `Module`, an almost completely useless type.
 
 *   But we always have to type everything, right?
 
-*   Nope:
+*   Nope, not in NodeJS, which implements the standards of [CommonJS](http://www.commonjs.org/):
 
     in module `meaning-of-everything.coffee`:
 
@@ -1299,11 +1182,27 @@ value            `Object::toString.call value`
 
 *   you get a great syntax for function definition (very important in asynchronous, callback-rich code):
 
+        #-----------------------------------------------------------------------------------------
         f = ( a, b, c = 42 ) ->
           return "#{a} #{b} #{c}"
 
+        #-----------------------------------------------------------------------------------------
         g = ( names... ) ->
           return "The participants: #{names.join ', '}"
+
+        #-----------------------------------------------------------------------------------------
+        read
+          #.......................................................................................
+          '/tmp/participants'
+          encoding:     'utf-8'
+          format:       'csv'
+          #.......................................................................................
+          ( error, chunk ) ->
+            if error:
+              log "something went wrong"
+              throw error
+            finalize_results() unless chunk?
+            push buffer, chunk
 
 *   for those who like it, you get easy-to-use classes (i have no use for them, as i do mixins /
     traits);
@@ -1325,6 +1224,221 @@ value            `Object::toString.call value`
 
 *   I've only scratched the surface here.
 
+
+############################################################################################################
+
+# Beyond CoffeeScript: CoffeeMatic
+
+## CoffeeScript with a Twist
+
+*   CoffeeMatic files implement a kind of 'augmented' CoffeeScript
+
+*   where the grammar is left untouched
+
+*   but vocabulary gets injected prior to execution.
+
+*   You run them with
+
+        cnd run route/to/your/script.cnd
+
+*   It all happens in `COFFEENODE/ENGINE/wrap-0.0.3.coffee`, where the `cnd` extension gets registered:
+
+        #-----------------------------------------------------------------------------------------
+        require.extensions[ '.cnd' ] = ( module, route ) ->
+          source  = njs_fs.readFileSync route, 'utf-8'
+          #.......................................................................................
+          content = Σ.emit 'COFFEENODE/engine/wrap/0.0.3',
+            'module':   module
+            'route':    route
+            'source':   source
+          #.......................................................................................
+          module._compile content, route
+
+*   The transformation of the source code is quite primitive: we simply iterate over all the identifiers in
+    the source, and where words are found that belong to the received vocabulary, we either add a signal
+    emitter or a `require` statement. This:
+
+        names = []
+        for word in words_of 'Alpha Beta Gamma'
+          push names, word
+
+        log names
+        log reverse copy names
+
+    gets transposed into this:
+
+        #---------------------------------------------------------------------------------------
+        # Minimal standard vocabulary
+        $           = exports ? @
+        bye         = ( P... ) -> throw new Error P...
+        log         = ( require 'COFFEENODE/ENGINE/get-log-method' )()
+        echo        = console.log
+
+        #---------------------------------------------------------------------------------------"
+        # Δ methods and standard libraries
+
+        Λ = require 'COFFEENODE/Λ/implementation'
+        words_of = Λ.get_emitter 'words_of'
+        push = Λ.get_emitter 'push'
+        reverse = Λ.get_emitter 'reverse'
+        copy = Λ.get_emitter 'copy'
+
+        names = []
+        for word in words_of 'Alpha Beta Gamma'
+          push names, word
+
+        log names
+        log reverse copy names
+
+*   Since the additional vocabulary is injected at the top of the script, you can always use your own
+    semantics—so if you define your own `push` function, you will get your own function, not the CoffeeNode
+    version.
+
+
+############################################################################################################
+
+# Beyond CoffeeScript: CoffeeMatic
+
+## The Vocabulary
+
+*   Currently there are three groups of words that qualify for automatic inclusion in CoffeeMatic files:
+
+Specific Δ Methods
+  ~ ... are dispatched to the type library that is associated with the type
+    of the first argument in the call (a.k.a. the 'prinicipal noun').
+
+Generic Δ Methods
+  ~ ... are dispatched to the library that is identified in a registry (more later).
+
+Library names
+  ~ ... of all the libraries found in the `COFFEENODE/library` folder.
+
+plus
+  ~ ... possibly names that can be discovered on a configurable search path (not yet implemented).
+
+*   Naming conventions:
+
+    *   Δ methods should be fully spelled-out verbs or verb-ish expressions: `push`, `reverse`, `sort`,
+        `copy`, `clear`, `compose`, `names_of`, `validate_isa_text`. There are a few accepted abbreviations,
+        such as `rpr` for the 'representation' of a value, `idx` for 'index', `chr` for 'character'.
+
+    *   CoffeeNode library names are spelled in SCREAMING CAPS using the Latin and the Greek alphabet.
+
+        (I do not want to rule out library names written in Brahmi, Cherokee or Chinese, but right now
+        the convention is to distinguish library modules from other modules using case so we need a
+        multi-cameral script. Cyrillic and Geogian already qualify.)
+
+
+############################################################################################################
+
+# Beyond CoffeeScript: CoffeeMatic
+
+## Vocabularies
+
+Specific Δ Methods
+  ~ ... number around 90:
+
+    absolute, add, all-of, any-of, as-lower-case, as-upper-case, chrs-of, clear, contains, contains-only-digits,
+    contains-only-numbers, copy, delete-value, drop-prefix, drop-suffix, ends-with, equals, extend, facets-of,
+    fill, filter, find, flatten, flush, flush-left, flush-right, get, has, idxs-of, insert, interleave,
+    intersect, invert, is-empty, is-even, is-odd, is-zero, join, keys-of, last-idx-of, last-value-of, length-of,
+    lines-of, matches, max, min, merge, names-of, negate, normalize, partition, pluck, pop, pull, push, remove-doublets,
+    remove-key, remove-slice, remove-value, repeat, replace, reset, rest-of, reverse, rpr, select, set,
+    shallow-copy, shuffle, slice, smallest-idx-of, sort, split, starts-with, subtract, trim, union-of, update,
+    values-of, words-of.
+
+
+
+Generic Δ Methods
+  ~ ... number a little over 100:
+
+    testing and validating values:
+      ~ is-blank-text, is-frozen, is-mutable, is-nonempty-text, is-nonnegative-integer, is-positive-number,
+        is-property-name-of, is-shallow-frozen, is-text-without-whitespace, is-word, isnt-empty, isnt-undefined.
+
+        validate-is-empty, validate-is-frozen, validate-is-indexed, ...
+
+
+    testing and validating types:
+      ~ type-of, isa, isa-boolean, isa-function, isa-integer, isa-jsarguments, isa-jsctx, isa-jsdate, isa-jserror, isa-
+        jsglobal, isa-jsinfinity, isa-jsnotanumber, isa-jsregex, isa-jsundefined, isa-jswindow, isa-list, isa-null,
+        isa-number, isa-pod, isa-text.
+
+        validate-isa, validate-isa-boolean, ...
+
+    testing and validating type tags:
+      ~ is-mutable, is-indexed, is-facetted, is-ordered, is-repetitive, is-single_valued, is-dense, is-callable, is-
+        numeric, is-basic, is-ecma.
+
+    from the MULTIMIX library (for mixins and property handling):
+      ~ assemble, compose, set-property.
+
+    from the Σ library:
+      ~ listen, emit.
+
+    from the TRM library (console text coloring etc.):
+      ~ grey, red, green, yellow, blue, magenta, cyan, white, orange, olive, plum, gold.
+
+    other stuff:
+      ~ after, as-json, bye, echo, freeze, from-json, make-revocable, once, shallow-freeze, wait-for-keyboard, xray,
+        call, get-descriptor, infinity.
+
+Library names
+  ~ ... of all the libraries found in the `COFFEENODE/library` folder:
+
+    libraries for native types:
+      ~ BOOLEAN, FUNCTION, JSARGUMENTS, JSDATE, JSERROR, JSGLOBAL, JSINFINITY, JSNOTANUMBER, JSREGEX, JSUNDEFINED,
+        LIST, NULL, NUMBER, POD, TEXT.
+
+    other:
+      ~ BITSNPIECES, COFFEESCRIPT, DEFAULT, DIFF, ENGINE, FLOWMATIC, FS, HASH, HTML, JQUERY, MACROS, MULTIMIX,
+        PANDOC, QUANTITY, REGEX, ROUTE, SET, TRM, TYPES, VALIDATE, Δ, Λ, Σ.
+
+
+
+
+
+############################################################################################################
+
+# Beyond CoffeeScript: CoffeeMatic
+
+## Method Call Styles
+
+
+*   There are several ways to call specific Δ methods:
+
+    *   **Easiest, slowest**: use 'bare words'; the Δ library will catch the implicit signal and dispatch
+        method execution to the appropriate library. This will call `LIST.push` if `names` is a list,
+        and `TEXT.push` if `names` is a text (probably not what you want in this case, but has
+        conceivable use cases). The receiving method will validate argument count, argument types and
+        argument value sanity to increase the probability of code correctness:
+
+            push names, user_name
+
+    *   **Type-safest, a little faster**: call library methods. Since specific Δ methods all check the
+        type of the first argument (so any method in, say, `LIST` can only be called with a first argument
+        that is a list), you practically annotate your code with a remark about value type: *'hey i believe
+        i'm having a list here, so please check that and push a value'*. You get type validation with no
+        extra syntax!
+
+            LIST.push names, user_name
+
+    *   Less type-safe, yet a little faster: use library implementation methods:
+
+            LIST._.push names, user_name
+
+    *   Most problematic, fastest: use native JS object methods. In this particular case, the `push` method
+        is without major flaws, although it acts a bit strange in case the pushee should happen to be
+        `undefined`:
+
+            names.push user_name
+
+*   In JavaScript and other modern languages, things like collection
+    manipulation etc. are built into the language, together with an API that
+    manages access to these facilities. One could argue that these should
+    *not* be concerns for the language proper, but a matter of libraries. In
+    fact, i argue that even *the very syntax* of the language itself can be
+    moved into a library.
 
 
 ############################################################################################################
@@ -1585,6 +1699,47 @@ roman (o_O)         `0rMMXII`\                  2012.\
               :0.3 < roman-numerals < 0.6
 
 
+
+
+############################################################################################################
+
+#   How Σ works
+
+*   A synchronous signal handling library
+
+*   API:
+
+    *   You create a signal by calling `Σ.emit`; first argument is the signal name, other arguments as
+        required for the purpose:
+
+            x = Σ.emit 'signal-name', 42, 108
+
+    *   You catch a signal by passing a signal matcher and a listener function to `Σ.listen`; listeners
+        take the signal as first argument and other arguments as required for the purpose:
+
+            Σ.listen 'signal-matcher', ( signal, foo, bar ) ->
+                ...
+                Σ.update signal, 'new '
+
+    *   When you look into the signal, you'll find the first optional argument got treated specially—it
+        becomes `signal[ 'value' ]`:
+
+            { '~isa': 'Σ/signal'
+              name:                 'signal-name'
+              arguments:            [ 42, 108 ]
+              value:                42
+              count:                1
+              'is-mandatory':       false
+              'listener-locators':  [ 'file:///route/to/script.cnd#39,3' ],
+              data: null }
+
+
+
+    *   You can rename a signal; this will modify signal[ 'name' ]
+
+            Σ.listen 'signal-matcher', ( signal, arguments... ) ->
+                ...
+                Σ.update signal, 'new '
 
 
 
