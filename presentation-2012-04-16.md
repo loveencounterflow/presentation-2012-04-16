@@ -1407,13 +1407,14 @@ Library names
 
 *   There are several ways to call specific Δ methods:
 
-    *   **Easiest, slowest**: use 'bare words'; the Δ library will catch the implicit signal and dispatch
-        method execution to the appropriate library. This will call `LIST.push` if `names` is a list,
-        and `TEXT.push` if `names` is a text (probably not what you want in this case, but there are use
-        cases). The receiving method will validate argument count, argument types and
-        argument value sanity to increase the probability of code correctness:
+**Easiest, slowest: use 'bare words'**
+  ~ The Δ library will catch the implicit signal and dispatch
+    method execution to the appropriate library. This will call `LIST.push` if `names` is a list,
+    and `TEXT.push` if `names` is a text (probably not what you want in this case, but there are use
+    cases). The receiving method will validate argument count, argument types and
+    argument value sanity to increase the probability of code correctness:
 
-            push names, user_name
+        push names, user_name
 
     *   **Type-safest, a little faster**: call library methods. Since specific Δ methods all check the
         type of the first argument (so any method in, say, `LIST` can only be called with a first argument
