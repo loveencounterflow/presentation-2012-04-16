@@ -1441,13 +1441,6 @@ Library names
 
         names.push user_name
 
-*   In JavaScript and other modern languages, things like collection
-    manipulation etc. are built into the language, together with an API that
-    manages access to these facilities. One could argue that these should
-    *not* be concerns for the language proper, but a matter of libraries. In
-    fact, i argue that even *the very syntax* of the language itself can be
-    moved into a library.
-
 
 ############################################################################################################
 
