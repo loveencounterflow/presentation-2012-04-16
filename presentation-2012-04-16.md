@@ -1473,7 +1473,7 @@ Library names
 *   Extending the syntax of CoffeeScript is feasible, but cumbersome.
 
 *   I'd really like to explore what we could do if we had a flexible system where we can easily define
-    new syntax—both to
+    new syntax from the ground up—both to
 
     *   define more eloquent idioms that approach natural language, and to
 
