@@ -1242,17 +1242,21 @@ log reverse copy names
 <dd><p>The Δ library will catch the implicit signal and dispatch method execution to the appropriate library. This will call <code>LIST.push</code> if <code>names</code> is a list, and <code>TEXT.push</code> if <code>names</code> is a text (probably not what you want in this case, but there are use cases). The receiving method will validate argument count, argument types and argument value sanity to increase the probability of code correctness:</p>
 <pre><code>push names, user_name
 </code></pre>
-<ul>
-<li><p><strong>Type-safest, a little faster</strong>: call library methods. Since specific Δ methods all check the type of the first argument (so any method in, say, <code>LIST</code> can only be called with a first argument that is a list), you practically annotate your code with a remark about value type: <em>‘hey i believe i’m having a list here, so please check that and push a value’</em>. You get type validation with no extra syntax!</p>
+</dd>
+<dt><strong>Type-safest, a little faster: call library methods</strong></dt>
+<dd><p>Since specific Δ methods all check the type of the first argument (so any method in, say, <code>LIST</code> can only be called with a first argument that is a list), you practically annotate your code with a remark about value type: <em>‘hey i believe i’m having a list here, so please check that and push a value’</em>. You get type validation with no extra syntax!</p>
 <pre><code>LIST.push names, user_name
-</code></pre></li>
-<li><p>Less type-safe, yet a little faster: use library implementation methods:</p>
+</code></pre>
+</dd>
+<dt><strong>Less type-safe, yet a little faster: use library implementation methods</strong></dt>
+<dd><p>CoffeeNode libraries are typically split into two parts: the main part that contains methods that do all the validation business, and an implementation part that contains only the functionality strictly need to execute the method with correct arguments. Should you inadvertantly call an implementation method with bogus arguments, the outcome is undefined and may differ from method to method.</p>
 <pre><code>LIST._.push names, user_name
-</code></pre></li>
-<li><p>Most problematic, fastest: use native JS object methods. In this particular case, the <code>push</code> method is without major flaws, although it acts a bit strange in case the pushee should happen to be <code>undefined</code>:</p>
+</code></pre>
+</dd>
+<dt><strong>Most problematic, fastest: use JS object methods</strong></dt>
+<dd><p>CoffeeMatic is just CoffeeScript, and CoffeeScript is just JavaScript, so all the methods that are defined on JavaScript are still accessible in CoffeeMatic modules. In this particular case, the <code>push</code> method of lists is without major flaws, although it acts a bit strange in case the pushee should happen to be <code>undefined</code>:</p>
 <pre><code>names.push user_name
-</code></pre></li>
-</ul>
+</code></pre>
 </dd>
 </dl>
 <ul>

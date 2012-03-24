@@ -1416,23 +1416,30 @@ Library names
 
         push names, user_name
 
-    *   **Type-safest, a little faster**: call library methods. Since specific Δ methods all check the
-        type of the first argument (so any method in, say, `LIST` can only be called with a first argument
-        that is a list), you practically annotate your code with a remark about value type: *'hey i believe
-        i'm having a list here, so please check that and push a value'*. You get type validation with no
-        extra syntax!
+**Type-safest, a little faster: call library methods**
+  ~ Since specific Δ methods all check the
+    type of the first argument (so any method in, say, `LIST` can only be called with a first argument
+    that is a list), you practically annotate your code with a remark about value type: *'hey i believe
+    i'm having a list here, so please check that and push a value'*. You get type validation with no
+    extra syntax!
 
-            LIST.push names, user_name
+        LIST.push names, user_name
 
-    *   Less type-safe, yet a little faster: use library implementation methods:
+**Less type-safe, yet a little faster: use library implementation methods**
+  ~ CoffeeNode libraries are typically split into two parts: the main part that contains methods that do
+    all the validation business, and an implementation part that contains only the functionality strictly
+    need to execute the method with correct arguments. Should you inadvertantly call an implementation
+    method with bogus arguments, the outcome is undefined and may differ from method to method.
 
-            LIST._.push names, user_name
+        LIST._.push names, user_name
 
-    *   Most problematic, fastest: use native JS object methods. In this particular case, the `push` method
-        is without major flaws, although it acts a bit strange in case the pushee should happen to be
-        `undefined`:
+**Most problematic, fastest: use JS object methods**
+  ~ CoffeeMatic is just CoffeeScript, and CoffeeScript is just JavaScript, so all the methods that are
+    defined on JavaScript are still accessible in CoffeeMatic modules. In this particular case, the `push`
+    method of lists is without major flaws, although it acts a bit strange in case the pushee should happen
+    to be `undefined`:
 
-            names.push user_name
+        names.push user_name
 
 *   In JavaScript and other modern languages, things like collection
     manipulation etc. are built into the language, together with an API that
