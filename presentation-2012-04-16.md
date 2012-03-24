@@ -1630,19 +1630,19 @@ Library names
 
 *   It is not easy to get rid of that without having to deal with a lot of things such as BigDecimal APIs
 
-*   which is conceptual clutter as far as proper programm execution is the target.
+*   which is conceptual clutter as far as proper program execution is the target.
 
 *   Only when we write a new language that hides these implementation details form the user can we make
     real advancements in expressivity.
 
 *   FlowMatic is not a language per se, it's more of a toolbox to author languages.
 
-*   But there is still a plan to give it one 'central' or 'default' dialect (ideas for a name welcome) which
-    will be very close to CoffeeScript
+*   But there is still a 'central' or 'default' dialect named `Arabica` (after *Coffea arabica*, the world's
+    most popular species of coffee plants) that is very similar to CoffeeScript
 
 *   mainly as a way to lower entry levels for newbies
 
-*   and because CoffeeScript is a *pretty* good language, of course.
+*   and because CoffeeScript is syntactically a *pretty* good language, of course.
 
 ############################################################################################################
 
