@@ -1464,6 +1464,12 @@ Library names
 *   `x[ 'foo' ] == undefined` is the source for an important class of silent failures in JavaScript, and
     we're still unable to fix this with CoffeeScript and CoffeeMatic alone.
 
+*   The fact that JavaScript thinks that `0.1 + 0.1 + 0.1 == 0.30000000000000004` has caused much
+    hair-tearing with programmers. You can try to avoid this issue by 1) only doing calculations with integer
+    numbers, 2) using your own `add` function, or 3) using a 3rd party decimal calculation library, but
+    we are unable to transparently fix floating point arithmetic flaws that occur deep down in JavaScript's
+    guts.
+
 *   Extending the syntax of CoffeeScript is feasible, but cumbersome.
 
 *   I'd really like to explore what we could do if we had a flexible system where we can easily define

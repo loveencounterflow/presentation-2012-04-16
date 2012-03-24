@@ -1275,6 +1275,7 @@ a = [ 8, 7, 6, ]
 f()
 </code></pre></li>
 <li><p><code>x[ 'foo' ] == undefined</code> is the source for an important class of silent failures in JavaScript, and we’re still unable to fix this with CoffeeScript and CoffeeMatic alone.</p></li>
+<li><p>The fact that JavaScript thinks that <code>0.1 + 0.1 + 0.1 == 0.30000000000000004</code> has caused much hair-tearing with programmers. You can try to avoid this issue by 1) only doing calculations with integer numbers, 2) using your own <code>add</code> function, or 3) using a 3rd party decimal calculation library, but we are unable to transparently fix floating point arithmetic flaws that occur deep down in JavaScript’s guts.</p></li>
 <li><p>Extending the syntax of CoffeeScript is feasible, but cumbersome.</p></li>
 <li><p>I’d really like to explore what we could do if we had a flexible system where we can easily define new syntax—both to</p>
 <ul>
