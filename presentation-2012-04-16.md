@@ -1409,8 +1409,8 @@ Library names
 
     *   **Easiest, slowest**: use 'bare words'; the Δ library will catch the implicit signal and dispatch
         method execution to the appropriate library. This will call `LIST.push` if `names` is a list,
-        and `TEXT.push` if `names` is a text (probably not what you want in this case, but has
-        conceivable use cases). The receiving method will validate argument count, argument types and
+        and `TEXT.push` if `names` is a text (probably not what you want in this case, but there are use
+        cases). The receiving method will validate argument count, argument types and
         argument value sanity to increase the probability of code correctness:
 
             push names, user_name

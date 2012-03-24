@@ -1237,7 +1237,7 @@ log reverse copy names
 <ul>
 <li><p>There are several ways to call specific Δ methods:</p>
 <ul>
-<li><p><strong>Easiest, slowest</strong>: use ‘bare words’; the Δ library will catch the implicit signal and dispatch method execution to the appropriate library. This will call <code>LIST.push</code> if <code>names</code> is a list, and <code>TEXT.push</code> if <code>names</code> is a text (probably not what you want in this case, but has conceivable use cases). The receiving method will validate argument count, argument types and argument value sanity to increase the probability of code correctness:</p>
+<li><p><strong>Easiest, slowest</strong>: use ‘bare words’; the Δ library will catch the implicit signal and dispatch method execution to the appropriate library. This will call <code>LIST.push</code> if <code>names</code> is a list, and <code>TEXT.push</code> if <code>names</code> is a text (probably not what you want in this case, but there are use cases). The receiving method will validate argument count, argument types and argument value sanity to increase the probability of code correctness:</p>
 <pre><code>push names, user_name
 </code></pre></li>
 <li><p><strong>Type-safest, a little faster</strong>: call library methods. Since specific Δ methods all check the type of the first argument (so any method in, say, <code>LIST</code> can only be called with a first argument that is a list), you practically annotate your code with a remark about value type: <em>‘hey i believe i’m having a list here, so please check that and push a value’</em>. You get type validation with no extra syntax!</p>
