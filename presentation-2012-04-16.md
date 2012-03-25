@@ -1693,7 +1693,7 @@ quantity            `12kg`\                     Number with (registered) unit.\
                     `12;98€`                    Monetary value with cent precision.
 
 scaled              `64k`\                      Same as `64'000`.\
-                    `23.0milli`                 Same as `0.0023`.
+                    `23.0µ`                     Same as `0.0000023`.
 
 imaginary           `3.5j`                      Same as `3.5 * √ -1`
 
@@ -1763,6 +1763,15 @@ roman (o_O)         `0rMMXII`\                  2012.\
             uses:
               :central 3557
               :0.3 < roman-numerals < 0.6
+
+
+############################################################################################################
+
+#   Beyond CoffeeMatic: FlowMatic
+
+##  Example: Parsing Ideographic Descriptions
+
+![](./resources/flowmatic-logo-3.0-small.png)
 
 
 
@@ -1867,7 +1876,6 @@ roman (o_O)         `0rMMXII`\                  2012.\
             Σ.listen 'signal-matcher', ( signal, arguments... ) ->
                 ...
                 Σ.update signal, 'new '
-
 
 
 
