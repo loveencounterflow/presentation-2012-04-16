@@ -1488,6 +1488,30 @@ Library names
 ![](./resources/flowmatic-logo-3.0.png)
 
 
+
+############################################################################################################
+
+#   Beyond CoffeeMatic: FlowMatic
+
+![](./resources/flowmatic-logo-3.0-small.png)
+
+
+>   "All languages are equally powerful in the sense of being Turing equivalent, but that’s not the sense of the
+>   word programmers care about. (No one wants to program a Turing machine.)
+>
+>   The kind of power programmers care
+>   about may not be formally definable, but one way to explain it would be to say that it refers to features
+>   you could only get in the less powerful language by writing an interpreter for the more powerful language in
+>   it.
+>
+>   If language A has an operator for removing spaces from strings and language B doesn’t, that probably
+>   doesn’t make A more powerful, because you can probably write a subroutine to do it in B.
+>
+>   But if A supports,
+>   say, recursion, and B doesn’t, that’s not likely to be something you can fix by writing library
+>   functions."—Paul Graham, *Beating the Averages*
+
+
 ############################################################################################################
 
 #   Beyond CoffeeMatic: FlowMatic
@@ -1689,6 +1713,13 @@ other bases         `03_2110`\                  Base 3.\
 roman (o_O)         `0rMMXII`\                  2012.\
 
 ------------------  --------------------------  --------------------------------------------------------
+
+
+############################################################################################################
+
+#   Beyond CoffeeMatic: FlowMatic
+
+![](./resources/flowmatic-logo-3.0-small.png)
 
 
 *   To give an example, `2;63~€` is
