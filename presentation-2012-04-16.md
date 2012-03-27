@@ -1169,7 +1169,7 @@ value            `Object::toString.call value`
 
 #   Comparison of Programming Languages (cont'd)
 
-![](./resources/computer-languages-on-a-hertzsprung-russell-diagram-small.png)
+    ![](./resources/computer-languages-on-a-hertzsprung-russell-diagram-small.png)
 
 *   For me, the 'Inhabitable Zone' of programming languages is between JavaScript and Python.
 
@@ -1882,6 +1882,10 @@ roman (o_O)         `0rMMXII`\                  2012.\
 
 
 
+![](./resources/cnd-show-format-js-test-cmatic.png)
+ :  XXXX
+
+![](./resources/cnd-show-format-coffee-test-cmatic.png)
 
 
 
