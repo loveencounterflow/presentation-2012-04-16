@@ -1885,9 +1885,13 @@ roman (o_O)         `0rMMXII`\                  2012.\
 
 #   Peeking into Transposed Source
 
-![](./resources/cnd-show-format-js-test-cmatic.png)
- 
+![](./resources/cnd-show-format-raw-test-cmatic.png)
+
 ![](./resources/cnd-show-format-coffee-test-cmatic.png)
+
+![](./resources/cnd-show-format-js-test-cmatic.png)
+
+ 
 
 
 
