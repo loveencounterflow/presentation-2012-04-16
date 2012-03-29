@@ -1,9 +1,9 @@
 
 html, body {
   /*font-family:            'IM FELL English PRO';*/
-  font-size:              180%;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-size:              125%;
   text-shadow: 0.1ex 0.1ex 0.05ex rgba( 255, 255, 255, 1 );
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 background: rgb(147,169,175); /* Old browsers */
 background: -moz-linear-gradient(left, rgba(147,169,175,1) 0%, rgba(198,207,211,1) 50%, rgba(147,169,175,1) 90%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(147,169,175,1)), color-stop(50%,rgba(198,207,211,1)), color-stop(90%,rgba(147,169,175,1))); /* Chrome,Safari4+ */
@@ -112,4 +112,28 @@ p.caption {
 
 dd p:first-child {
   margin-top: -0.5em !important;
+}
+
+
+.frame {
+  border:                 3px solid rgba(255,94,0,0.3);
+  border-radius:          50px;
+  background-color:       rgba(255,208,0,0.1);
+  padding-left:           5px;
+  padding-right:          5px;
+}
+
+.frame-1 { padding-top: 45px; padding-bottom: 45px;}
+.frame-2 { padding-top: 35px; padding-bottom: 35px;}
+.frame-3 { padding-top: 25px; padding-bottom: 25px;}
+.frame-4 { padding-top: 15px; padding-bottom: 15px;}
+.frame-5 { padding-top:  5px; padding-bottom:  5px;}
+
+.parse-tree {
+  padding-top:            3em;
+  padding-bottom:         3em;
+}
+
+.pretty-big {
+  font-size:              300%;
 }

@@ -28,10 +28,10 @@
 <li><p>how to install <strong>pycairo for python 3</strong> on Ubuntu 10.04? (2011)</p></li>
 <li><p>how to do <strong>asynchronous http</strong> requests with epoll and <strong>python 3.1</strong>? (2010)</p></li>
 </ul></li>
-<li><p>all questions were hard—3373 views in 33 months generated only 10 answers total or 3⅓ answers per. That’s 3 views per day, but only one answer in 3 days.</p></li>
+<li><p>all questions were hard—3373 views in 33 months generated only 10 answers total or 3⅓ answers per question. That’s 3 views per day, but only one answer in 3 days.</p></li>
 <li><p>Realize something?</p></li>
 <li><p>All questions remained essentially unanswered</p></li>
-<li><p>and the last one did it.</p></li>
+<li><p>and the last one did it: no asynchronous HTTP, no Python.</p></li>
 <li><p>Good riddance, good bye</p></li>
 <li><p>Helo NodeJS</p></li>
 </ul>
@@ -59,7 +59,7 @@
 </code></pre></li>
 <li><p>OOP in itself does little to take complexity out of programming—in fact, my impression is that OOP <em>encourages</em> complexity:</p>
 <blockquote>
-<p>The problems that the [Enterprise JavaBeans] standard was attempting to address, such as object-relational mapping and transactional integrity, were complex, however many programmers found the APIs to be just as difficult, leading to a perception that EJBs introduced complexity without delivering real benefits.—<a href="http://en.wikipedia.org/wiki/Enterprise_JavaBeans">Wikipedia</a></p>
+<p>The problems that the [Enterprise JavaBeans] standard was attempting to address, such as object-relational mapping and transactional integrity, were complex, however many programmers found the APIs to be just as difficult, leading to a perception that EJBs introduced complexity without delivering real benefits.—<a href="http://en.wikipedia.org/wiki/Enterprise_JavaBeans"><em>Wikipedia</em></a></p>
 </blockquote>
 <p>I could describe my experience with <a href="http://www.sqlalchemy.org/">SQLAlchemy</a> (a Python ORM toolkit) with the exactly same words. ORM is somewhat hard, but in the end i went back to handwritten SQL queries (with interpolated variable contents) simply because it was conceptually so much less of a burden.</p></li>
 </ul>
@@ -79,28 +79,48 @@
 <div class="slide">
 <h1 id="approaches-to-programming-1">Approaches to Programming</h1>
 <h2 id="language-is-important">Language is Important</h2>
+<blockquote>
+<p>Readability is important because programmers spend the majority of their time reading, trying to understand and modifying existing source code, rather than writing new source code. Unreadable code often leads to bugs, inefficiencies, and duplicated code. A study found that a few simple readability transformations made code shorter and drastically reduced the time to understand it.</p>
+</blockquote>
+<blockquote>
+<p>Following a consistent programming style often helps readability. However, readability is more than just programming style. Many factors, having little or nothing to do with the ability of the computer to efficiently compile and execute the code, contribute to readability. Some of these factors include:</p>
+</blockquote>
 <ul>
-<li><p>Computers don’t need readable programs—humans do.</p>
-<p>Literate Programming can provide tools to make organized, beautiful source code and documentation, but no amount of CSS can demystify a badly chosen variable name.</p>
-<blockquote>
-<p>“Programs are not just a technical contrivance, they are a medium of intentional communication—with the machine, but more importantly with your development community, and ultimately with yourself.”—Douglas Crockford, <em>Quality</em>, talk delivered on Yahoo!’s internal Frontend Engineering Summit in 2007, <a href="http://www.youtube.com/watch?v=t9YLtDJZtPY">http://www.youtube.com/watch?v=t9YLtDJZtPY</a></p>
-</blockquote></li>
-<li><p>This talk is all about enabling programmers to write more readable programs:</p>
-<blockquote>
-<p>“The simplest thing we can do to enhance the value of our codebase is to make our programs more readable.”—Douglas Crockford, <em>Quality</em>, talk delivered on Yahoo!’s internal Frontend Engineering Summit in 2007, <a href="http://www.youtube.com/watch?v=t9YLtDJZtPY">http://www.youtube.com/watch?v=t9YLtDJZtPY</a></p>
-</blockquote></li>
+<li><p><em>Different indentation styles (whitespace)</em></p></li>
+<li><p><em>Comments</em></p></li>
+<li><p><em>Decomposition</em></p></li>
+<li><p><em>Naming conventions for objects (such as variables, classes, procedures, etc.)</em></p></li>
 </ul>
+<blockquote>
+<p>—<a href="http://en.wikipedia.org/wiki/Computer_programming#Readability_of_source_code"><em>Wikipedia</em></a></p>
+</blockquote>
 <p id="section-4"></p>
 </div>
 <div class="slide">
 <h1 id="approaches-to-programming-2">Approaches to Programming</h1>
+<h2 id="language-is-important-1">Language is Important</h2>
+<ul>
+<li><p>Computers don’t need readable programs—humans do.</p>
+<p>Literate Programming can provide tools to make organized, beautiful source code and documentation, but no amount of CSS can demystify a badly chosen variable name.</p>
+<blockquote>
+<p>“Programs are not just a technical contrivance, they are a medium of intentional communication—with the machine, but more importantly with your development community, and ultimately with yourself.”—<a href="http://www.youtube.com/watch?v=t9YLtDJZtPY">Douglas Crockford, <em>Quality</em>, talk delivered on Yahoo!’s internal Frontend Engineering Summit in 2007</a></p>
+</blockquote></li>
+<li><p>This talk is all about enabling programmers to write more readable programs:</p>
+<blockquote>
+<p>“The simplest thing we can do to enhance the value of our codebase is to make our programs more readable.”—<a href="http://www.youtube.com/watch?v=t9YLtDJZtPY">Douglas Crockford, <em>Quality</em>, talk delivered on Yahoo!’s internal Frontend Engineering Summit in 2007</a></p>
+</blockquote></li>
+</ul>
+<p id="section-5"></p>
+</div>
+<div class="slide">
+<h1 id="approaches-to-programming-3">Approaches to Programming</h1>
 <h2 id="why-you-should-care-about-lsd">Why you should care about LSD</h2>
 <ul>
 <li><p>Short for a style of programming that is</p>
 <ul>
-<li><p>Library-Oriented</p></li>
-<li><p>Semantics-Inspired</p></li>
-<li><p>Data-Centric</p></li>
+<li><strong>L</strong>ibrary-Oriented</li>
+<li><strong>S</strong>emantics-Inspired</li>
+<li><strong>D</strong>ata-Centric</li>
 </ul></li>
 </ul>
 <dl>
@@ -108,6 +128,8 @@
 <dd><p>When we program, it’s all about the data. OOP maintains data should be ‘smart’, that we should write <code>sesame.open()</code>. The sesame ‘knows’ how to ‘open’ itself, and when we want that to happen, we should ‘send it the message <code>open</code>’ so it does that.</p>
 <p>Bollocks.</p>
 <p>How about <code>door.open()</code>. Magic doors or what? Could as well be <code>fritz.open( door )</code>, no?</p>
+<p>Should that be <code>','.split( 'some,words,here' )</code> or <code>'some,words,here'.split( ',' )</code>?</p>
+<p>Why is it <code>len [ 8, 7, 5, ]</code> in Python, not <code>[ 8, 7, 5, ].length</code>?</p>
 <p>I think data should just be data—100% pure state. No additives, please.</p>
 </dd>
 <dt>Library-Based</dt>
@@ -124,7 +146,7 @@
 <p>One reason my programs consist of 99% ‘scrabble words’. No abbr. pls.</p>
 </dd>
 </dl>
-<p id="section-5"></p>
+<p id="section-6"></p>
 </div>
 <div class="slide">
 <h1 id="coffeenode-data-type-therapy">CoffeeNode Data Type Therapy</h1>
@@ -134,7 +156,7 @@
 <li><p>based on their underlying storage needs (extension)</p></li>
 <li><p>and semantics &amp; use (intention).</p></li>
 </ul>
-<p id="section-6"></p>
+<p id="section-7"></p>
 </div>
 <div class="slide">
 <h1 id="coffeenode-data-type-therapy-1">CoffeeNode Data Type Therapy</h1>
@@ -163,7 +185,7 @@
 </code></pre></li>
 </ul></li>
 </ul>
-<p id="section-7"></p>
+<p id="section-8"></p>
 </div>
 <div class="slide">
 <h1 id="coffeenode-data-type-therapy-2">CoffeeNode Data Type Therapy</h1>
@@ -176,7 +198,7 @@
 <table>
 <thead>
 <tr class="header">
-<th align="left"><code>value =</code></th>
+<th align="left"><code>value</code></th>
 <th align="left"><code>typeof value</code></th>
 </tr>
 </thead>
@@ -211,7 +233,7 @@
 <table>
 <thead>
 <tr class="header">
-<th align="left"><code>value =</code></th>
+<th align="left"><code>value</code></th>
 <th align="left"><code>typeof value</code></th>
 </tr>
 </thead>
@@ -226,7 +248,7 @@
 <table>
 <thead>
 <tr class="header">
-<th align="left"><code>value =</code></th>
+<th align="left"><code>value</code></th>
 <th align="left"><code>typeof value</code></th>
 </tr>
 </thead>
@@ -241,7 +263,7 @@
 <table>
 <thead>
 <tr class="header">
-<th align="left"><code>value =</code></th>
+<th align="left"><code>value</code></th>
 <th align="left"><code>typeof value</code></th>
 </tr>
 </thead>
@@ -296,7 +318,7 @@ NaN instanceof Number                   # false
 <li><p>Testing whether a result is a number or not is really important in JavaScript because <code>1 / 0</code> and <code>1 * 'foo'</code> yield <code>Infinity</code> and <code>NaN</code>, respectively.</p></li>
 <li><p>⚞OMFG⚟</p></li>
 </ul>
-<p id="section-8"></p>
+<p id="section-9"></p>
 </div>
 <div class="slide">
 <h1 id="coffeenode-data-type-therapy-3">CoffeeNode Data Type Therapy</h1>
@@ -375,7 +397,7 @@ NaN instanceof Number                   # false
 </tr>
 </tbody>
 </table>
-<p id="section-9"></p>
+<p id="section-10"></p>
 </div>
 <div class="slide">
 <h1 id="coffeenode-data-type-therapy-4">CoffeeNode Data Type Therapy</h1>
@@ -423,7 +445,7 @@ coffeenode_type_by_js_type =
   '[object global]':                    'jsglobal'
   '[object RegExp]':                    'jsregex'
   '[object DOMWindow]':                 'jswindow'
-  '[object CanvasRenderingContext2D]':  'jsctx'
+  '[object CanvasRenderingContext2D]':  'js2dcontext'
   '[object ArrayBuffer]':               'jsarraybuffer'
   #...........................................................................................
   '[object Number]': ( x ) -&gt;
@@ -442,19 +464,20 @@ $.type_of = ( x ) -&gt;
   return if @isa_function R then R x else R
 </code></pre></li>
 <li><p>Usage:</p>
-<pre><code>log type_of        1 / 0            # jsinfinity
-log isa_jsinfinity 1 / 0            # true
-log isa_number     1 / 0            # false
+<pre><code>log type_of        1 / 0                # jsinfinity
+log isa_jsinfinity 1 / 0                # true
+log isa            1 / 0, jsinfinity    # true
+log isa_number     1 / 0                # false
 </code></pre></li>
 </ul>
-<p id="section-10"></p>
+<p id="section-11"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it">Type Hierarchy (and what we can do with it)</h1>
 <h2 id="native-javascript-types">Native JavaScript Types</h2>
 <ul>
 <li><p>The native JavaScript data types are divided into three groups:</p></li>
-<li><p>The first group contains all the ‘universally accepted’ data types; there are seven of these, all of which (except <code>function</code>) are directly representable in JSON. I call this set the ‘basic’ data types:</p>
+<li><p>The first group contains all the ‘universally accepted’ data types; there are seven of these, all of which (except for functions) are directly representable in JSON. I call this set the ‘basic’ data types:</p>
 <ul>
 <li><code>list</code></li>
 <li><code>boolean</code></li>
@@ -480,11 +503,11 @@ log isa_number     1 / 0            # false
 <ul>
 <li><code>jsglobal</code></li>
 <li><code>jswindow</code></li>
-<li><code>jsctx</code></li>
+<li><code>js2dcontext</code></li>
 <li><code>jsarraybuffer</code></li>
 </ul></li>
 </ul>
-<p id="section-11"></p>
+<p id="section-12"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-1">Type Hierarchy (and what we can do with it)</h1>
@@ -526,7 +549,7 @@ f d[ 'a' ], d[ 'b' ]        # fails because `d` has no member `b`
 <dd><p>… full of strange API decisions, bugs and unfixable shortcomings—see <a href="http://blog.stevenlevithan.com">http://blog.stevenlevithan.com</a>.</p>
 </dd>
 </dl>
-<p id="section-12"></p>
+<p id="section-13"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-2">Type Hierarchy (and what we can do with it)</h1>
@@ -538,7 +561,7 @@ f d[ 'a' ], d[ 'b' ]        # fails because `d` has no member `b`
 <li><p>also, <code>[ 456, 893, [ 5, 6, 7, ], ].indexOf [ 5, 6, 7, ]</code> gives <code>-1</code> (‘not found’) instead of <code>2</code>.</p></li>
 <li><p>JavaScript’s <code>===</code> (CoffeeScript: <code>==</code>) ‘strict equality operator’ is more like a ‘object identity operator’</p></li>
 </ul>
-<p id="section-13"></p>
+<p id="section-14"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-3">Type Hierarchy (and what we can do with it)</h1>
@@ -546,9 +569,7 @@ f d[ 'a' ], d[ 'b' ]        # fails because `d` has no member `b`
 <ul>
 <li><p>How can we fix equality and containment?</p></li>
 <li><p>Sadly, there is no way to override the behavior of <code>==</code> and <code>===</code>.</p></li>
-<li><p>It isn’t advisable, either—such a global language change could easily affect code acting under the premise that</p>
-<pre><code>( [] === [] ) === false
-</code></pre></li>
+<li><p>It isn’t advisable, either—such a global language change could easily affect code that written under the assumption that <code>( [] === [] ) === false</code>.</p></li>
 <li><p>Don’t Monkey-Patch. Ever. Except if.</p></li>
 <li><p>So we have to put the functionality into libraries.</p></li>
 <li><p><strong>Example</strong>: from <code>COFFEENODE/jstypes/LIST/implementation.coffee</code> (<strong>NB</strong> this code is from the <em>implementation</em> submodule of <code>LIST</code>—you’d ordinarily call <code>LIST/main.cnd/equality</code>, which is a wrapper that checks argument number and that <code>me</code> is a <code>list</code>, and then returns the result of calling the below method):</p>
@@ -577,7 +598,7 @@ $.equals = ( me, you ) -&gt;
 <li><p>and is a synchronous signal handling library.</p></li>
 <li><p>More later.</p></li>
 </ul>
-<p id="section-14"></p>
+<p id="section-15"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-4">Type Hierarchy (and what we can do with it)</h1>
@@ -618,7 +639,7 @@ $.contains = ( me, probe ) -&gt;
   return false
 </code></pre></li>
 </ul>
-<p id="section-15"></p>
+<p id="section-16"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-5">Type Hierarchy (and what we can do with it)</h1>
@@ -626,40 +647,18 @@ $.contains = ( me, probe ) -&gt;
 <ul>
 <li><p><em>Each</em> piece of data has exactly one type.</p></li>
 <li><p>Types are disjunct: if <code>( type_of a ) == A</code> and <code>( type_of a ) == B</code> are true, then <code>A == B</code> must also be true.</p></li>
-<li><p>In JavaScript (and, therefore, CoffeeScript) this data type can only ever be one of</p>
-<ul>
-<li><code>list</code></li>
-<li><code>boolean</code></li>
-<li><code>function</code></li>
-<li><code>null</code></li>
-<li><code>text</code></li>
-<li><code>pod</code></li>
-<li><code>number</code></li>
-<li><code>jsarguments</code></li>
-<li><code>jsdate</code></li>
-<li><code>jserror</code></li>
-<li><code>jsglobal</code></li>
-<li><code>jsregex</code></li>
-<li><code>jsnotanumber</code></li>
-<li><code>jsinfinity</code></li>
-</ul></li>
-<li><p>Additionally, though, JavaScript may have a number of host object data types:</p>
-<ul>
-<li><code>jsglobal</code></li>
-<li><code>jswindow</code></li>
-<li><code>jsctx</code></li>
-</ul></li>
-<li><p>(plus some things we omitted here, like an image on an HTML page).</p></li>
+<li><p>In JavaScript (and, therefore, CoffeeScript) this data type can only ever be one of <code>list</code>, <code>boolean</code>, <code>function</code>, <code>null</code>, <code>text</code>, <code>pod</code>, <code>number</code>, <code>jsarguments</code>, <code>jsdate</code>, <code>jserror</code>, <code>jsglobal</code>, <code>jsregex</code>, <code>jsnotanumber</code>, <code>jsinfinity</code>.</p></li>
+<li><p>Additionally, a JavaScript VM may provide a number of host object data types: <code>jsglobal</code>, <code>jswindow</code>, <code>js2dcontext</code> (plus some things we omitted here, like an image on an HTML page).</p></li>
 <li><p>You would have to write some C extension to your JavaScript VM to add a type</p></li>
 <li><p>but whatever VM you use, the available types form a closed set at run time. And most added objects don’t bother for typing; they just ‘look like’ ordinary plain objects, so you would have to inspect attributes to classify them.</p></li>
 </ul>
-<p id="section-16"></p>
+<p id="section-17"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-6">Type Hierarchy (and what we can do with it)</h1>
 <h2 id="extended-types">Extended Types</h2>
 <ul>
-<li><p>But JavaScript is very flexible, so you can build arbitrary objects. From <code>COFFEENODE/SET</code>:</p>
+<li><p>But JavaScript is very flexible—you can build arbitrary objects. From <code>COFFEENODE/SET</code>:</p>
 <pre><code>#---------------------------------------------------------------------------------------------
 $.new = ( x = null ) -&gt;
   &quot;&quot;&quot;Given any number of elements, return a set containing these elements.&quot;&quot;&quot;
@@ -693,7 +692,7 @@ $.new = ( x = null ) -&gt;
   return R
 </code></pre></li>
 </ul>
-<p id="section-17"></p>
+<p id="section-18"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-7">Type Hierarchy (and what we can do with it)</h1>
@@ -717,8 +716,9 @@ $.new = ( x = null ) -&gt;
 </code></pre></li>
 <li><p>which is basically a plain old dictionary (POD) that gives its extension type as a name under the key <code>~isa</code></p></li>
 <li><p>and contains a sub-POD <code>elements</code> that keeps the records.</p></li>
+<li><p>The convention here is that if <code>x[ '~isa' ]</code> is defined, it must be a text with the name of the data type that <code>x</code> represents.</p></li>
 </ul>
-<p id="section-18"></p>
+<p id="section-19"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-8">Type Hierarchy (and what we can do with it)</h1>
@@ -742,6 +742,7 @@ $.type_of = ( x ) -&gt;
 </code></pre></li>
 <li><p>And it works:</p>
 <pre><code>x = SET.new [ 'a', 'b', 'c' ]
+
 log TYPES.type_of x                     # 'SET/set'
 log TYPES.isa x, 'SET/set'              # true
 log TYPES.isa x, 'pod'                  # false
@@ -752,7 +753,7 @@ log SET.contains x, 'x'                 # false
 log SET.length_of x                     # 3
 </code></pre></li>
 <li><p>This looks very object-oriented, but is conceptually different.</p></li>
-<li><p>The common conception of OOP methods is that they take an amplicit first argument, which is the object instance that the method is called on; in Python, this is the semi-explicit <code>self</code> parameter, while in JavaScript, it’s the fully implicit <code>this</code>:</p>
+<li><p>The common conception of OOP methods is that they take an implicit first argument, which is the object instance that the method is called on; in Python, this is the semi-explicit <code>self</code> parameter, while in JavaScript, it’s the fully implicit <code>this</code>:</p>
 <pre><code>def f( self, x, y ):
   return self.sum( x, y ) * 42
 
@@ -762,6 +763,7 @@ this.f = function ( x, y ) {
 <li><p>It’s a little annoying to always having to write out the relevant library name.</p></li>
 <li><p>Mainly to avoid this and also to get some other features, there are CoffeeMatic (<code>*.cmat</code>) files, which are simply augmented CoffeeScript files. I’ll come back to those later. Preview:</p>
 <pre><code>x = new_set [ 'a', 'b', 'c' ]
+
 log type_of x                     # 'SET/set'
 log isa x, 'SET/set'              # true
 log isa x, 'pod'                  # false
@@ -772,7 +774,7 @@ log contains x, 'x'               # false
 log length_of x                   # 3
 </code></pre></li>
 </ul>
-<p id="section-19"></p>
+<p id="section-20"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-9">Type Hierarchy (and what we can do with it)</h1>
@@ -800,7 +802,7 @@ $.contains = $.has = ( me, probe ) -&gt;
 </code></pre></li>
 <li><p>I just discover i should’ve really written <code>return POD.contains me[ 'elements' ], probe</code></p></li>
 </ul>
-<p id="section-20"></p>
+<p id="section-21"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-10">Type Hierarchy (and what we can do with it)</h1>
@@ -821,7 +823,7 @@ and doesn't match the method description.
 <li><p>this tells you that in CoffeeNode, data types &amp; kinds are <em>tagged</em>.</p></li>
 <li><p>Do you know of any other language / environment that tags data types? I think it’s elementary!</p></li>
 </ul>
-<p id="section-21"></p>
+<p id="section-22"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-11">Type Hierarchy (and what we can do with it)</h1>
@@ -842,7 +844,7 @@ and doesn't match the method description.
 <li><p><code>basic</code>: this pertains to the six data types earlier shown in the first group of JS native data types.</p></li>
 </ul></li>
 </ul>
-<p id="section-22"></p>
+<p id="section-23"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-12">Type Hierarchy (and what we can do with it)</h1>
@@ -898,7 +900,7 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 <li><p>Because each type is tagged with its own name, you always have the choice to match types and methods simply by naming the types that the method applies to.</p></li>
 <li><p>This is what happens with <code>words_of</code>. One could argue that this method is <em>much too peculiar to earn the distinction of being globally available</em>, but i strongly feel that the vast majority of methods in the <code>jstypes</code> library <em>should</em> attain that status.</p></li>
 </ul>
-<p id="section-23"></p>
+<p id="section-24"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-13">Type Hierarchy (and what we can do with it)</h1>
@@ -911,7 +913,7 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 </code></pre></li>
 <li><p>Tagging of extension types ensure that we can go on a smooth path from patching native types to integrating extension types.</p></li>
 </ul>
-<p id="section-24"></p>
+<p id="section-25"></p>
 </div>
 <div class="slide">
 <h1 id="type-hierarchy-and-what-we-can-do-with-it-14">Type Hierarchy (and what we can do with it)</h1>
@@ -927,14 +929,14 @@ module.exports = ( require '../_read-registry-specific-Λ-methods' )
 <li><p>Some day.</p></li>
 <li><p>BTW we’re sort of prepared for that—each CoffeeNode library module is (planned to become) an installable entry in the npm module registry and on GitHub.com.</p></li>
 </ul>
-<p id="section-25"></p>
+<p id="section-26"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages">Comparison of Programming Languages</h1>
 <div class="figure">
 <img src="./resources/computer-languages-on-a-hertzsprung-russell-diagram.png" alt="Hertzsprung-Russell Diagram of Computer Languages" /><p class="caption">Hertzsprung-Russell Diagram of Computer Languages</p>
 </div>
-<p id="section-26"></p>
+<p id="section-27"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd">Comparison of Programming Languages (cont’d)</h1>
@@ -956,7 +958,7 @@ $foo = @foo;
 </code></pre></li>
 </ul></li>
 </ul>
-<p id="section-27"></p>
+<p id="section-28"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-1">Comparison of Programming Languages (cont’d)</h1>
@@ -974,7 +976,7 @@ $foo = @foo;
 <p>“The Float class wraps a value of primitive type float in an object. An object of type Float contains a single field whose type is float.”—<a href="http://docs.oracle.com/javase/1.4.2/docs/api/java/lang/Float.html"><em>Java Manual</em></a></p>
 </blockquote></li>
 <li><p>Overzealous Object-Oriented Bureaucracy Syndrom (OOOBS) is a common affliction among OOP programmers, but Java gets the OOOBS Language Award (OOOBSLA) for building extremely tight assumptions about how to write programs and even how to architecture applications with modules right into the language.</p></li>
-<li><p>There’s no escape route, Java’s programmers are Java’s prisoners. Talk about ‘not making prisoners’, well, Java does.</p></li>
+<li><p>There’s no escape route, Java’s programmers are Java’s prisoners.</p></li>
 <li><p>For all that Java does to enslave its users, itself takes a rather lighthearted view of life and the universe. Kind of an innocently whistling prison guard:</p>
 <pre><code>1.0 / 0.0                       /* Infinity */
 0.0 / 0.0                       /* NaN      */
@@ -984,12 +986,12 @@ NaN == NaN                      /* false    */
 </code></pre></li>
 <li><p>This is just the tip of the iceberg of idiocy:</p>
 <blockquote>
-<p>&quot;To make matters worse, the rules for comparing NaN and –0 are different between the primitive float type and the wrapper class Float. For float values, comparing two NaN values for equality will yield false, but comparing two NaN Float objects using Float.equals() will yield true.</p>
-<p>[…] Similarly, while 0 and —0 are considered equal when represented as float values, comparing 0 and —0 as Float objects using Float.compareTo() indicates that —0 is considered to be less than 0.&quot;—<a href="http://www.ibm.com/developerworks/java/library/j-jtp0114/"><em>Java theory and practice</em></a></p>
+<p>&quot;To make matters worse, the rules for comparing <code>NaN</code> and <code>-0</code> are different between the primitive float type and the wrapper class <code>Float</code>. For float values, comparing two <code>NaN</code> values for equality will yield <code>false</code>, but comparing two <code>NaN</code> Float objects using <code>Float.equals()</code> will yield <code>true</code>.</p>
+<p>[…] Similarly, while <code>0</code> and <code>-0</code> are considered equal when represented as float values, comparing <code>0</code> and <code>-0</code> as <code>Float</code> objects using <code>Float.compareTo()</code> indicates that <code>-0</code> is considered to be less than <code>0</code>.&quot;—<a href="http://www.ibm.com/developerworks/java/library/j-jtp0114/"><em>Java theory and practice</em></a></p>
 </blockquote></li>
 <li><p>Do you trust a computer language that fails on <code>0 == —0</code>?</p></li>
 </ul>
-<p id="section-28"></p>
+<p id="section-29"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-2">Comparison of Programming Languages (cont’d)</h1>
@@ -1005,7 +1007,7 @@ NaN == NaN                      /* false    */
 <li><p>Assembler is the least OOP-ish language imaginable.</p></li>
 <li><p>It has been conjectured that the complete absence of languages that are very OOP and very sane at the same time is an indication that there <em>can</em> be no such thing: You <em>have</em> to be crazy in order to drive OOP thinking to its logical consequences. Therefore, the Grand Void is bound to remain a patch devoid of languages.</p></li>
 </ul>
-<p id="section-29"></p>
+<p id="section-30"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-3">Comparison of Programming Languages (cont’d)</h1>
@@ -1021,7 +1023,7 @@ NaN == NaN                      /* false    */
 <li><p>No experiments here.</p></li>
 <li><p>It is not crazy enough for me.</p></li>
 </ul>
-<p id="section-30"></p>
+<p id="section-31"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-4">Comparison of Programming Languages (cont’d)</h1>
@@ -1044,15 +1046,17 @@ NaN == NaN                      /* false    */
 <p>gives you <code>42</code>. You just ‘imported a number’. Or anything else. Maybe the binary data of an image.</p></li>
 <li><p>Often it is practical to just import a single function with <code>require</code>.</p></li>
 </ul>
-<p id="section-31"></p>
+<p id="section-32"></p>
 </div>
 <div class="slide">
 <h1 id="comparison-of-programming-languages-contd-5">Comparison of Programming Languages (cont’d)</h1>
-<pre><code>![](./resources/computer-languages-on-a-hertzsprung-russell-diagram-small.png)
-</code></pre>
+<div class="figure">
+<img src="./resources/computer-languages-on-a-hertzsprung-russell-diagram-small.png" /><p class="caption"></p>
+</div>
 <ul>
 <li><p>For me, the ‘Inhabitable Zone’ of programming languages is between JavaScript and Python.</p></li>
-<li><p>When you move from JavaScript to CoffeeScript, you considerably reduce the amount of craziness that could vex you. This is because</p></li>
+<li><p>When you move from JavaScript to CoffeeScript, you considerably reduce the amount of craziness that could vex you. This is because</p>
+<ul>
 <li><p>you get rid of 99.9% of all braces and parentheses;</p></li>
 <li><p>you implicitly use JavaScript’s non-coercing ‘strict equality’ operator, avoiding many gotchas;</p></li>
 <li><p>you get a great syntax for function definition (very important in asynchronous, callback-rich code):</p>
@@ -1078,7 +1082,7 @@ read
     finalize_results() unless chunk?
     push buffer, chunk
 </code></pre></li>
-<li><p>for those who like it, you get easy-to-use classes (i have no use for them, as i do mixins / traits);</p></li>
+<li><p>those who like it get easy-to-use classes (i have no use for them, as i do mixins / traits);</p></li>
 <li><p>you get the existential operator <code>?</code> which is great to circumnavigate the many cases where missing attributes result in <code>undefined</code>:</p>
 <pre><code>solipsism = true if mind? and not world?
 
@@ -1088,9 +1092,10 @@ footprints = yeti ? &quot;bear&quot;
 </code></pre></li>
 <li><p>you get post-<code>if</code> statements, list comprehensions, ranges, sane <code>for ... in / of</code> loops;</p></li>
 <li><p>you can use all of JavaScript and everything that 3rd party libraries offer—in most cases, it is absolutely trivial to turn some library into a <code>require</code>able module.</p></li>
+</ul></li>
 <li><p>I’ve only scratched the surface here.</p></li>
 </ul>
-<p id="section-32"></p>
+<p id="section-33"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeescript-coffeematic">Beyond CoffeeScript: CoffeeMatic</h1>
@@ -1100,11 +1105,11 @@ footprints = yeti ? &quot;bear&quot;
 <li><p>where the grammar is left untouched</p></li>
 <li><p>but vocabulary gets injected prior to execution.</p></li>
 <li><p>You run them with</p>
-<pre><code>cnd run route/to/your/script.cnd
+<pre><code>cnd run route/to/your/script.cmatic
 </code></pre></li>
-<li><p>It all happens in <code>COFFEENODE/ENGINE/wrap-0.0.3.coffee</code>, where the <code>cnd</code> extension gets registered:</p>
+<li><p>It all happens in <code>COFFEENODE/ENGINE/wrap-0.0.3.coffee</code>, where the <code>cmatic</code> extension gets registered:</p>
 <pre><code>#-----------------------------------------------------------------------------------------
-require.extensions[ '.cnd' ] = ( module, route ) -&gt;
+require.extensions[ '.cmatic' ] = ( module, route ) -&gt;
   source  = njs_fs.readFileSync route, 'utf-8'
   #.......................................................................................
   content = Σ.emit 'COFFEENODE/engine/wrap/0.0.3',
@@ -1114,6 +1119,7 @@ require.extensions[ '.cnd' ] = ( module, route ) -&gt;
   #.......................................................................................
   module._compile content, route
 </code></pre></li>
+<li><p>Isn’t it f*cking great that NodeJS / CommonJS includes the ability to import modules written in foreign languages? Take that, Python! Fuck off, Java!</p></li>
 <li><p>The transformation of the source code is quite primitive: we simply iterate over all the identifiers in the source, and where words are found that belong to the received vocabulary, we either add a signal emitter or a <code>require</code> statement. This:</p>
 <pre><code>names = []
 for word in words_of 'Alpha Beta Gamma'
@@ -1148,7 +1154,7 @@ log reverse copy names
 </code></pre></li>
 <li><p>Since the additional vocabulary is injected at the top of the script, you can always use your own semantics—so if you define your own <code>push</code> function, you will get your own function, not the CoffeeNode version.</p></li>
 </ul>
-<p id="section-33"></p>
+<p id="section-34"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeescript-coffeematic-1">Beyond CoffeeScript: CoffeeMatic</h1>
@@ -1174,11 +1180,12 @@ log reverse copy names
 <li><p>Naming conventions:</p>
 <ul>
 <li><p>Δ methods should be fully spelled-out verbs or verb-ish expressions: <code>push</code>, <code>reverse</code>, <code>sort</code>, <code>copy</code>, <code>clear</code>, <code>compose</code>, <code>names_of</code>, <code>validate_isa_text</code>. There are a few accepted abbreviations, such as <code>rpr</code> for the ‘representation’ of a value, <code>idx</code> for ‘index’, <code>chr</code> for ‘character’.</p></li>
+<li><p>No CamelCase and longwindingsnakewords, please use underscores (i’d use hyphens if it was possible).</p></li>
 <li><p>CoffeeNode library names are spelled in SCREAMING CAPS using the Latin and the Greek alphabet.</p>
 <p>(I do not want to rule out library names written in Brahmi, Cherokee or Chinese, but right now the convention is to distinguish library modules from other modules using case so we need a multi-cameral script. Cyrillic and Geogian already qualify.)</p></li>
 </ul></li>
 </ul>
-<p id="section-34"></p>
+<p id="section-35"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeescript-coffeematic-2">Beyond CoffeeScript: CoffeeMatic</h1>
@@ -1196,11 +1203,11 @@ log reverse copy names
 <p>validate-is-empty, validate-is-frozen, validate-is-indexed, …</p>
 </dd>
 <dt>testing and validating types:</dt>
-<dd><p>type-of, isa, isa-boolean, isa-function, isa-integer, isa-jsarguments, isa-jsctx, isa-jsdate, isa-jserror, isa- jsglobal, isa-jsinfinity, isa-jsnotanumber, isa-jsregex, isa-jsundefined, isa-jswindow, isa-list, isa-null, isa-number, isa-pod, isa-text.</p>
+<dd><p>type-of, isa, isa-boolean, isa-function, isa-integer, isa-jsarguments, isa-js2dcontext, isa-jsdate, isa-jserror, isa- jsglobal, isa-jsinfinity, isa-jsnotanumber, isa-jsregex, isa-jsundefined, isa-jswindow, isa-list, isa-null, isa-number, isa-pod, isa-text.</p>
 <p>validate-isa, validate-isa-boolean, …</p>
 </dd>
 <dt>testing and validating type tags:</dt>
-<dd><p>is-mutable, is-indexed, is-facetted, is-ordered, is-repetitive, is-single_valued, is-dense, is-callable, is- numeric, is-basic, is-ecma.</p>
+<dd><p>is-mutable, is-indexed, is-facetted, is-ordered, is-repetitive, is-single-valued, is-dense, is-callable, is- numeric, is-basic, is-ecma.</p>
 </dd>
 <dt>from the MULTIMIX library (for mixins and property handling):</dt>
 <dd><p>assemble, compose, set-property.</p>
@@ -1228,10 +1235,41 @@ log reverse copy names
 </dl>
 </dd>
 </dl>
-<p id="section-35"></p>
+<p id="section-36"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeescript-coffeematic-3">Beyond CoffeeScript: CoffeeMatic</h1>
+<h2 id="specific-&#948;-methods-revisited">Specific Δ methods revisited</h2>
+<ul>
+<li><p>Specific Δ methods are dispatched to the library that is responsible for handling the type of the first argument (the ‘prinicipal noun’).</p></li>
+<li><p>This means that every time a specific Δ method is called, it is potentially dispatched to another implementation. This:</p>
+<pre><code>values = [
+    'helo'
+    [ 1, 2, 3, ] ]
+
+for value in values
+    log reverse value
+</code></pre>
+<p>is functionally equivalent to</p>
+<pre><code>log TEXT.reverse 'helo'
+log LIST.reverse [ 1, 2, 3, ]
+</code></pre></li>
+<li><p>As for native JavaScript types, the mapping is done by rule—the name of the responsible library is the result of <code>type_of x</code> set in upper case.</p></li>
+<li><p>Extension types must register themselves with <code>type-descriptions.coffee</code> files:</p>
+<pre><code>module.exports =
+  'SET/set':
+    'features':             'mutable facetted json'
+</code></pre></li>
+<li><p>3rd party developers are advised to use type names that look like URLs, using existing domain names to avoid name clashes:</p>
+<pre><code>module.exports =
+  'example.com/collins/frobulator':
+    'features':             'mutable facetted indexed json'
+</code></pre></li>
+</ul>
+<p id="section-37"></p>
+</div>
+<div class="slide">
+<h1 id="beyond-coffeescript-coffeematic-4">Beyond CoffeeScript: CoffeeMatic</h1>
 <h2 id="method-call-styles">Method Call Styles</h2>
 <ul>
 <li>There are several ways to call specific Δ methods:</li>
@@ -1258,7 +1296,7 @@ log reverse copy names
 </code></pre>
 </dd>
 </dl>
-<p id="section-36"></p>
+<p id="section-38"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic">Beyond CoffeeMatic: FlowMatic</h1>
@@ -1274,7 +1312,13 @@ a = [ 8, 7, 6, ]
 f()
 </code></pre></li>
 <li><p><code>x[ 'foo' ] == undefined</code> is the source for an important class of silent failures in JavaScript, and we’re still unable to fix this with CoffeeScript and CoffeeMatic alone.</p></li>
-<li><p>The fact that JavaScript thinks that <code>0.1 + 0.1 + 0.1 == 0.30000000000000004</code> has caused much hair-tearing with programmers. You can try to avoid this issue by 1) only doing calculations with integer numbers, 2) using your own <code>add</code> function, or 3) using a 3rd party decimal calculation library, but we are unable to transparently fix floating point arithmetic flaws that occur deep down in JavaScript’s guts.</p></li>
+<li><p>The fact that JavaScript thinks that <code>0.1 + 0.1 + 0.1 == 0.30000000000000004</code> has caused much hair-tearing with programmers. You can try to avoid this issue by</p>
+<ol style="list-style-type: decimal">
+<li><p>only doing calculations with integer numbers,</p></li>
+<li><p>using your own <code>add</code> function, or</p></li>
+<li><p>using a 3rd party decimal calculation library</p></li>
+</ol>
+<p>but we are unable to transparently fix floating point arithmetic flaws that occur deep down in JavaScript’s guts.</p></li>
 <li><p>Extending the syntax of CoffeeScript is feasible, but cumbersome.</p></li>
 <li><p>I’d really like to explore what we could do if we had a flexible system where we can easily define new syntax from the ground up—both to</p>
 <ul>
@@ -1282,27 +1326,30 @@ f()
 <li><p>define more formulaic / terser idioms.</p></li>
 </ul></li>
 </ul>
-<p id="section-37"></p>
+<p id="section-39"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic-1">Beyond CoffeeMatic: FlowMatic</h1>
 <div class="figure">
 <img src="./resources/flowmatic-logo-3.0.png" /><p class="caption"></p>
 </div>
-<p id="section-38"></p>
+<p id="section-40"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic-2">Beyond CoffeeMatic: FlowMatic</h1>
 <div class="figure">
 <img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
 </div>
+<ul>
+<li><p>Paul Graham on Linguistic Diversity:</p>
 <blockquote>
 <p>&quot;All languages are equally powerful in the sense of being Turing equivalent, but that’s not the sense of the word programmers care about. (No one wants to program a Turing machine.)</p>
 <p>The kind of power programmers care about may not be formally definable, but one way to explain it would be to say that it refers to features you could only get in the less powerful language by writing an interpreter for the more powerful language in it.</p>
 <p>If language A has an operator for removing spaces from strings and language B doesn’t, that probably doesn’t make A more powerful, because you can probably write a subroutine to do it in B.</p>
 <p>But if A supports, say, recursion, and B doesn’t, that’s not likely to be something you can fix by writing library functions.&quot;—Paul Graham, <em>Beating the Averages</em></p>
-</blockquote>
-<p id="section-39"></p>
+</blockquote></li>
+</ul>
+<p id="section-41"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic-3">Beyond CoffeeMatic: FlowMatic</h1>
@@ -1356,7 +1403,7 @@ f()
 (17)  stop. (end)
 </code></pre></li>
 </ul>
-<p id="section-40"></p>
+<p id="section-42"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic-4">Beyond CoffeeMatic: FlowMatic</h1>
@@ -1385,33 +1432,25 @@ f()
 </code></pre></li>
 <li><p>Syntactically, CoffeeScript is very close to what i consider ideal for general purposes.</p></li>
 </ul>
-<p id="section-41"></p>
+<p id="section-43"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic-5">Beyond CoffeeMatic: FlowMatic</h1>
+<h2 id="the-tower-of-babel">The Tower of Babel</h2>
 <div class="figure">
 <img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
 </div>
-<p>　</p>
-<p>　</p>
-<p>　</p>
-<p>　</p>
-<p>　</p>
-<p>　</p>
-<p>　</p>
-<p>　</p>
-<p>　</p>
-<p>　</p>
 <div class="figure">
 <img src="./resources/turris-babel-1092x1123.jpg" /><p class="caption"></p>
 </div>
 <ul>
 <li>Accidentally, Athanasius Kircher authored the book with this picture in 1679—exactly 333 years ago.</li>
 </ul>
-<p id="section-42"></p>
+<p id="section-44"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic-6">Beyond CoffeeMatic: FlowMatic</h1>
+<h2 id="arabica">Arabica</h2>
 <div class="figure">
 <img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
 </div>
@@ -1421,14 +1460,15 @@ f()
 <li><p>which is conceptual clutter as far as proper program execution is the target.</p></li>
 <li><p>Only when we write a new language that hides these implementation details form the user can we make real advancements in expressivity.</p></li>
 <li><p>FlowMatic is not a language per se, it’s more of a toolbox to author languages.</p></li>
-<li><p>But there is still a ‘central’ or ‘default’ dialect named <code>Arabica</code> (after <em>Coffea arabica</em>, the world’s most popular species of coffee plants) that is very similar to CoffeeScript</p></li>
+<li><p>But there is still a ‘central’ or ‘default’ dialect named <strong>Arabica</strong> (after <em>Coffea arabica</em>, the world’s most popular species of coffee plants) that is very similar to CoffeeScript</p></li>
 <li><p>mainly as a way to lower entry levels for newbies</p></li>
 <li><p>and because CoffeeScript is syntactically a <em>pretty</em> good language, of course.</p></li>
 </ul>
-<p id="section-43"></p>
+<p id="section-45"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic-7">Beyond CoffeeMatic: FlowMatic</h1>
+<h2 id="arabica-1">Arabica</h2>
 <div class="figure">
 <img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
 </div>
@@ -1502,13 +1542,6 @@ f()
 </tr>
 </tbody>
 </table>
-<p id="section-44"></p>
-</div>
-<div class="slide">
-<h1 id="beyond-coffeematic-flowmatic-8">Beyond CoffeeMatic: FlowMatic</h1>
-<div class="figure">
-<img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
-</div>
 <ul>
 <li><p>To give an example, <code>2;63~€</code> is</p>
 <ul>
@@ -1518,6 +1551,16 @@ f()
 <li><p>It has a decimal precision of 2;</p></li>
 <li><p>In numerical operations, the ‘round half away from zero’ rule is applied, which is widely used in commercial applictions.</p></li>
 </ul></li>
+</ul>
+<p id="section-46"></p>
+</div>
+<div class="slide">
+<h1 id="beyond-coffeematic-flowmatic-8">Beyond CoffeeMatic: FlowMatic</h1>
+<h2 id="diversity-of-dialects">Diversity of Dialects</h2>
+<div class="figure">
+<img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
+</div>
+<ul>
 <li><p>Whether the Roman numeral format will make it into the central dialect is not clear.</p></li>
 <li><p>But <em>is</em> clear that FlowMatic will include ways to</p>
 <ul>
@@ -1538,7 +1581,7 @@ f()
       :0.3 &lt; roman-numerals &lt; 0.6
 </code></pre></li>
 </ul>
-<p id="section-45"></p>
+<p id="section-47"></p>
 </div>
 <div class="slide">
 <h1 id="beyond-coffeematic-flowmatic-9">Beyond CoffeeMatic: FlowMatic</h1>
@@ -1546,7 +1589,228 @@ f()
 <div class="figure">
 <img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
 </div>
-<p id="section-46"></p>
+<ul>
+<li><p>Arabica is still very much in its infancy, so i’ll discuss another useful example for language design: Parsing Ideographic Description Language (IDL).</p></li>
+<li><p>We’ve already seen these formulas:</p>
+<pre><code>亭: ⿳⿱亠口冖丁
+勝: ⿸⿰月龹力
+厨: ⿸厂⿰豆寸
+廚: ⿸广尌
+一: ●
+參: ⿱厽㐱
+厽: ⿱厶厸
+厸: ⿰厶厶
+㐱: ⿱人彡
+參: ⿱⿱厶厸㐱
+參: ⿱⿱厶⿰厶厶㐱
+參: ⿱⿱厶⿰厶厶⿱人彡
+京: ⿳亠口小
+修: ⿲亻丨㣊
+掀: ⿰折欠
+掀: ⿰扌欣
+厨: ⿸厂⿰豆寸
+廚: ⿸广尌
+</code></pre></li>
+<li><p>It is a very simple language</p></li>
+<li><p>based on Polish Prefix Notation.</p></li>
+<li><p>Each term starts with an operator that takes two (<code>⿰</code>, <code>⿱</code>, <code>⿴</code>, <code>⿵</code>, <code>⿶</code>, <code>⿷</code>, <code>⿸</code>, <code>⿹</code>, <code>⿺</code>, <code>⿻</code>) or three (<code>⿲</code>, <code>⿳</code>) arguments;</p></li>
+<li><p>each argument can be a CJK character (component) or a sub-term.</p></li>
+</ul>
+<p id="section-48"></p>
+</div>
+<div class="slide">
+<h1 id="beyond-coffeematic-flowmatic-10">Beyond CoffeeMatic: FlowMatic</h1>
+<h2 id="example-parsing-ideographic-descriptions-1">Example: Parsing Ideographic Descriptions</h2>
+<div class="figure">
+<img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
+</div>
+<ul>
+<li>When reasoning about syntax, i like to start out with a railroad syntax diagram:</li>
+</ul>
+<div class="figure">
+<img src="./resources/idl-railroad-diagram.jpg" /><p class="caption"></p>
+</div>
+<p id="section-49"></p>
+</div>
+<div class="slide">
+<h1 id="beyond-coffeematic-flowmatic-11">Beyond CoffeeMatic: FlowMatic</h1>
+<h2 id="example-parsing-ideographic-descriptions-2">Example: Parsing Ideographic Descriptions</h2>
+<div class="figure">
+<img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
+</div>
+<ul>
+<li><p>This is the grammar of IDL:</p>
+<pre><code>#---------------------------------------------------------------------------------------------
+$.collection = ( π ) -&gt;
+  return Π.many π, @line
+
+#---------------------------------------------------------------------------------------------
+$.line = ( π ) -&gt;
+  return stash 'line', Π.sequence π, @assignment, @ws_eol
+
+#---------------------------------------------------------------------------------------------
+$.assignment = ( π ) -&gt;
+  return Π.sequence π, @assignee, ':', @ws_linear, @expression
+
+#---------------------------------------------------------------------------------------------
+$.assignee = ( π ) -&gt;
+  return π[ 'assignee' ] = Π.match π, @cjk_chr_matcher
+
+#---------------------------------------------------------------------------------------------
+$.expression = ( π ) -&gt;
+  return Π.choice π, @finish, @formula
+
+#---------------------------------------------------------------------------------------------
+$.finish = ( π ) -&gt;
+  return [ 'finish', Π.match π, /^●/ ]
+
+#---------------------------------------------------------------------------------------------
+$.formula = ( π ) -&gt;
+  return stash 'formula', Π.choice π, @formula_3, @formula_2
+
+#---------------------------------------------------------------------------------------------
+$.formula_2 = ( π ) -&gt;
+  return Π.sequence π, @operator_2, @term, @term
+
+#---------------------------------------------------------------------------------------------
+$.formula_3 = ( π ) -&gt;
+  return Π.sequence π, @operator_3, @term, @term, @term
+
+#---------------------------------------------------------------------------------------------
+$.operator_2 = ( π ) -&gt;
+  return Π.match π, /[⿰⿱⿴⿵⿶⿷⿸⿹⿺⿻]/
+
+#---------------------------------------------------------------------------------------------
+$.operator_3 = ( π ) -&gt;
+  return Π.match π, /[⿲⿳]/
+
+#---------------------------------------------------------------------------------------------
+$.term = ( π ) -&gt;
+  return Π.choice π, @component, @formula
+
+#---------------------------------------------------------------------------------------------
+$.component = ( π ) -&gt;
+  R = Π.match π, @cjk_chr_matcher
+  if R == π[ 'assignee' ]
+    bye &quot;assignee must not appear as formula component in #{rpr π[ 'source' ]}&quot;
+  return R
+
+#---------------------------------------------------------------------------------------------
+$.cjk_chr_matcher = /// ^ [ \u2e80-\u2eff
+                            \u2f00-\u2fdf
+                            \u3007
+                            \u3005-\u3006
+                            \u3021-\u3029
+                            \u3038-\u3039
+                            \u303a-\u303b
+                            \u303d-\u303d
+                            \u31c0-\u31ef
+                            \u3400-\u4dbf
+                            \u4e00-\u9fff
+                            \uf900-\ufaff ] ///
+
+# \u20000-\u2a6df
+# \u2a700-\u2b73f
+# \u2b740-\u2b81f
+# \u2f800-\u2fa1f
+
+#---------------------------------------------------------------------------------------------
+$.ws_eol    = ( π ) -&gt; return Π.match π, /^[\u0020\u0009\u00a0\u3000]*\n|^$/
+$.ws_linear = ( π ) -&gt; return Π.match π, /^[\u0020\u0009\u00a0\u3000]/
+</code></pre></li>
+</ul>
+<p id="section-50"></p>
+</div>
+<div class="slide">
+<h1 id="beyond-coffeematic-flowmatic-12">Beyond CoffeeMatic: FlowMatic</h1>
+<h2 id="example-parsing-ideographic-descriptions-3">Example: Parsing Ideographic Descriptions</h2>
+<div class="figure">
+<img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
+</div>
+<ul>
+<li><p>Simplified, it looks like this:</p>
+<pre><code>collection:         many      line
+line:               sequence  assignment, ws-eol
+assignment:         sequence  assignee, ':', ws-linear, expression
+assignee            match     cjk-chr-matcher
+expression:         choice    finish, formula
+finish:             match     /^●/
+formula:            choice    formula-3, formula-2
+formula-2:          sequence  operator-2, term, term
+formula-3:          sequence  operator-3, term, term, term
+operator-2:         match     /[⿰⿱⿴⿵⿶⿷⿸⿹⿺⿻]/
+operator-3:         match     /[⿲⿳]/
+term:               choice    component, formula
+component:          match     cjk-chr-matcher
+ws-eol:             match     /^[\u0020\u0009\u00a0\u3000]*\n|^$/
+ws-linear:          match     /^[\u0020\u0009\u00a0\u3000]/
+cjk-chr-matcher:    /// ^ [ \u2e80-\u2eff
+                            \u2f00-\u2fdf
+                            \u3007
+                            \u3005-\u3006
+                            \u3021-\u3029               # missing codepoints:
+                            \u3038-\u3039               #   \u20000-\u2a6df
+                            \u303a-\u303b               #   \u2a700-\u2b73f
+                            \u303d-\u303d               #   \u2b740-\u2b81f
+                            \u31c0-\u31ef               #   \u2f800-\u2fa1f
+                            \u3400-\u4dbf
+                            \u4e00-\u9fff
+                            \uf900-\ufaff ] ///
+</code></pre></li>
+</ul>
+<p id="section-51"></p>
+</div>
+<div class="slide">
+<h1 id="beyond-coffeematic-flowmatic-13">Beyond CoffeeMatic: FlowMatic</h1>
+<h2 id="parsing-with-maximal-flexibility">Parsing with Maximal Flexibility</h2>
+<div class="figure">
+<img src="./resources/flowmatic-logo-3.0-small.png" /><p class="caption"></p>
+</div>
+<ul>
+<li><p><strong>Traditionally</strong>, parsing used to be done only after ‘lexing’—i.e. there is a preparatory step that first distills a list of tokens from the source, and the parser only gets that list. Whitespace and comments are thrown away early on.</p></li>
+<li><p>This approach makes parsing inflexible: what if i wanted to use two or more languages in a single file (not so obscure—you could have HTML, PHP, JavaScript and CSS all on a single page).</p></li>
+<li><p><strong>Traditionally</strong>, grammars used to be written as (some variant of) Backus–Naur Form (BNF).</p></li>
+<li><p>While BNF might be more readable than an equivalent grammar written CoffeeScript, we loose flexibility again since BNF is not a programming language; factors that are not strictly syntactical cannot be expressed in it.</p>
+<p>Here we impose the restriction that a given character cannot appear in its own formula:</p>
+<pre><code>#---------------------------------------------------------------------------------------------
+$.assignee = ( π ) -&gt;
+  return π[ 'assignee' ] = Π.match π, @cjk_chr_matcher
+
+#---------------------------------------------------------------------------------------------
+$.component = ( π ) -&gt;
+  R = Π.match π, @cjk_chr_matcher
+  if R == π[ 'assignee' ]
+    bye &quot;assignee must not appear as formula component in #{rpr π[ 'source' ]}&quot;
+  return R
+</code></pre></li>
+<li><p><strong>Traditionally</strong>, parsers used to output an Abstract Syntax Tree (AST) with only the essential details of the source code.</p></li>
+<li><p>This is bad for reconstructing the exact location of runtime errors and rewriting the source with only minimal localized changes. Therefore, the FlowMatic Parser produces a Parse Tree (a.k.a. Syntax Tree) that keeps each single character of the source.</p></li>
+<li><p>When your grammar is a program, you can decide what actions you want to implement with it: whether you evaluate the source to get a result, whether you execute the source to run a program, whether the grammar should just produce the parse tree and finish, or whether you want the grammar to transpose the source to another language.</p></li>
+<li><p><strong>Traditionally</strong>, grammars used to be monolithic in the sense that the rules of the grammar were not separately useable.</p></li>
+<li><p>This is bad since otherwise, we could use existing grammar rules to parse pieces of data (say, parse an expression that occurs in a spreadsheet cell).</p></li>
+<li><p>This is also bad since otherwise, we could construct grammars using rules of other grammars.</p></li>
+<li><p>The FlowMatic parser is adapted from <a href="https://github.com/weaver/ReParse">github.com/weaver/ReParse</a>, which is a parser combinator library:</p>
+<blockquote>
+<p>a parser combinator is a higher-order function which accepts several parsers as input and returns a new parser as its output. In this context, a parser is a function accepting strings as input and returning some structure as output, typically a parse tree or a set of indices representing locations in the string where parsing stopped successfully. Parser combinators enable a recursive descent parsing strategy which facilitates modular piecewise construction and testing.—<a href="http://en.wikipedia.org/wiki/Parser_combinator">Wikipedia</a></p>
+</blockquote></li>
+</ul>
+<p id="section-52"></p>
+</div>
+<div class="slide">
+<h1 id="beyond-coffeematic-flowmatic-14">Beyond CoffeeMatic: FlowMatic</h1>
+<h2 id="sample-parse-tree">Sample Parse Tree</h2>
+<pre class='parse-tree'>
+<span class='pretty-big'>厨: ⿸厂⿰豆寸</span>
+
+
+
+<span class='frame frame-1'>[ <span class='frame frame-2'>[ 'line', <span class='frame frame-3'>[ '厨', ':', ' ', <span class='frame frame-4'>[ 'formula', '⿸', '厂', <span class='frame frame-5'>[ 'formula', '⿰', '豆', '寸' ]</span> ]</span> ],</span> '' ]</span> ]</span>
+
+</pre>
+
+
+
+<p id="section-53"></p>
 </div>
 <div class="slide">
 <h1 id="other-stuff">Other stuff</h1>
@@ -1558,14 +1822,14 @@ f()
 <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></li>
 <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></li>
 </ul>
-<p id="section-47"></p>
+<p id="section-54"></p>
 </div>
 <div class="slide">
 <h1 id="questions">Questions</h1>
 </div>
 <div class="slide">
-<h1 id="section-48"></h1>
-<p id="section-49"></p>
+<h1 id="section-55"></h1>
+<p id="section-56"></p>
 </div>
 <div class="slide">
 <h1 id="how-&#963;-works">How Σ works</h1>
@@ -1598,20 +1862,59 @@ f()
 </code></pre></li>
 </ul></li>
 </ul>
-<p id="section-50"></p>
+<p id="section-57"></p>
 </div>
 <div class="slide">
 <h1 id="peeking-into-transposed-source">Peeking into Transposed Source</h1>
+<ul>
+<li><p>Whenever something goes wrong, we can use <code>cnd show</code> to see what the original or transposed source of a script looks like—complete with line numbers and syntax coloring.</p></li>
+<li><p>In the case of a FlowMatic source, the script will exist in three incarnations:</p>
+<ul>
+<li><p>the raw original: <code>cnd show --format raw $filename</code></p>
 <div class="figure">
 <img src="./resources/cnd-show-format-raw-test-cmatic.png" /><p class="caption"></p>
-</div>
+</div></li>
+<li><p>the amended CoffeeScript version: <code>cnd show --format coffee $filename</code></p>
 <div class="figure">
 <img src="./resources/cnd-show-format-coffee-test-cmatic.png" /><p class="caption"></p>
-</div>
+</div></li>
+<li><p>and the JavaScript target: <code>cnd show --format js $filename</code></p>
 <div class="figure">
 <img src="./resources/cnd-show-format-js-test-cmatic.png" /><p class="caption"></p>
+</div></li>
+</ul></li>
+<li><p>Using <code>cnd report $filename</code>, we can get some code counts (still very much in its infancy, so i only report LOCs here):</p>
+<div class="figure">
+<img src="./resources/code-length-small-file.png" /><p class="caption"></p>
 </div>
-<p> </p>
+<div class="figure">
+<img src="./resources/code-length-big-file.png" /><p class="caption"></p>
+</div></li>
+</ul>
+<p id="section-58"></p>
+</div>
+<div class="slide">
+<h1 id="glossary">Glossary</h1>
+<dl>
+<dt>LSD</dt>
+<dd><p>A programming philosophy that embraces Library-Oriented, Semantics-Inspired, Data-Centric thinking.</p>
+</dd>
+<dt>CoffeeNode</dt>
+<dd><p>An implementation of an application basework; it is written in CoffeeScript and follows the principles of LSD.</p>
+</dd>
+<dt>CoffeeScript</dt>
+<dd><p>A programming language that transposes to JavaScript.</p>
+</dd>
+<dt>CoffeeMatic</dt>
+<dd><p>is 100% pure CoffeeScript, except CoffeeMatic scripts are prefixed with custom-tailored, vocabulary enhancing preambles.</p>
+</dd>
+<dt>FlowMatic</dt>
+<dd><p>A basework to facilitate the definition of programming languages.</p>
+</dd>
+<dt>Arabica</dt>
+<dd><p>The central dialect and starter drug of FlowMatic. It transposes to JavaScript and features, among other things, a numerical system that is more flexible and more correct than JavaScript’s.</p>
+</dd>
+</dl>
 </div>
 
 

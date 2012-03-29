@@ -20,14 +20,14 @@
 
     *   how to do **asynchronous http** requests with epoll and **python 3.1**? (2010)
 
-*   all questions were hard—3373 views in 33 months generated only 10 answers total or 3⅓ answers per.
-    That's 3 views per day, but only one answer in 3 days.
+*   all questions were hard—3373 views in 33 months generated only 10 answers total or 3⅓ answers per
+    question. That's 3 views per day, but only one answer in 3 days.
 
 *   Realize something?
 
 *   All questions remained essentially unanswered
 
-*   and the last one did it.
+*   and the last one did it: no asynchronous HTTP, no Python.
 
 *   Good riddance, good bye
 
@@ -71,7 +71,7 @@
     >   object-relational mapping and transactional integrity, were complex, however many programmers found the
     >   APIs to
     >   be just as difficult, leading to a perception that EJBs introduced complexity without delivering real
-    >   benefits.—[Wikipedia](http://en.wikipedia.org/wiki/Enterprise_JavaBeans)
+    >   benefits.—[*Wikipedia*](http://en.wikipedia.org/wiki/Enterprise_JavaBeans)
 
     I could describe my experience with [SQLAlchemy](http://www.sqlalchemy.org/) (a Python ORM toolkit) with
     the exactly same words. ORM is somewhat hard, but in the end i went back to handwritten SQL queries
@@ -100,6 +100,32 @@
 
 ## Language is Important
 
+>   Readability is important because programmers spend the majority of their time reading, trying to understand
+>   and modifying existing source code, rather than writing new source code. Unreadable code often leads to
+>   bugs, inefficiencies, and duplicated code. A study found that a few simple readability transformations
+>   made code shorter and drastically reduced the time to understand it.
+
+>   Following a consistent programming style often helps readability. However, readability is more than just
+>   programming style. Many factors, having little or nothing to do with the ability of the computer to
+>   efficiently compile and execute the code, contribute to readability. Some of these factors include:
+
+*   *Different indentation styles (whitespace)*
+
+*   *Comments*
+
+*   *Decomposition*
+
+*   *Naming conventions for objects (such as variables, classes, procedures, etc.)*
+
+
+>   —[*Wikipedia*](http://en.wikipedia.org/wiki/Computer_programming#Readability_of_source_code)
+
+############################################################################################################
+
+# Approaches to Programming
+
+## Language is Important
+
 *   Computers don't need readable programs—humans do.
 
     Literate Programming can provide tools to make organized, beautiful
@@ -108,17 +134,15 @@
 
     >    "Programs are not just a technical contrivance, they are a medium of
     >    intentional communication—with the machine, but more importantly with
-    >    your development community, and ultimately with yourself."—Douglas
+    >    your development community, and ultimately with yourself."—[Douglas
     >    Crockford, *Quality*, talk delivered on Yahoo!'s internal Frontend
-    >    Engineering Summit in 2007,
-    >    [http://www.youtube.com/watch?v=t9YLtDJZtPY](http://www.youtube.com/watch?v=t9YLtDJZtPY)
+    >    Engineering Summit in 2007](http://www.youtube.com/watch?v=t9YLtDJZtPY)
 
 *   This talk is all about enabling programmers to write more readable programs:
 
     >    "The simplest thing we can do to enhance the value of our codebase is to
-    >    make our programs more readable."—Douglas Crockford, *Quality*, talk
-    >    delivered on Yahoo!'s internal Frontend Engineering Summit in 2007,
-    >    [http://www.youtube.com/watch?v=t9YLtDJZtPY](http://www.youtube.com/watch?v=t9YLtDJZtPY)
+    >    make our programs more readable."—[Douglas Crockford, *Quality*, talk
+    >    delivered on Yahoo!'s internal Frontend Engineering Summit in 2007](http://www.youtube.com/watch?v=t9YLtDJZtPY)
 
 
 ############################################################################################################
@@ -129,11 +153,9 @@
 
 *   Short for a style of programming that is
 
-    *   Library-Oriented
-
-    *   Semantics-Inspired
-
-    *   Data-Centric
+    *   **L**ibrary-Oriented
+    *   **S**emantics-Inspired
+    *   **D**ata-Centric
 
 
 Data-Centric
@@ -144,6 +166,10 @@ Data-Centric
     Bollocks.
 
     How about `door.open()`. Magic doors or what? Could as well be `fritz.open( door )`, no?
+
+    Should that be `','.split( 'some,words,here' )` or `'some,words,here'.split( ',' )`?
+
+    Why is it `len [ 8, 7, 5, ]` in Python, not `[ 8, 7, 5, ].length`?
 
     I think data should just be data—100% pure state. No additives, please.
 
@@ -234,7 +260,7 @@ Semantics-Inspired
 
     *   these work:
 
-        `value =`        `typeof value`
+        `value`          `typeof value`
         ---------------- ---------------
         `true`           `'boolean'`
         `->`             `'function'`
@@ -245,19 +271,19 @@ Semantics-Inspired
 
     *   this is doubtful:
 
-        `value =`        `typeof value`
+        `value`          `typeof value`
         ---------------- ---------------
         `Infinity`       `'number'`
 
     *   this is troublesome:
 
-        `value =`        `typeof value`
+        `value`          `typeof value`
         ---------------- ---------------
         `NaN`            `'number'`
 
     *   and the rest is silence, painful silence:
 
-        `value =`        `typeof value`
+        `value`          `typeof value`
         ---------------- ---------------
         `[]`             `'object'`
         `{}`             `'object'`
@@ -367,7 +393,7 @@ value            `Object::toString.call value`
           '[object global]':                    'jsglobal'
           '[object RegExp]':                    'jsregex'
           '[object DOMWindow]':                 'jswindow'
-          '[object CanvasRenderingContext2D]':  'jsctx'
+          '[object CanvasRenderingContext2D]':  'js2dcontext'
           '[object ArrayBuffer]':               'jsarraybuffer'
           #...........................................................................................
           '[object Number]': ( x ) ->
@@ -387,9 +413,10 @@ value            `Object::toString.call value`
 
 *   Usage:
 
-        log type_of        1 / 0            # jsinfinity
-        log isa_jsinfinity 1 / 0            # true
-        log isa_number     1 / 0            # false
+        log type_of        1 / 0                # jsinfinity
+        log isa_jsinfinity 1 / 0                # true
+        log isa            1 / 0, jsinfinity    # true
+        log isa_number     1 / 0                # false
 
 
 ############################################################################################################
@@ -401,7 +428,7 @@ value            `Object::toString.call value`
 *   The native JavaScript data types are divided into three groups:
 
 *   The first group contains all the 'universally accepted' data types;
-    there are seven of these, all of which (except `function`) are
+    there are seven of these, all of which (except for functions) are
     directly representable in JSON. I call this set the 'basic' data types:
 
     *   `list`
@@ -433,7 +460,7 @@ value            `Object::toString.call value`
 
     *   `jsglobal`
     *   `jswindow`
-    *   `jsctx`
+    *   `js2dcontext`
     *   `jsarraybuffer`
 
 
@@ -517,9 +544,7 @@ value            `Object::toString.call value`
 *   Sadly, there is no way to override the behavior of ``==`` and ``===``.
 
 *   It isn't advisable, either—such a global language change could easily affect
-    code acting under the premise that
-
-        ( [] === [] ) === false
+    code that written under the assumption that `( [] === [] ) === false`.
 
 *   Don't Monkey-Patch. Ever. Except if.
 
@@ -614,30 +639,11 @@ value            `Object::toString.call value`
     must also be true.
 
 *   In JavaScript (and, therefore, CoffeeScript) this data type can only ever
-    be one of
+    be one of `list`, `boolean`, `function`, `null`, `text`, `pod`, `number`, `jsarguments`, `jsdate`,
+    `jserror`, `jsglobal`, `jsregex`, `jsnotanumber`, `jsinfinity`.
 
-    *   `list`
-    *   `boolean`
-    *   `function`
-    *   `null`
-    *   `text`
-    *   `pod`
-    *   `number`
-    *   `jsarguments`
-    *   `jsdate`
-    *   `jserror`
-    *   `jsglobal`
-    *   `jsregex`
-    *   `jsnotanumber`
-    *   `jsinfinity`
-
-*   Additionally, though, JavaScript may have a number of host object data types:
-
-    *   `jsglobal`
-    *   `jswindow`
-    *   `jsctx`
-
-*   (plus some things we omitted here, like an image on an HTML page).
+*   Additionally, a JavaScript VM may provide a number of host object data types:
+    `jsglobal`, `jswindow`, `js2dcontext` (plus some things we omitted here, like an image on an HTML page).
 
 *   You would have to write some C extension to your JavaScript VM to
     add a type
@@ -653,7 +659,7 @@ value            `Object::toString.call value`
 
 ## Extended Types
 
-*   But JavaScript is very flexible, so you can build arbitrary objects.
+*   But JavaScript is very flexible—you can build arbitrary objects.
     From `COFFEENODE/SET`:
 
         #---------------------------------------------------------------------------------------------
@@ -688,7 +694,6 @@ value            `Object::toString.call value`
           #...........................................................................................
           return R
 
-
 ############################################################################################################
 
 # Type Hierarchy (and what we can do with it)
@@ -718,6 +723,9 @@ value            `Object::toString.call value`
 
 *   and contains a sub-POD `elements` that keeps the records.
 
+*   The convention here is that if `x[ '~isa' ]` is defined, it must be a text with the name of the
+    data type that `x` represents.
+
 
 ############################################################################################################
 
@@ -745,6 +753,7 @@ value            `Object::toString.call value`
 *   And it works:
 
         x = SET.new [ 'a', 'b', 'c' ]
+
         log TYPES.type_of x                     # 'SET/set'
         log TYPES.isa x, 'SET/set'              # true
         log TYPES.isa x, 'pod'                  # false
@@ -756,7 +765,7 @@ value            `Object::toString.call value`
 
 *   This looks very object-oriented, but is conceptually different.
 
-*   The common conception of OOP methods is that they take an amplicit first argument, which is the
+*   The common conception of OOP methods is that they take an implicit first argument, which is the
     object instance that the method is called on; in Python, this is the semi-explicit `self` parameter,
     while in JavaScript, it's the fully implicit `this`:
 
@@ -774,6 +783,7 @@ value            `Object::toString.call value`
     I'll come back to those later. Preview:
 
         x = new_set [ 'a', 'b', 'c' ]
+
         log type_of x                     # 'SET/set'
         log isa x, 'SET/set'              # true
         log isa x, 'pod'                  # false
@@ -1060,8 +1070,7 @@ value            `Object::toString.call value`
     OOOBS Language Award (OOOBSLA) for building extremely tight assumptions about how to write programs
     and even how to architecture applications with modules right into the language.
 
-*   There's no escape route, Java's programmers are Java's prisoners. Talk about 'not making prisoners',
-    well, Java does.
+*   There's no escape route, Java's programmers are Java's prisoners.
 
 *   For all that Java does to enslave its users, itself takes a rather lighthearted view of life and the
     universe. Kind of an innocently whistling prison guard:
@@ -1075,13 +1084,13 @@ value            `Object::toString.call value`
 
 *   This is just the tip of the iceberg of idiocy:
 
-    >   "To make matters worse, the rules for comparing NaN and -0 are different between the primitive float type
-    >   and the wrapper class Float. For float values, comparing two NaN values for equality will yield false,
-    >   but comparing two NaN Float objects using Float.equals() will yield true.
+    >   "To make matters worse, the rules for comparing `NaN` and `-0` are different between the primitive float type
+    >   and the wrapper class `Float`. For float values, comparing two `NaN` values for equality will yield `false`,
+    >   but comparing two `NaN` Float objects using `Float.equals()` will yield `true`.
     >
     >   [...] Similarly, while
-    >   0 and —0 are considered equal when represented as float values, comparing 0 and —0 as Float objects
-    >   using Float.compareTo() indicates that —0 is considered to be less than 0."—[*Java theory and practice*](http://www.ibm.com/developerworks/java/library/j-jtp0114/)
+    >   `0` and `-0` are considered equal when represented as float values, comparing `0` and `-0` as `Float` objects
+    >   using `Float.compareTo()` indicates that `-0` is considered to be less than `0`."—[*Java theory and practice*](http://www.ibm.com/developerworks/java/library/j-jtp0114/)
 
 *   Do you trust a computer language that fails on `0 == —0`?
 
@@ -1169,58 +1178,58 @@ value            `Object::toString.call value`
 
 #   Comparison of Programming Languages (cont'd)
 
-    ![](./resources/computer-languages-on-a-hertzsprung-russell-diagram-small.png)
+![](./resources/computer-languages-on-a-hertzsprung-russell-diagram-small.png)
 
 *   For me, the 'Inhabitable Zone' of programming languages is between JavaScript and Python.
 
 *   When you move from JavaScript to CoffeeScript, you considerably reduce the amount of craziness that
     could vex you. This is because
 
-*   you get rid of 99.9% of all braces and parentheses;
+    *   you get rid of 99.9% of all braces and parentheses;
 
-*   you implicitly use JavaScript's non-coercing 'strict equality' operator, avoiding many gotchas;
+    *   you implicitly use JavaScript's non-coercing 'strict equality' operator, avoiding many gotchas;
 
-*   you get a great syntax for function definition (very important in asynchronous, callback-rich code):
+    *   you get a great syntax for function definition (very important in asynchronous, callback-rich code):
 
-        #-----------------------------------------------------------------------------------------
-        f = ( a, b, c = 42 ) ->
-          return "#{a} #{b} #{c}"
+            #-----------------------------------------------------------------------------------------
+            f = ( a, b, c = 42 ) ->
+              return "#{a} #{b} #{c}"
 
-        #-----------------------------------------------------------------------------------------
-        g = ( names... ) ->
-          return "The participants: #{names.join ', '}"
+            #-----------------------------------------------------------------------------------------
+            g = ( names... ) ->
+              return "The participants: #{names.join ', '}"
 
-        #-----------------------------------------------------------------------------------------
-        read
-          #.......................................................................................
-          '/tmp/participants'
-          encoding:     'utf-8'
-          format:       'csv'
-          #.......................................................................................
-          ( error, chunk ) ->
-            if error:
-              log "something went wrong"
-              throw error
-            finalize_results() unless chunk?
-            push buffer, chunk
+            #-----------------------------------------------------------------------------------------
+            read
+              #.......................................................................................
+              '/tmp/participants'
+              encoding:     'utf-8'
+              format:       'csv'
+              #.......................................................................................
+              ( error, chunk ) ->
+                if error:
+                  log "something went wrong"
+                  throw error
+                finalize_results() unless chunk?
+                push buffer, chunk
 
-*   for those who like it, you get easy-to-use classes (i have no use for them, as i do mixins /
-    traits);
+    *   those who like it get easy-to-use classes (i have no use for them, as i do mixins /
+        traits);
 
-*   you get the existential operator `?` which is great to circumnavigate the many cases where missing
-    attributes result in `undefined`:
+    *   you get the existential operator `?` which is great to circumnavigate the many cases where missing
+        attributes result in `undefined`:
 
-        solipsism = true if mind? and not world?
+            solipsism = true if mind? and not world?
 
-        speed ?= 75                                 # caveat: may create a global variable in CS 1.2.0; issue fixed
+            speed ?= 75                                 # caveat: may create a global variable in CS 1.2.0; issue fixed
 
-        footprints = yeti ? "bear"
+            footprints = yeti ? "bear"
 
 
-*   you get post-`if` statements, list comprehensions, ranges, sane `for ... in / of` loops;
+    *   you get post-`if` statements, list comprehensions, ranges, sane `for ... in / of` loops;
 
-*   you can use all of JavaScript and everything that 3rd party libraries offer—in most cases, it is
-    absolutely trivial to turn some library into a `require`able module.
+    *   you can use all of JavaScript and everything that 3rd party libraries offer—in most cases, it is
+        absolutely trivial to turn some library into a `require`able module.
 
 *   I've only scratched the surface here.
 
@@ -1239,12 +1248,12 @@ value            `Object::toString.call value`
 
 *   You run them with
 
-        cnd run route/to/your/script.cnd
+        cnd run route/to/your/script.cmatic
 
-*   It all happens in `COFFEENODE/ENGINE/wrap-0.0.3.coffee`, where the `cnd` extension gets registered:
+*   It all happens in `COFFEENODE/ENGINE/wrap-0.0.3.coffee`, where the `cmatic` extension gets registered:
 
         #-----------------------------------------------------------------------------------------
-        require.extensions[ '.cnd' ] = ( module, route ) ->
+        require.extensions[ '.cmatic' ] = ( module, route ) ->
           source  = njs_fs.readFileSync route, 'utf-8'
           #.......................................................................................
           content = Σ.emit 'COFFEENODE/engine/wrap/0.0.3',
@@ -1253,6 +1262,9 @@ value            `Object::toString.call value`
             'source':   source
           #.......................................................................................
           module._compile content, route
+
+*   Isn't it f*cking great that NodeJS / CommonJS includes the ability to import modules written in
+    foreign languages? Take that, Python! Fuck off, Java!
 
 *   The transformation of the source code is quite primitive: we simply iterate over all the identifiers in
     the source, and where words are found that belong to the received vocabulary, we either add a signal
@@ -1322,6 +1334,8 @@ plus
         `copy`, `clear`, `compose`, `names_of`, `validate_isa_text`. There are a few accepted abbreviations,
         such as `rpr` for the 'representation' of a value, `idx` for 'index', `chr` for 'character'.
 
+    *   No CamelCase and longwindingsnakewords, please use underscores (i'd use hyphens if it was possible).
+
     *   CoffeeNode library names are spelled in SCREAMING CAPS using the Latin and the Greek alphabet.
 
         (I do not want to rule out library names written in Brahmi, Cherokee or Chinese, but right now
@@ -1360,14 +1374,14 @@ Generic Δ Methods
 
 
     testing and validating types:
-      ~ type-of, isa, isa-boolean, isa-function, isa-integer, isa-jsarguments, isa-jsctx, isa-jsdate, isa-jserror, isa-
+      ~ type-of, isa, isa-boolean, isa-function, isa-integer, isa-jsarguments, isa-js2dcontext, isa-jsdate, isa-jserror, isa-
         jsglobal, isa-jsinfinity, isa-jsnotanumber, isa-jsregex, isa-jsundefined, isa-jswindow, isa-list, isa-null,
         isa-number, isa-pod, isa-text.
 
         validate-isa, validate-isa-boolean, ...
 
     testing and validating type tags:
-      ~ is-mutable, is-indexed, is-facetted, is-ordered, is-repetitive, is-single_valued, is-dense, is-callable, is-
+      ~ is-mutable, is-indexed, is-facetted, is-ordered, is-repetitive, is-single-valued, is-dense, is-callable, is-
         numeric, is-basic, is-ecma.
 
     from the MULTIMIX library (for mixins and property handling):
@@ -1395,6 +1409,45 @@ Library names
         PANDOC, QUANTITY, REGEX, ROUTE, SET, TRM, TYPES, VALIDATE, Δ, Λ, Σ.
 
 
+############################################################################################################
+
+# Beyond CoffeeScript: CoffeeMatic
+
+## Specific Δ methods revisited
+
+*   Specific Δ methods are dispatched to the library that is responsible for handling the type of the
+    first argument (the 'prinicipal noun').
+
+*   This means that every time a specific Δ method is called, it is potentially dispatched to another
+    implementation. This:
+
+        values = [
+            'helo'
+            [ 1, 2, 3, ] ]
+
+        for value in values
+            log reverse value
+
+    is functionally equivalent to
+
+        log TEXT.reverse 'helo'
+        log LIST.reverse [ 1, 2, 3, ]
+
+*   As for native JavaScript types, the mapping is done by rule—the name of the responsible library
+    is the result of `type_of x` set in upper case.
+
+*   Extension types must register themselves with `type-descriptions.coffee` files:
+
+        module.exports =
+          'SET/set':
+            'features':             'mutable facetted json'
+
+*   3rd party developers are advised to use type names that look like URLs, using existing domain names
+    to avoid name clashes:
+
+        module.exports =
+          'example.com/collins/frobulator':
+            'features':             'mutable facetted indexed json'
 
 
 
@@ -1465,10 +1518,16 @@ Library names
     we're still unable to fix this with CoffeeScript and CoffeeMatic alone.
 
 *   The fact that JavaScript thinks that `0.1 + 0.1 + 0.1 == 0.30000000000000004` has caused much
-    hair-tearing with programmers. You can try to avoid this issue by 1) only doing calculations with integer
-    numbers, 2) using your own `add` function, or 3) using a 3rd party decimal calculation library, but
-    we are unable to transparently fix floating point arithmetic flaws that occur deep down in JavaScript's
-    guts.
+    hair-tearing with programmers. You can try to avoid this issue by
+
+    1) only doing calculations with integer numbers,
+
+    2) using your own `add` function, or
+
+    3) using a 3rd party decimal calculation library
+
+    but we are unable to transparently fix floating point arithmetic flaws that occur deep down in
+    JavaScript's guts.
 
 *   Extending the syntax of CoffeeScript is feasible, but cumbersome.
 
@@ -1495,21 +1554,22 @@ Library names
 
 ![](./resources/flowmatic-logo-3.0-small.png)
 
+*   Paul Graham on Linguistic Diversity:
 
->   "All languages are equally powerful in the sense of being Turing equivalent, but that’s not the sense of the
->   word programmers care about. (No one wants to program a Turing machine.)
->
->   The kind of power programmers care
->   about may not be formally definable, but one way to explain it would be to say that it refers to features
->   you could only get in the less powerful language by writing an interpreter for the more powerful language in
->   it.
->
->   If language A has an operator for removing spaces from strings and language B doesn’t, that probably
->   doesn’t make A more powerful, because you can probably write a subroutine to do it in B.
->
->   But if A supports,
->   say, recursion, and B doesn’t, that’s not likely to be something you can fix by writing library
->   functions."—Paul Graham, *Beating the Averages*
+    >   "All languages are equally powerful in the sense of being Turing equivalent, but that’s not the sense of the
+    >   word programmers care about. (No one wants to program a Turing machine.)
+    >
+    >   The kind of power programmers care
+    >   about may not be formally definable, but one way to explain it would be to say that it refers to features
+    >   you could only get in the less powerful language by writing an interpreter for the more powerful language in
+    >   it.
+    >
+    >   If language A has an operator for removing spaces from strings and language B doesn’t, that probably
+    >   doesn’t make A more powerful, because you can probably write a subroutine to do it in B.
+    >
+    >   But if A supports,
+    >   say, recursion, and B doesn’t, that’s not likely to be something you can fix by writing library
+    >   functions."—Paul Graham, *Beating the Averages*
 
 
 ############################################################################################################
@@ -1609,32 +1669,9 @@ Library names
 
 #   Beyond CoffeeMatic: FlowMatic
 
+##  The Tower of Babel
+
 ![](./resources/flowmatic-logo-3.0-small.png)
-
-　
-
-　
-
-
-　
-
-　
-
-
-　
-
-　
-
-
-　
-
-　
-
-
-　
-
-　
-
 
 
 ![](./resources/turris-babel-1092x1123.jpg)
@@ -1645,6 +1682,8 @@ Library names
 ############################################################################################################
 
 #   Beyond CoffeeMatic: FlowMatic
+
+##  Arabica
 
 ![](./resources/flowmatic-logo-3.0-small.png)
 
@@ -1661,7 +1700,7 @@ Library names
 
 *   FlowMatic is not a language per se, it's more of a toolbox to author languages.
 
-*   But there is still a 'central' or 'default' dialect named `Arabica` (after *Coffea arabica*, the world's
+*   But there is still a 'central' or 'default' dialect named **Arabica** (after *Coffea arabica*, the world's
     most popular species of coffee plants) that is very similar to CoffeeScript
 
 *   mainly as a way to lower entry levels for newbies
@@ -1671,6 +1710,8 @@ Library names
 ############################################################################################################
 
 #   Beyond CoffeeMatic: FlowMatic
+
+##  Arabica
 
 ![](./resources/flowmatic-logo-3.0-small.png)
 
@@ -1714,14 +1755,6 @@ roman (o_O)         `0rMMXII`\                  2012.\
 
 ------------------  --------------------------  --------------------------------------------------------
 
-
-############################################################################################################
-
-#   Beyond CoffeeMatic: FlowMatic
-
-![](./resources/flowmatic-logo-3.0-small.png)
-
-
 *   To give an example, `2;63~€` is
 
     *   a `quantity`
@@ -1734,6 +1767,17 @@ roman (o_O)         `0rMMXII`\                  2012.\
 
     *   In numerical operations, the 'round half away from zero' rule is applied, which is widely used
         in commercial applictions.
+
+
+
+############################################################################################################
+
+#   Beyond CoffeeMatic: FlowMatic
+
+##  Diversity of Dialects
+
+![](./resources/flowmatic-logo-3.0-small.png)
+
 
 *   Whether the Roman numeral format will make it into the central dialect is not clear.
 
@@ -1773,6 +1817,260 @@ roman (o_O)         `0rMMXII`\                  2012.\
 
 ![](./resources/flowmatic-logo-3.0-small.png)
 
+*   Arabica is still very much in its infancy, so i'll discuss another useful example for language
+    design: Parsing Ideographic Description Language (IDL).
+
+*   We've already seen these formulas:
+
+        亭: ⿳⿱亠口冖丁
+        勝: ⿸⿰月龹力
+        厨: ⿸厂⿰豆寸
+        廚: ⿸广尌
+        一: ●
+        參: ⿱厽㐱
+        厽: ⿱厶厸
+        厸: ⿰厶厶
+        㐱: ⿱人彡
+        參: ⿱⿱厶厸㐱
+        參: ⿱⿱厶⿰厶厶㐱
+        參: ⿱⿱厶⿰厶厶⿱人彡
+        京: ⿳亠口小
+        修: ⿲亻丨㣊
+        掀: ⿰折欠
+        掀: ⿰扌欣
+        厨: ⿸厂⿰豆寸
+        廚: ⿸广尌
+
+*   It is a very simple language
+
+*   based on Polish Prefix Notation.
+
+*   Each term starts with an operator that takes two (`⿰`, `⿱`, `⿴`, `⿵`, `⿶`, `⿷`, `⿸`, `⿹`,
+    `⿺`, `⿻`) or three (`⿲`, `⿳`) arguments;
+
+*   each argument can be a CJK character (component) or a sub-term.
+
+
+############################################################################################################
+
+#   Beyond CoffeeMatic: FlowMatic
+
+##  Example: Parsing Ideographic Descriptions
+
+![](./resources/flowmatic-logo-3.0-small.png)
+
+*   When reasoning about syntax, i like to start out with a railroad syntax diagram:
+
+![](./resources/idl-railroad-diagram.jpg)
+
+############################################################################################################
+
+#   Beyond CoffeeMatic: FlowMatic
+
+##  Example: Parsing Ideographic Descriptions
+
+![](./resources/flowmatic-logo-3.0-small.png)
+
+*   This is the grammar of IDL:
+
+        #---------------------------------------------------------------------------------------------
+        $.collection = ( π ) ->
+          return Π.many π, @line
+
+        #---------------------------------------------------------------------------------------------
+        $.line = ( π ) ->
+          return stash 'line', Π.sequence π, @assignment, @ws_eol
+
+        #---------------------------------------------------------------------------------------------
+        $.assignment = ( π ) ->
+          return Π.sequence π, @assignee, ':', @ws_linear, @expression
+
+        #---------------------------------------------------------------------------------------------
+        $.assignee = ( π ) ->
+          return π[ 'assignee' ] = Π.match π, @cjk_chr_matcher
+
+        #---------------------------------------------------------------------------------------------
+        $.expression = ( π ) ->
+          return Π.choice π, @finish, @formula
+
+        #---------------------------------------------------------------------------------------------
+        $.finish = ( π ) ->
+          return [ 'finish', Π.match π, /^●/ ]
+
+        #---------------------------------------------------------------------------------------------
+        $.formula = ( π ) ->
+          return stash 'formula', Π.choice π, @formula_3, @formula_2
+
+        #---------------------------------------------------------------------------------------------
+        $.formula_2 = ( π ) ->
+          return Π.sequence π, @operator_2, @term, @term
+
+        #---------------------------------------------------------------------------------------------
+        $.formula_3 = ( π ) ->
+          return Π.sequence π, @operator_3, @term, @term, @term
+
+        #---------------------------------------------------------------------------------------------
+        $.operator_2 = ( π ) ->
+          return Π.match π, /[⿰⿱⿴⿵⿶⿷⿸⿹⿺⿻]/
+
+        #---------------------------------------------------------------------------------------------
+        $.operator_3 = ( π ) ->
+          return Π.match π, /[⿲⿳]/
+
+        #---------------------------------------------------------------------------------------------
+        $.term = ( π ) ->
+          return Π.choice π, @component, @formula
+
+        #---------------------------------------------------------------------------------------------
+        $.component = ( π ) ->
+          R = Π.match π, @cjk_chr_matcher
+          if R == π[ 'assignee' ]
+            bye "assignee must not appear as formula component in #{rpr π[ 'source' ]}"
+          return R
+
+        #---------------------------------------------------------------------------------------------
+        $.cjk_chr_matcher = /// ^ [ \u2e80-\u2eff
+                                    \u2f00-\u2fdf
+                                    \u3007
+                                    \u3005-\u3006
+                                    \u3021-\u3029
+                                    \u3038-\u3039
+                                    \u303a-\u303b
+                                    \u303d-\u303d
+                                    \u31c0-\u31ef
+                                    \u3400-\u4dbf
+                                    \u4e00-\u9fff
+                                    \uf900-\ufaff ] ///
+
+        # \u20000-\u2a6df
+        # \u2a700-\u2b73f
+        # \u2b740-\u2b81f
+        # \u2f800-\u2fa1f
+
+        #---------------------------------------------------------------------------------------------
+        $.ws_eol    = ( π ) -> return Π.match π, /^[\u0020\u0009\u00a0\u3000]*\n|^$/
+        $.ws_linear = ( π ) -> return Π.match π, /^[\u0020\u0009\u00a0\u3000]/
+
+
+############################################################################################################
+
+#   Beyond CoffeeMatic: FlowMatic
+
+##  Example: Parsing Ideographic Descriptions
+
+![](./resources/flowmatic-logo-3.0-small.png)
+
+*   Simplified, it looks like this:
+
+        collection:         many      line
+        line:               sequence  assignment, ws-eol
+        assignment:         sequence  assignee, ':', ws-linear, expression
+        assignee            match     cjk-chr-matcher
+        expression:         choice    finish, formula
+        finish:             match     /^●/
+        formula:            choice    formula-3, formula-2
+        formula-2:          sequence  operator-2, term, term
+        formula-3:          sequence  operator-3, term, term, term
+        operator-2:         match     /[⿰⿱⿴⿵⿶⿷⿸⿹⿺⿻]/
+        operator-3:         match     /[⿲⿳]/
+        term:               choice    component, formula
+        component:          match     cjk-chr-matcher
+        ws-eol:             match     /^[\u0020\u0009\u00a0\u3000]*\n|^$/
+        ws-linear:          match     /^[\u0020\u0009\u00a0\u3000]/
+        cjk-chr-matcher:    /// ^ [ \u2e80-\u2eff
+                                    \u2f00-\u2fdf
+                                    \u3007
+                                    \u3005-\u3006
+                                    \u3021-\u3029               # missing codepoints:
+                                    \u3038-\u3039               #   \u20000-\u2a6df
+                                    \u303a-\u303b               #   \u2a700-\u2b73f
+                                    \u303d-\u303d               #   \u2b740-\u2b81f
+                                    \u31c0-\u31ef               #   \u2f800-\u2fa1f
+                                    \u3400-\u4dbf
+                                    \u4e00-\u9fff
+                                    \uf900-\ufaff ] ///
+
+
+############################################################################################################
+
+#   Beyond CoffeeMatic: FlowMatic
+
+##  Parsing with Maximal Flexibility
+
+![](./resources/flowmatic-logo-3.0-small.png)
+
+*   **Traditionally**, parsing used to be done only after 'lexing'—i.e. there is a preparatory step
+    that first distills a list of tokens from the source, and the parser only gets that list.
+    Whitespace and comments are thrown away early on.
+
+*   This approach makes parsing inflexible: what if i wanted to use two or more languages in
+    a single file (not so obscure—you could have HTML, PHP, JavaScript and CSS all on a single page).
+
+*   **Traditionally**, grammars used to be written as (some variant of) Backus–Naur Form (BNF).
+
+*   While BNF might be more readable than an equivalent grammar written CoffeeScript, we loose flexibility
+    again since BNF is not a programming language; factors that are not strictly syntactical cannot
+    be expressed in it.
+
+    Here we impose the restriction that a given character cannot appear in its own
+    formula:
+
+        #---------------------------------------------------------------------------------------------
+        $.assignee = ( π ) ->
+          return π[ 'assignee' ] = Π.match π, @cjk_chr_matcher
+
+        #---------------------------------------------------------------------------------------------
+        $.component = ( π ) ->
+          R = Π.match π, @cjk_chr_matcher
+          if R == π[ 'assignee' ]
+            bye "assignee must not appear as formula component in #{rpr π[ 'source' ]}"
+          return R
+
+*   **Traditionally**, parsers used to output an Abstract Syntax Tree (AST) with only the essential
+    details of the source code.
+
+*   This is bad for reconstructing the exact location of runtime errors and rewriting the source with only
+    minimal localized changes. Therefore, the FlowMatic Parser produces a Parse Tree (a.k.a. Syntax Tree)
+    that keeps each single character of the source.
+
+*   When your grammar is a program, you can decide what actions you want to implement with it: whether
+    you evaluate the source to get a result, whether you execute the source to run a program, whether
+    the grammar should just produce the parse tree and finish, or whether you want the grammar to transpose
+    the source to another language.
+
+*   **Traditionally**, grammars used to be monolithic in the sense that the rules of the grammar were
+    not separately useable.
+
+*   This is bad since otherwise, we could use existing grammar rules to parse pieces of data (say, parse
+    an expression that occurs in a spreadsheet cell).
+
+*   This is also bad since otherwise, we could construct grammars using rules of other grammars.
+
+*   The FlowMatic parser is adapted from [github.com/weaver/ReParse](https://github.com/weaver/ReParse),
+    which is a parser combinator library:
+
+    >   a parser combinator is a higher-order function which accepts several parsers as input and returns a new
+    >   parser as its output. In this context, a parser is a function accepting strings as input and returning some
+    >   structure as output, typically a parse tree or a set of indices representing locations in the string where
+    >   parsing stopped successfully. Parser combinators enable a recursive descent parsing strategy which
+    >   facilitates modular piecewise construction and testing.—[Wikipedia](http://en.wikipedia.org/wiki/Parser_combinator)
+
+
+############################################################################################################
+
+#   Beyond CoffeeMatic: FlowMatic
+
+##  Sample Parse Tree
+
+
+<pre class='parse-tree'>
+<span class='pretty-big'>厨: ⿸厂⿰豆寸</span>
+
+
+
+<span class='frame frame-1'>[ <span class='frame frame-2'>[ 'line', <span class='frame frame-3'>[ '厨', ':', ' ', <span class='frame frame-4'>[ 'formula', '⿸', '厂', <span class='frame frame-5'>[ 'formula', '⿰', '豆', '寸' ]</span> ]</span> ],</span> '' ]</span> ]</span>
+
+</pre>
 
 
 
@@ -1885,13 +2183,61 @@ roman (o_O)         `0rMMXII`\                  2012.\
 
 #   Peeking into Transposed Source
 
-![](./resources/cnd-show-format-raw-test-cmatic.png)
+*   Whenever something goes wrong, we can use `cnd show` to see what the original or transposed source
+    of a script looks like—complete with line numbers and syntax coloring.
 
-![](./resources/cnd-show-format-coffee-test-cmatic.png)
+*   In the case of a FlowMatic source, the script will exist in three incarnations:
 
-![](./resources/cnd-show-format-js-test-cmatic.png)
+    * the raw original: `cnd show --format raw $filename`
 
- 
+        ![](./resources/cnd-show-format-raw-test-cmatic.png)
+
+    * the amended CoffeeScript version: `cnd show --format coffee $filename`
+
+        ![](./resources/cnd-show-format-coffee-test-cmatic.png)
+
+    * and the JavaScript target: `cnd show --format js $filename`
+
+        ![](./resources/cnd-show-format-js-test-cmatic.png)
+
+*   Using `cnd report $filename`, we can get some code counts (still very much in its infancy,
+    so i only report LOCs here):
+
+    ![](./resources/code-length-small-file.png)
+
+    ![](./resources/code-length-big-file.png)
+
+
+############################################################################################################
+
+#   Glossary
+
+LSD
+  ~ A programming philosophy that embraces Library-Oriented, Semantics-Inspired, Data-Centric
+    thinking.
+
+CoffeeNode
+  ~ An implementation of an application basework; it is written in CoffeeScript and follows the principles of LSD.
+
+CoffeeScript
+  ~ A programming language that transposes to JavaScript.
+
+CoffeeMatic
+  ~ is 100% pure CoffeeScript, except CoffeeMatic scripts are prefixed with custom-tailored, vocabulary
+    enhancing preambles.
+
+FlowMatic
+  ~ A basework to facilitate the definition of programming languages.
+
+Arabica
+  ~ The central dialect and starter drug of FlowMatic. It transposes to JavaScript and features, among
+    other things, a numerical system that is more flexible and more correct than JavaScript's.
+
+
+
+
+
+
 
 
 

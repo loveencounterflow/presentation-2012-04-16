@@ -180,7 +180,7 @@ var w3c_slidy = {
 
     //this.set_location();
 
-    this.resized();
+    //this.resized();
 
     if (this.ie7)
       setTimeout(w3c_slidy.ie_hack, 100);
@@ -2050,36 +2050,36 @@ var w3c_slidy = {
        return w3c_slidy.cancel(event);
       }
     }
-    else if (key == 188)  // < for smaller fonts
-    {
-      w3c_slidy.smaller();
-      return w3c_slidy.cancel(event);
-    }
-    else if (key == 190)  // > for larger fonts
-    {
-      w3c_slidy.bigger();
-      return w3c_slidy.cancel(event);
-    }
-    else if (key == 189 || key == 109)  // - for smaller fonts
-    {
-      w3c_slidy.smaller();
-      return w3c_slidy.cancel(event);
-    }
-    else if (key == 187 || key == 191 || key == 107)  // = +  for larger fonts
-    {
-      w3c_slidy.bigger();
-      return w3c_slidy.cancel(event);
-    }
-    else if (key == 83)  // S for smaller fonts
-    {
-      w3c_slidy.smaller();
-      return w3c_slidy.cancel(event);
-    }
-    else if (key == 66)  // B for larger fonts
-    {
-      w3c_slidy.bigger();
-      return w3c_slidy.cancel(event);
-    }
+    // else if (key == 188)  // < for smaller fonts
+    // {
+    //   w3c_slidy.smaller();
+    //   return w3c_slidy.cancel(event);
+    // }
+    // else if (key == 190)  // > for larger fonts
+    // {
+    //   w3c_slidy.bigger();
+    //   return w3c_slidy.cancel(event);
+    // }
+    // else if (key == 189 || key == 109)  // - for smaller fonts
+    // {
+    //   w3c_slidy.smaller();
+    //   return w3c_slidy.cancel(event);
+    // }
+    // else if (key == 187 || key == 191 || key == 107)  // = +  for larger fonts
+    // {
+    //   w3c_slidy.bigger();
+    //   return w3c_slidy.cancel(event);
+    // }
+    // else if (key == 83)  // S for smaller fonts
+    // {
+    //   w3c_slidy.smaller();
+    //   return w3c_slidy.cancel(event);
+    // }
+    // else if (key == 66)  // B for larger fonts
+    // {
+    //   w3c_slidy.bigger();
+    //   return w3c_slidy.cancel(event);
+    // }
     else if (key == 90)  // Z for last slide
     {
       w3c_slidy.last_slide();
